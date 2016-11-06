@@ -1,6 +1,8 @@
-
 public class Inventory {
-    public Inventory(){
-    	
+	boolean isExist;
+	int OrderNum;
+	
+    public Inventory(int OrderNum){
+        this.OrderNum = OrderNum;
     }
 }
