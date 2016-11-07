@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Inventory {
+public class inventoryTest {
 	boolean isExist;
 	int amount;
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>();
 	
-    public Inventory(List inventory){
+    public inventoryTest(List inventory){
         this.inventory = inventory;
     }
     
@@ -113,23 +113,16 @@ public class Inventory {
     	return isExist;
     }
     
-}
-
-
-class Test {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		
 		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
-		Inventory a = new Inventory(listA);
+		inventoryTest a = new inventoryTest(listA);
 		a.data();
 	    //a.addItem("11");
 	    //a.removeItem("11");
 	}
-
+    
 }
-
-
-
 
