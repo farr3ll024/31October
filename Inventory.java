@@ -1,8 +1,16 @@
-public class Inventory {
-	boolean isExist;
-	int OrderNum;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class InventoryList{
 	
-    public Inventory(int OrderNum){
-        this.OrderNum = OrderNum;
-    }
+	private static HashMap<String,ArrayList> inventoryList = new HashMap<String,ArrayList>();
+	private static ArrayList<String> itemDetails = new ArrayList<String>();
+
+	
+
 }
+
+//import java.util.HashMap;
+//private static interface HashMap<String,Object> orderInfo = new HashMap<>();
+
+
