@@ -31,12 +31,12 @@ public class Inventory {
 		}
 
 		String[] columnName =
-		{ "Id", "Name", "Amount"}; // 列名
+		{ "Id", "Name", "Amount"}; 
 		int i, index;
 		String line;
 		try
 		{
-			br.readLine(); // 去掉第一行
+			br.readLine();
 			while ((line = br.readLine()) != null)
 			{
 				index = 0;
