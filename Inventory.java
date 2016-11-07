@@ -1,11 +1,95 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Inventory {
 	boolean isExist;
-	ArrayList<String> itemList = new ArrayList<String>();
+	int amount;
+	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>();
 	
-    public Inventory(ArrayList itemList){
-        this.itemList = itemList;
+    public Inventory(List inventory){
+        this.inventory = inventory;
+    }
+    
+    public void data(){
+    	
+    	BufferedReader br = null;
+		try
+		{
+			br = new BufferedReader(new FileReader("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
+		} catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+
+		String[] columnName =
+		{ "Id", "Name", "Amount"}; // 列名
+		int i, index;
+		String line;
+		try
+		{
+			br.readLine(); // 去掉第一行
+			while ((line = br.readLine()) != null)
+			{
+				index = 0;
+				String[] se = line.split(" ");
+				Map<String, Object> item = new HashMap<String, Object>();
+				for (i = 0; i < se.length; i++)
+				{
+					if ("".equals(se[i]))
+					{
+						continue;
+					}
+					if (index >= columnName.length)
+					{
+						continue;
+					}
+					item.put(columnName[index], se[i]);
+					index++;
+				}
+				
+				double amount = Double.parseDouble((String) item
+							.get(columnName[2]));
+				
+				if (amount > 0){
+					item.put("Existence", "Y");
+				}
+				else{
+					item.put("Existence", "N");
+				}
+
+				inventory.add(item);
+			}
+			br.close();
+
+			
+			PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
+
+			pw.println("Id\tName\tAmount\tExistence");
+			int cIndex;
+			for (i = 0; i < inventory.size(); i++)
+			{
+				Map<String, Object> st = inventory.get(i);
+				cIndex = 0;
+				pw.println(st.get(columnName[cIndex++]) + "\t"
+						+ st.get(columnName[cIndex++]) + "\t"
+						+ st.get(columnName[cIndex++]) + "\t"+st.get("Existence"))  ;
+			}
+			pw.flush();
+			pw.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+    	
     }
     
     public void removeItem(String itemNum){
@@ -13,13 +97,13 @@ public class Inventory {
     		/*remove item from itemList*/
     	}
     	else{
-    		
+    	    
     	}
     		
     }
     
     public void addItem(String itemNum){
-    	itemList.add(itemNum);
+ 
     }
     
     public boolean checkExist(String itemNum){
@@ -35,12 +119,13 @@ public class Inventory {
 class Test {
 	public static void main(String[] args) {
 		
-		ArrayList<String> listA = new ArrayList<String>();
+		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
 		Inventory a = new Inventory(listA);
-	    a.addItem("1111");
-	    a.removeItem("1111");
+		a.data();
+	    //a.addItem("11");
+	    //a.removeItem("11");
 	}
 
 }
