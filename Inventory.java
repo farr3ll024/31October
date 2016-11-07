@@ -23,7 +23,7 @@ public class Inventory {
     	BufferedReader br = null;
 		try
 		{
-			br = new BufferedReader(new FileReader("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
+			br = new BufferedReader(new FileReader("/Users/macbook_user/Desktop/OOP Project/List.txt"));
 		} catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
