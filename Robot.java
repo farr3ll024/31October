@@ -1,6 +1,7 @@
 /*
 *
 */
+package RobotPackage;
 
 Class Robot {
 
