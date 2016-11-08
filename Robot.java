@@ -14,6 +14,22 @@ Class Robot {
     this.x = x;
     this.y = y;
   }
+
+  public void move(String direction){
+      if (direction = "North" && this.y != 0){
+          this.y += 1;
+      }
+      else if (direction = "South" && this.y != 15){
+          this.y -= 1;
+      }
+      else if (direction = "East" && this.x != 15){
+          this.x += 1;
+      }
+      else if (direction = "West" && this.x != 0){
+          this.x -= 1;
+      }
+  }
+
   //getters and setters
   public getX(){
     return x;
