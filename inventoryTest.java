@@ -19,7 +19,6 @@ public class inventoryTest {
     }
     
     public void data(){
-    	
     	BufferedReader br = null;
 		try
 		{
@@ -69,13 +68,24 @@ public class inventoryTest {
 				inventory.add(item);
 			}
 			br.close();
-
-			
-			PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
-
-			pw.println("Id\tName\tAmount\tExistence");
+            
+			outPutFile();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+    	
+        }
+	
+	
+	public void outPutFile(){
+    	try
+		{
+    	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
+    	   pw.println("Id\tName\tAmount\tExistence");
+    	   String[] columnName = { "Id", "Name", "Amount"}; 
 			int cIndex;
-			for (i = 0; i < inventory.size(); i++)
+			for (int i = 0; i < inventory.size(); i++)
 			{
 				Map<String, Object> st = inventory.get(i);
 				cIndex = 0;
@@ -85,12 +95,14 @@ public class inventoryTest {
 			}
 			pw.flush();
 			pw.close();
+    	   
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-    	
     }
+	
+  
     
     public void removeItem(String itemNum){
     	if (isExist){
@@ -114,15 +126,14 @@ public class inventoryTest {
     }
     
     public static void main(String[] args) {
-		
 		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
 		inventoryTest a = new inventoryTest(listA);
 		a.data();
-	    //a.addItem("11");
-	    //a.removeItem("11");
-	}
+	        //a.addItem("A");
+	        //a.removeItem("H");
+     }
     
 }
 
