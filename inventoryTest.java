@@ -1,3 +1,5 @@
+package inventoryTest;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 public class inventoryTest {
 	boolean isExist;
+	//boolean isInList;
 	int amount;
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>();
 	
@@ -19,6 +22,7 @@ public class inventoryTest {
     }
     
     public void data(){
+    	
     	BufferedReader br = null;
 		try
 		{
@@ -55,7 +59,7 @@ public class inventoryTest {
 					index++;
 				}
 				
-				double amount = Double.parseDouble((String) item
+				int amount = Integer.parseInt((String) item
 							.get(columnName[2]));
 				
 				if (amount > 0){
@@ -75,10 +79,67 @@ public class inventoryTest {
 			e.printStackTrace();
 		}
     	
-        }
-	
-	
-	public void outPutFile(){
+    }
+    
+    public void removeItem(String itemName){
+    	if (checkExist(itemName) == true){
+    		int i;
+    		//System.out.println(checkExist(itemName));
+        	for (i = 0; i < inventory.size(); i++)
+    		{
+        		Map<String, Object> removedItem = new HashMap<String, Object>();
+        		removedItem = inventory.get(i);
+        		
+    			if (itemName.equals(removedItem.get("Name").toString())){
+    				int a = Integer.parseInt((String) removedItem.get("Amount"));
+    				removedItem.put("Amount",a-1);
+    				
+    				if (a-1 < 1){
+    					removedItem.put("Existence","N");
+    				}
+    			}
+    		}
+    	}
+    	
+    	else{
+    		System.out.println("Item not exist");
+    		checkExist(itemName);
+    	}
+    	
+    	outPutFile();
+    		
+    }
+    
+    public void addItem(String itemName){
+    	boolean InList = false;
+    	int i;
+    	for (i = 0; i < inventory.size(); i++)
+		{
+    		Map<String, Object> newItem = new HashMap<String, Object>();
+    		newItem = inventory.get(i);
+			if (itemName.equals(newItem.get("Name").toString())){
+				int a = Integer.parseInt((String) newItem
+						.get("Amount"));
+				newItem.put("Amount",a+1);
+				newItem.put("Existence","Y");
+				InList = true;
+			}
+		}
+    	
+    	if (InList == false){
+    		Map<String, Object> newItem = new HashMap<String, Object>();
+    		newItem.put("Id", i+1);
+    		newItem.put("Name",itemName);
+    		newItem.put("Amount",1);
+    		newItem.put("Existence","Y");
+    		inventory.add(newItem);
+    	}
+    	
+    	outPutFile();
+         
+    } 
+    
+    public void outPutFile(){
     	try
 		{
     	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
@@ -101,39 +162,48 @@ public class inventoryTest {
 			e.printStackTrace();
 		}
     }
-	
-  
     
-    public void removeItem(String itemNum){
-    	if (isExist){
-    		/*remove item from itemList*/
-    	}
-    	else{
-    	    
-    	}
-    		
-    }
-    
-    public void addItem(String itemNum){
- 
-    }
-    
-    public boolean checkExist(String itemNum){
-    	/* add code here to check existence, 
-    	 * if exist isExist is true
-    	 * else false*/
+    public boolean checkExist(String itemName){
+    	
+    	for (int i = 0; i < inventory.size(); i++)
+		{
+    		Map<String, Object> newItem = new HashMap<String, Object>();
+    		newItem = inventory.get(i);
+			if (itemName.equals( newItem.get("Name").toString())){
+				int a = Integer.parseInt((String) newItem.get("Amount"));
+				//isInList = true;
+				if (a != 0){
+					isExist = true;
+					break;
+				}
+				else{
+					isExist = false;
+				}
+			}
+			else{
+				isExist = false;
+			}
+			
+		}
     	return isExist;
+    	
     }
     
     public static void main(String[] args) {
+		
 		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
 		inventoryTest a = new inventoryTest(listA);
 		a.data();
-	        //a.addItem("A");
-	        //a.removeItem("H");
-     }
+		//a.checkExist("K");
+		
+		
+	    a.addItem("Z");
+	    a.addItem("H");
+	    a.addItem("A");
+	    a.addItem("F");
+	    a.removeItem("K");
+	}
     
 }
-
