@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class RobotMaster implements Clock{
 
     private ArrayList<Robot> robots;
+    private boolean lastMissionOrder = false;
+    private static final int batteryRange = 50;
 
     //intialize RobotMaster with some starting number of Robots
-    RobotMaster(int numRobots){
+    public RobotMaster(int numRobots){
         this.robots = new ArrayList<Robot>(numRobots);
         //the following for loop will individually initialize each robot at a charge location
         int i = 0;
@@ -27,7 +29,8 @@ public class RobotMaster implements Clock{
         }
     }
     //the instuctions for the Robot will be passed to deployIdle
-    public void deployIdle(String temp){
+    /*
+    private void deployIdle(String temp){
         boolean robotAvailable = false;
         Robot availableRobot;
         for (Robot r : this.robots){
@@ -40,7 +43,18 @@ public class RobotMaster implements Clock{
         //about how to complete its mission
         }
     }
-    public void tick(){
+    */
+    private boolean robotAvailable(){
+        for (Robot r : robots){
+            if (r.isIdle()){return true;}
+        }
+        return false;
+    }
+
+    public void tick(int i){
+        if (!robotAvailable()) {return;}
+        //check to see if the Robot needs to return to the charging station
+        if ()
 
     }
 }
