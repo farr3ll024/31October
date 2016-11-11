@@ -1,18 +1,27 @@
-// RobotMaster will implement Timer interface
-package RobotPackage;
-import java.util.ArrayList
+/*
+*
+* @author: Sam Barth
+*
+* date last modified: 11/10/2016
+*/
 
-Class RobotMaster implements MockTimer{
+package oct31;
+import java.util.ArrayList;
 
-    ArrayList<Robot> robots;
+// RobotMaster will implement clock interface
+public class RobotMaster {
+
+    private ArrayList<Robot> robots;
 
     //intialize RobotMaster with some starting number of Robots
     RobotMaster(int numRobots){
-        this.robots = new ArrayList<Robot>(int);
+        this.robots = new ArrayList<Robot>(numRobots);
         //the following for loop will individually initialize each robot at a charge location
+        int i = 0;
         for (Robot r : this.robots){
-            r= new Robot;
+            r = new Robot(0, i);
             this.robots.add(r);
+            i++;
         }
     }
     //the instuctions for the Robot will be passed to deployIdle
@@ -29,6 +38,4 @@ Class RobotMaster implements MockTimer{
         //about how to complete its mission
         }
     }
-
-
 }
