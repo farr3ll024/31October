@@ -11,7 +11,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 // RobotMaster will implement clock interface
-public class RobotMaster implements clock{
+public class RobotMaster implements Clock{
 
     private ArrayList<Robot> robots;
 

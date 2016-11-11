@@ -4,10 +4,10 @@
 */
 
 
-package oct 31
+package oct31;
 
-public Interface Clock {
+public interface Clock {
 
-	public void tick(){}
-	
+	public void tick();
+
 }

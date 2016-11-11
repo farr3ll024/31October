@@ -7,6 +7,8 @@
 
 package oct31;
 
+import java.awt.Point;
+
 public class Robot{
 
   private int x = 0;
