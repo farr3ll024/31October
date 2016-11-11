@@ -6,10 +6,12 @@
 */
 
 package oct31;
+
+import java.awt.Point;
 import java.util.ArrayList;
 
 // RobotMaster will implement clock interface
-public class RobotMaster {
+public class RobotMaster implements clock{
 
     private ArrayList<Robot> robots;
 
@@ -38,4 +40,9 @@ public class RobotMaster {
         //about how to complete its mission
         }
     }
+    public void tick(){
+
+    }
 }
+//need to call Order.getNextShelf, which will return Point or Null - same for Inventory
+//need to call Order.shelfReady()
