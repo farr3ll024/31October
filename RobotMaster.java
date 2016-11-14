@@ -1,8 +1,14 @@
-/*
+/**
 *
 * @author: Sam Barth
 *
-* date last modified: 11/10/2016
+* date last modified: 11/14/2016
+* 
+* The RobotMaster class acts as the go-between for the Robots and
+* the other parts of the warehouse.  After each tick, the RobotMaster
+* will check whether there is an available idle Robot, and if so,
+* send that Robot on a mission by making calls to either Inventory
+* or Orders. 
 */
 
 package oct31;
@@ -54,7 +60,12 @@ public class RobotMaster implements Clock{
     public void tick(int i){
         if (!robotAvailable()) {return;}
         //check to see if the Robot needs to return to the charging station
-        if ()
+        //if ()
+    }
+
+    public static void main(String [] args){
+
+        Floor.printMap();
 
     }
 }

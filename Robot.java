@@ -1,8 +1,14 @@
-/*
+/**
 *
 * @author: Sam Barth
 *
-* date last modified: 11/10/2016
+* date last modified: 11/14/2016
+* 
+* The Robot class defines the individual robot.  An new instance of Robot
+* will have a starting x coordinate "0" and some y coordinate less than
+* the number of robots in the warehouse.  Robots will always be in one of two
+* states: idle (ready to be assigned a mission) or not idle (currently
+* performing a mission)
 */
 
 package oct31;
