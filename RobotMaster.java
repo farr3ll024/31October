@@ -21,7 +21,7 @@ public class RobotMaster implements Clock{
 
     private ArrayList<Robot> robots;
     private boolean lastMissionOrder = false;
-    private static final int batteryRange = 50;
+    private final int batteryRange = 50;
 
     //intialize RobotMaster with some starting number of Robots
     public RobotMaster(int numRobots){
@@ -35,9 +35,7 @@ public class RobotMaster implements Clock{
         }
     }
     //the instuctions for the Robot will be passed to deployIdle
-    /*
     private void deployIdle(String temp){
-        boolean robotAvailable = false;
         Robot availableRobot;
         for (Robot r : this.robots){
             if (r.isIdle()){
@@ -49,24 +47,24 @@ public class RobotMaster implements Clock{
         //about how to complete its mission
         }
     }
-    */
     private boolean robotAvailable(){
         for (Robot r : robots){
             if (r.isIdle()){return true;}
         }
         return false;
     }
-
+    //getFirstAvailableRobot should only be called if robotAvailable returns true
+    private Robot getFirstAvailableRobot(){
+    	for (Robot r : robots){
+    		if (r.isIdle()){return r;}
+    	}
+    	else{return Null;}
+    }
     public void tick(int i){
         if (!robotAvailable()) {return;}
-        //check to see if the Robot needs to return to the charging station
-        //if ()
-    }
-
-    public static void main(String [] args){
-
-        Floor.printMap();
-
+        if (!lastMissionOrder) {
+        	
+        }
     }
 }
 //need to call Order.getNextShelf, which will return Point or Null - same for Inventory

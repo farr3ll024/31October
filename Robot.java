@@ -17,6 +17,8 @@ import java.awt.Point;
 
 public class Robot{
 
+  private final int xCharge = 0;
+  private final int yCharge = 0;
   private int x = 0;
   private int y = 0;
   private int distanceTraversed = 0;
@@ -28,7 +30,7 @@ public class Robot{
     this.isIdle = true;
   }
   //I'll certainly end up changing how "direction" is passed to the robot to improve efficiency
-  public void move(String direction){
+  private void move(String direction){
       if (direction == "North" && this.y != 0){
           this.y += 1;
       }
@@ -42,8 +44,16 @@ public class Robot{
           this.x -= 1;
       }
       this.distanceTraversed += 1;
+  }  
+  public void returnToCharger(){
+	  
   }
-
+  public void fetchItem(int shelfLocation){
+	  
+  }
+  public void stockItem(int shelfLocation){
+	  
+  }
   //getters and setters
   public int getX(){
     return x;
