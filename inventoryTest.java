@@ -19,7 +19,7 @@ public class inventoryTest {
 	boolean isExist; //variable to chech whether item exist or not
 	//boolean isInList;
 	int amount; // the amount of item
-	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data if the list
+	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
 	
     // Constructor
     public inventoryTest(List inventory){
@@ -70,10 +70,11 @@ public class inventoryTest {
 					index++;
 				}
 				
+				//get the amount of the item from the list
 				int amount = Integer.parseInt((String) item
 							.get(columnName[2]));
 				
-				
+				// if amount greater than 0, Existence is Y, else N
 				if (amount > 0){
 					item.put("Existence", "Y");
 				}
