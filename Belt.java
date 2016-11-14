@@ -1,4 +1,4 @@
-
+package oct31;
 public class Belt {
 	static String[] belt;
 	static boolean movingBelt = false; /*This will prevent an error where an item is placed on the belt, and is nullified by beltButton()*/

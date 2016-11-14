@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /* Sample Order:
  * Name:				Ruben Chavez
@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 
 
-
-public class Order{
+package oct31;
+public class Orders {
 
 	
 	String buyerName;
@@ -28,7 +28,7 @@ public class Order{
 	int priorityValue;
 	int shelfNumber;
 	
-	public Order(String name, String address, int item, int priority, int shelf){
+    public Orders(String name, String address, int item, int priority, int shelf) {
 		
 		this.buyerName = name;
 		this.shippingAddress = address;

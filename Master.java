@@ -1,15 +1,21 @@
-//master needs:
-// 1) simulation(main) 
-// 2) tasks
-// 3) document 
-
+/**
+ *
+ * @author: Blaise Reints
+ * @version: .03 - Last modified: Monday, November 14
+ *
+ *
+*    purpose: Master is meant to initialize and run through the simulaiton.
+*    It does so by creating an instance of each class and referencing the tick method.
+*    The tick method is derived from the clock interface and is written/implemented within every class
+*    to provide an appropriate response to the current iteration. All(or most) of the interfaces will be outside
+*    of the master class because it doesn't make sense for them to be inside master when master itself does no
+*    documentation or "ticking". Master is essentially just
+ * a loop that sends an iteration to all of the class instances
+ */
 package oct31;
-//import java.util.ArrayList;  
-
-
 public class Master {
 	Boolean isRunning;//aka status
-	int interations;// number of iterations("ticks") in this simulation
+	int iterations;// number of iterations("ticks") in this simulation
 	int current_iteration;
 	// constructor for master simulation
 	public Master() {
@@ -31,7 +37,9 @@ public class Master {
 	//simulation end
 	public void endSim() {this.isRunning = false;}
 	//get iteration
-	public int getIteration() {return this.current_iteration}
+	public int getIteration() {
+        return this.current_iteration;
+    }
 	//clock interface
 	public interface clock{
 		void tick(int iteration);
