@@ -101,6 +101,7 @@ public class Master {
             //etc...
 
             System.out.println("hello world");
+            System.out.println("GIT integration check statement");
             System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
         }
