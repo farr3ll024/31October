@@ -1,6 +1,15 @@
 package oct31;
-public class Visualizer{
-    public Visualizer(){
+
+/**
+ *
+ * @author farr3ll
+ */
+public class Visualizer {
+
+    /**
+     *
+     */
+    public Visualizer() {
     	
     }
 }
