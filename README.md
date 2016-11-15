@@ -1,7 +1,7 @@
 # CS2820
-CS2820 group A5
+# CS2820 group A5
 
-project name: CS2820
-package name: Production
+# Project name: CS2820
+# Package name: Production
 
 
