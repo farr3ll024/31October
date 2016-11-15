@@ -22,7 +22,11 @@ public class RobotMaster implements Clock{
     private ArrayList<Robot> robots;
     private final int batteryRange = 50;
 
-    //intialize RobotMaster with some starting number of Robots
+    /**
+     * 
+     * @param numRobots the number of robots that will be used in the simulation
+     * (RobotMaster currently only supports 1 robot)
+     */
     public RobotMaster(int numRobots){
         this.robots = new ArrayList<Robot>(numRobots);
         //the following for loop will individually initialize each robot at a charge location
@@ -62,6 +66,9 @@ public class RobotMaster implements Clock{
     	Robot placeHolder = new Robot(0,0);
     	return placeHolder;
     }
+    /**
+     * @param i The cumulative tick number of the simulation
+     */
     public void tick(int i){
     	//first, we'll need to tell robots currently on missions to continue those missions
     	for (Robot r : robots) {

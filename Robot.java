@@ -28,6 +28,11 @@ public class Robot{
   private boolean onOrderMission;
   private boolean onStockMission;
 
+  /**
+   * 
+   * @param x The starting x location for the Robot
+   * @param y The starting y location for the Robot
+   */
   public Robot(int x, int y){
     this.x = x;
     this.y = y;
@@ -57,12 +62,20 @@ public class Robot{
   public void returnToCharger(){
 	  this.move(this.xCharge, this.yCharge);
   }
+  /**
+   * 
+   * @param shelfLocation The unique id corresponding to a shelf on the floor
+   */
   public void fetchItem(int shelfLocation){
 	  /*
 	   * if shelfCoupled, this.move(x.picker, y.picker)
 	   * else this.move(x.shelfLocaiton, y.shelfLocation)
 	   */
   }
+  /**
+   * 
+   * @param shelfLocation The unique id corresponding to the shelf on the floor
+   */
   public void stockItem(int shelfLocation){
 	  /*
 	   * if not shelfCoupled, this.move(x.shelfLocation, y.shelfLocation)
