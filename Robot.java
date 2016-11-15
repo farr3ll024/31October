@@ -23,6 +23,8 @@ public class Robot{
   private int y = 0;
   private int distanceTraversed = 0;
   private boolean isIdle;
+  private boolean shelfCoupled;
+  private int coupledShelfID;
 
   public Robot(int x, int y){
     this.x = x;
@@ -30,29 +32,35 @@ public class Robot{
     this.isIdle = true;
   }
   //I'll certainly end up changing how "direction" is passed to the robot to improve efficiency
-  private void move(String direction){
-      if (direction == "North" && this.y != 0){
-          this.y += 1;
+  private void move(int x_destination, int y_destination){
+      if (this.x != x_destination){	  
+    	  if (this.x < x_destination){
+    		  this.x += 1;
+    	  }
+    	  else {this.x -= 1;}
       }
-      else if (direction == "South" && this.y != 15){
-          this.y -= 1;
-      }
-      else if (direction == "East" && this.x != 15){
-          this.x += 1;
-      }
-      else if (direction == "West" && this.x != 0){
-          this.x -= 1;
+      else {
+    	  if (this.y < y_destination){
+    		  this.y += 1;
+    	  }
+    	  else {this.y -= 1;}
       }
       this.distanceTraversed += 1;
   }  
   public void returnToCharger(){
-	  
+	  this.move(this.xCharge, this.yCharge);
   }
   public void fetchItem(int shelfLocation){
-	  
+	  /*
+	   * if shelfCoupled, this.move(x.picker, y.picker)
+	   * else this.move(x.shelfLocaiton, y.shelfLocation)
+	   */
   }
   public void stockItem(int shelfLocation){
-	  
+	  /*
+	   * if not shelfCoupled, this.move(x.shelfLocation, y.shelfLocation)
+	   * else this.move(x.receivingDock, y.receivingDock)
+	   */
   }
   //getters and setters
   public int getX(){
@@ -66,6 +74,13 @@ public class Robot{
   }
   public boolean isIdle(){
     return isIdle;
+  }
+  public boolean shelfCoupled(){
+	  return shelfCoupled;
+  }
+  public void coupleShelf(){
+	  shelfCoupled = true;
+	  //coupledShelfID = getShelfNumber();	  
   }
   // control methods:
   // if idle, Robots will need to request new commands (from ?) (if applicable)
