@@ -35,6 +35,7 @@ public class RobotMaster implements Clock{
         }
     }
     //the instuctions for the Robot will be passed to deployIdle
+    /*
     private void deployIdle(String temp){
         Robot availableRobot;
         for (Robot r : this.robots){
@@ -47,18 +48,20 @@ public class RobotMaster implements Clock{
         //about how to complete its mission
         }
     }
-    private boolean robotAvailable(){
+    */
+    public boolean robotAvailable(){
         for (Robot r : robots){
             if (r.isIdle()){return true;}
         }
         return false;
     }
-    //getFirstAvailableRobot should only be called if robotAvailable returns true
+    //Precondition: robotAvailable() returns "true"
     private Robot getFirstAvailableRobot(){
     	for (Robot r : robots){
     		if (r.isIdle()){return r;}
     	}
-    	else{return Null;}
+    	Robot placeHolder = new Robot(0,0);
+    	return placeHolder;
     }
     public void tick(int i){
         if (!robotAvailable()) {return;}
