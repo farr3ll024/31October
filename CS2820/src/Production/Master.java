@@ -89,8 +89,8 @@ public class Master {
             //bot.doc(fileName);
             //etc...
 
-            System.out.println("hello world");
-            System.out.println("GIT integration check statement");
+            System.out.println("hello world"); //random test for github integration
+            System.out.println("GIT pull check"); //checking git pull
             System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
         }
