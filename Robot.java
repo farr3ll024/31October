@@ -18,18 +18,25 @@ import java.awt.Point;
 public class Robot{
 
   private final int xCharge = 0;
-  private final int yCharge = 0;
+  private int yCharge = 0;
   private int x = 0;
   private int y = 0;
   private int distanceTraversed = 0;
   private boolean isIdle;
   private boolean shelfCoupled;
   private int coupledShelfID;
+  private boolean onOrderMission;
+  private boolean onStockMission;
 
   public Robot(int x, int y){
     this.x = x;
     this.y = y;
     this.isIdle = true;
+    this.distanceTraversed = 0;
+    this.yCharge = y;
+    this.shelfCoupled = false;
+    this.onOrderMission = false;
+    this.onStockMission = false;
   }
   //I'll certainly end up changing how "direction" is passed to the robot to improve efficiency
   private void move(int x_destination, int y_destination){
@@ -81,6 +88,12 @@ public class Robot{
   public void coupleShelf(){
 	  shelfCoupled = true;
 	  //coupledShelfID = getShelfNumber();	  
+  }
+  public boolean onOrderMission() {
+	  return onOrderMission;
+  }
+  public boolean onStockMission() {
+	  return onStockMission;
   }
   // control methods:
   // if idle, Robots will need to request new commands (from ?) (if applicable)

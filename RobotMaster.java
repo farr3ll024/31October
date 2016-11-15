@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class RobotMaster implements Clock{
 
     private ArrayList<Robot> robots;
-    private boolean lastMissionOrder = false;
     private final int batteryRange = 50;
 
     //intialize RobotMaster with some starting number of Robots
@@ -64,10 +63,16 @@ public class RobotMaster implements Clock{
     	return placeHolder;
     }
     public void tick(int i){
+    	//first, we'll need to tell robots currently on missions to continue those missions
+    	for (Robot r : robots) {
+    		if (!r.isIdle()){
+    			//tell robot to continue mission
+    		}
+    	}
+    	//we can end early if there are no available robots
         if (!robotAvailable()) {return;}
-        if (!lastMissionOrder) {
-        	
-        }
+        //if there are available robots, we'll need to check for Orders
+        //or stock missinos from Inventory
     }
 }
 //need to call Order.getNextShelf, which will return Point or Null - same for Inventory
