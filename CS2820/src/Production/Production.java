@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Production;
 
 /**
  *
- * @author farr3ll
+ * @author : Blaise Reints
+ * @author : farr3ll024 (aka Blaise)
+ * @version: .00 - Last modified: November 15
+ *
+ * purpose - use this for running your tests. It will be the main for all files
  */
 public class Production {
 

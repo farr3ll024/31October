@@ -1,23 +1,12 @@
-/**
- *
- * @author: Blaise Reints
- * @version: .03 - Last modified: Monday, November 14
- *
- *
- * purpose: Master is meant to initialize and run through the simulaiton. It
- * does so by creating an instance of each class and referencing the tick
- * method. The tick method is derived from the clock interface and is
- * written/implemented within every class to provide an appropriate response to
- * the current iteration. All(or most) of the interfaces will be outside of the
- * master class because it doesn't make sense for them to be inside master when
- * master itself does no documentation or "ticking". Master is essentially just
- * a loop that sends an iteration to all of the class instances
- */
 package Production;
 
 /**
  *
- * @author farr3ll
+ * @author : Blaise Reints
+ * @author : farr3ll024 (aka Blaise)
+ * @version: .00 - Last modified: November 15
+ *
+ * purpose - initialize and facilitate simulation
  */
 public class Master {
 
