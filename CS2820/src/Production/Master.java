@@ -4,16 +4,15 @@ package Production;
  *
  * @author : Blaise Reints
  * @author : farr3ll024 (aka Blaise)
- * @version: .00 - Last modified: November 15
+ *  Last modified: November 17
  *
- * purpose - initialize and facilitate simulation
+ * purpose - initialize and facilitate simulation (main)
  */
 public class Master {
 
     Boolean isRunning;//aka status
     int iterations;// number of iterations("ticks") in this simulation
     int current_iteration;
-    // constructor for master simulation
 
     /**
      * constructor for master class
@@ -60,15 +59,6 @@ public class Master {
         return this.current_iteration;
     }
 
-    /*clock interface
-	public interface clock{
-		void tick(int iteration);
-	}
-	//documentation interface
-	public interface document{
-		String doc(int iteration);// use this if you want the master to record the info to one file
-		void doc(String fileName);// this would probably be easier because people could create their own documentation
-	}*/
     /**
      * main method
      *
@@ -89,8 +79,6 @@ public class Master {
             //bot.doc(fileName);
             //etc...
 
-            System.out.println("hello world"); //random test for github integration
-            System.out.println("GIT pull check"); //checking git pull
             System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
         }
