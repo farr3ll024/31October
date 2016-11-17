@@ -23,7 +23,7 @@ import java.awt.Point;
  */
 public class Floor 
 {
-	static int debug = 1;
+	static int debug = 0;
 	//instance variables
 	final static int FLOOR_Y = 15; //y value of overall length of floor
 	final static int FLOOR_X = 15; //x value of overall width of floor
