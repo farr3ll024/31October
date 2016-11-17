@@ -11,7 +11,7 @@
 * performing a mission)
 */
 
-package production;
+package Production;
 
 import java.awt.Point;
 
