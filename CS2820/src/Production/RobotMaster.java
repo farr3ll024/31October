@@ -11,7 +11,7 @@
 * or Orders. 
 */
 
-package production;
+package Production;
 
 import java.awt.Point;
 import java.util.ArrayList;
