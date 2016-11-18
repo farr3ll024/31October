@@ -24,10 +24,21 @@ public class Master {
     }
 
     /**
-     * method for starting simulation
+     * method for starting simulation - this should also create an instance of
+     * all other classes
      */
     public void startSim() {
         this.isRunning = true;
+        RobotMaster bot_master = new RobotMaster(1); //initializes a single robot
+        //Orders order_master = new Orders(String Address, ArrayList<String> items)
+
+        //Questions/tasks:
+        //public Orders(String address, ArrayList<String> items) --> should address and the list name be parameters? or should I just send in an instance of inventory? -- second; you could just git rid of the list parameter and generate that within the class based on inventory
+        //public static void setFloor() --> is this the floor constructor? why have a return type/why not just call it Floor()?
+        //public static void beltConstructor() --> is the return type necessary since it's a class constructor? couldn't it just be called Belt()
+        //inventory - need upload from ming(my bad)
+        //visualizer - no constructor yet(I'll start that after I finish master and everyone is happy with that)
+        //Will peoples params change?
     }
 
     /**
@@ -48,7 +59,6 @@ public class Master {
     public void endSim() {
         this.isRunning = false;
     }
-    //get iteration
 
     /**
      * method returns the current iteration number
@@ -65,19 +75,10 @@ public class Master {
      * @param args
      */
     public static void main(String args[]) {
-        //sim objects(initialization)
-        //Robot bot = new Robot();
-        //etc....
 
         Master sim = new Master();// create simulation object
-
-        RobotMaster bot = new RobotMaster(1); //test connection to other classes in project
-        sim.startSim();// start the simulation
+        sim.startSim();// start the simulation - this will initialize all classes
         while (sim.getStatus() == true) {
-            //bot.tick(sim.current_iteration);
-            //etc...
-            //bot.doc(fileName);
-            //etc...
 
             System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
