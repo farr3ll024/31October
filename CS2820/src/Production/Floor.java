@@ -17,12 +17,12 @@ import java.awt.Point;
  * Remember that arrays use values of max-1, so use 0 as the base for x and y extending up to max length - 1.
  * All the constant x/y values have been offset by 1 to fit the array format.
  * If using Point, you must have import java.awt.Point; for an import statement.
- * The points follow paint's inverse coordinate system where (0,0) is the upper left corner, (15,15) is the bottom right corner.
+ * The points follow paint's inverse coordinate system where (0,0) is the upper left corner, (159, 199) is the bottom right corner.
  * 
  */
 public class Floor 
 {
-	static int debug = 1;
+	static int debug = 0;
 	//instance variables
 	int floor_Y; //y value of overall length of floor
 	int floor_X; //x value of overall width of floor
@@ -264,7 +264,7 @@ public class Floor
     {
     	if(debug == 1)
     	{
-    		Floor test = new Floor(160, 160);
+    		Floor test = new Floor(16, 16);
     		test.printMap();
     		test.printStats();
     	}
