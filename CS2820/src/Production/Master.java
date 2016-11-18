@@ -30,7 +30,12 @@ public class Master {
     public void startSim() {
         this.isRunning = true;
         RobotMaster bot_master = new RobotMaster(1); //initializes a single robot
-        //Orders order_master = new Orders(String Address, ArrayList<String> items)
+        //Orders order_master = new Orders();
+        //Floor floor_master = new Floor();
+        //Belt belt_master = new Belt();
+        //Inventory inventory_master = new Inventory();
+        //Visualizer visual_master = new Visualizer();
+
 
         //Questions/tasks:
         //public Orders(String address, ArrayList<String> items) --> should address and the list name be parameters? or should I just send in an instance of inventory? -- second; you could just git rid of the list parameter and generate that within the class based on inventory
