@@ -20,17 +20,18 @@ public class Robot{
 
   private Point chargeLocation;
   private Point location;
+  private Point currentDestination;
   private int distanceTraversed = 0;
   private boolean isIdle;
   private boolean shelfCoupled;
   private int coupledShelfID;
-  private boolean onOrderMission;
-  private boolean onStockMission;
+  private boolean onMission;
 
   /**
    * 
-   * @param x The starting x location for the Robot
-   * @param y The starting y location for the Robot
+   * @param initial location of the starting position of the Robot.  It will be
+   * a Point with an X component "0" and a nonzero Y component.
+   * 
    */
   public Robot(Point initial){
     double x = initial.getX();
@@ -42,11 +43,15 @@ public class Robot{
     this.distanceTraversed = 0;
     this.chargeLocation = new Point(0, Y);
     this.shelfCoupled = false;
-    this.onOrderMission = false;
-    this.onStockMission = false;
+    this.onMission = false;
   }
-  //I'll certainly end up changing how "direction" is passed to the robot to improve efficiency
-  private void move(Point destination){
+  
+  private void move(){
+      Point destination = currentDestination;
+      if (this.location.equals(this.currentDestination)){
+          
+          return;
+      }
       if (this.getX() != destination.getX()){	  
     	  if (this.getX() < destination.getX()){
     		  this.location.move(this.getX() + 1, this.getY());
@@ -62,7 +67,26 @@ public class Robot{
       this.distanceTraversed += 1;
   }  
   public void returnToCharger(){
-	  this.move(chargeLocation);
+      this.currentDestination = this.chargeLocation;
+  }
+  /**
+   * @param mission is a String of one of a few possible missions on which a Robot
+   * may be sent
+   */
+  public void assignMission(String mission){
+      switch(mission){
+          case "O":
+              //get shelf location
+              //get get picker location
+              break;
+          case "I":
+              //get shelf location
+              //get receiving dock location
+              break;
+          case "C":
+              //return to charger
+              break;
+      }
   }
   /**
    * 
@@ -141,13 +165,10 @@ public class Robot{
   }
   /**
    * 
-   * @return returns "true" if the robot's current assignment
+   * @return returns "true" if the robot is currently assigned to a mission.
    */
-  public boolean onOrderMission() {
-	  return onOrderMission;
-  }
-  public boolean onStockMission() {
-	  return onStockMission;
+  public boolean robotEngaged() {
+	  return onMission;
   }
   // control methods:
   // if idle, Robots will need to request new commands (from ?) (if applicable)
