@@ -4,6 +4,8 @@
  *
  */
 
+// Need to use the List.txt
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
