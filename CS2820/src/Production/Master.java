@@ -85,7 +85,7 @@ public class Master {
         sim.startSim();// start the simulation - this will initialize all classes
         while (sim.getStatus() == true) {
 
-            System.out.println("git check");
+            System.out.println("git check - add/commit");
             System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
         }
