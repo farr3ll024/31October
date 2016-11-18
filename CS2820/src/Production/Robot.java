@@ -74,17 +74,19 @@ public class Robot{
    * may be sent
    */
   public void assignMission(String mission){
-      switch(mission){
-          case "O":
+      switch(mission){          
+          case "O": // bring a shlelf to the picker
               //get shelf location
               //get get picker location
               break;
-          case "I":
+          case "I": //bring a shelf to the receiving
               //get shelf location
               //get receiving dock location
               break;
-          case "C":
+          case "C": //bring self to charge location
               //return to charger
+              break;
+          case "R": //return shelf to shelving area
               break;
       }
   }
@@ -160,8 +162,15 @@ public class Robot{
    * 
    */
   public void coupleShelf(){
-	  shelfCoupled = true;
-	  //coupledShelfID = getShelfNumber();	  
+    shelfCoupled = true;
+    //coupledShelfID = getShelfNumber();	  
+  }
+  /**
+   * 
+   */
+  public void uncoupleShelf(){
+    shelfCoupled = false;
+    coupledShelfID = -1;
   }
   /**
    * 

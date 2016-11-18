@@ -166,24 +166,9 @@ public class RobotIT {
         System.out.println("onOrderMission");
         Robot instance = null;
         boolean expResult = false;
-        boolean result = instance.onOrderMission();
+        boolean result = instance.robotEngaged();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of onStockMission method, of class Robot.
-     */
-    @Test
-    public void testOnStockMission() {
-        System.out.println("onStockMission");
-        Robot instance = null;
-        boolean expResult = false;
-        boolean result = instance.onStockMission();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }
