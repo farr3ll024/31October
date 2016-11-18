@@ -21,6 +21,8 @@ public class RobotMaster implements Clock{
 
     private ArrayList<Robot> robots;
     private final int batteryRange = 50;
+    private final static Point VOIDLOCATION = new Point(-1, -1);
+    private final static Robot VOIDROBOT = new Robot(VOIDLOCATION);
 
     /**
      * 
@@ -32,7 +34,8 @@ public class RobotMaster implements Clock{
         //the following for loop will individually initialize each robot at a charge location
         int i = 0;
         for (Robot r : this.robots){
-            r = new Robot(0, i);
+            Point start = new Point(0, i);
+            r = new Robot(start);
             this.robots.add(r);
             i++;
         }
@@ -63,8 +66,7 @@ public class RobotMaster implements Clock{
     	for (Robot r : robots){
     		if (r.isIdle()){return r;}
     	}
-    	Robot placeHolder = new Robot(0,0);
-    	return placeHolder;
+    	return VOIDROBOT;
     }
     /**
      * @param i The cumulative tick number of the simulation
