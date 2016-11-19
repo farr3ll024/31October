@@ -1,31 +1,10 @@
-package oct31;
+package Production;
 
 
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
-import java.lang.Math;
 
- // @author Ruben Chavez
-/* Sample Order:
- * Name:				Ruben Chavez
- * 
- * Mailing Address:		123 Java Street
- * 						Iowa City, Iowa 52240
- * 
- * Item: 				Cell Phone Case
- * 
- * Delivery Method chosen: 	Next Day Air
- * Delivery Method Options: Next Day Air - priority value = 1
- * 							2 Day shipping - priority value = 2
- * 							standard 3-5 day - priority value 3
- * 
- * 
- */
-/*
- * 
- */
  
 
 
@@ -109,7 +88,7 @@ public class Order{
 			//orderNumbers.add(Inventory.item.itemNumber);  Need a callable inventory list
 			//shelfNumbers.add(Inventory.item.shelfNumber);
 		}
-			
+            return null;
 	}
 	
 	//add item to bin and set shelfReady to true so Robot can pick it up
