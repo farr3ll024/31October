@@ -1,3 +1,5 @@
+package Production;
+
 /**
  *
  * @author Ming Cheng
@@ -17,14 +19,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class inventoryTest {
+public class Inventory {
 	boolean isExist; //variable to chech whether item exist or not
 	//boolean isInList;
 	int amount; // the amount of item
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
 	
     // Constructor
-    public inventoryTest(List inventory){
+    public Inventory(List inventory){
         this.inventory = inventory; 
     }
    
@@ -248,7 +250,7 @@ public class inventoryTest {
 		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
-		inventoryTest a = new inventoryTest(listA);
+		Inventory a = new Inventory(listA);
 		a.data();
 		//a.checkExist("K");
 		

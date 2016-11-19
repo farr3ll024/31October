@@ -83,10 +83,12 @@ public class Master {
 
         Master sim = new Master();// create simulation object
         sim.startSim();// start the simulation - this will initialize all classes
+        Floor floor_master = new Floor(160, 200);
+        RobotMaster bot_master = new RobotMaster(1);
+
         while (sim.getStatus() == true) {
 
-            System.out.println("git check");
-            System.out.println(sim.current_iteration);
+            //System.out.println(sim.current_iteration);
             sim.current_iteration += 1;
         }
     }
