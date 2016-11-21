@@ -15,7 +15,11 @@ import org.junit.Test;
 
 /**
  *
- * @author farr3ll
+ * @author : Blaise Reints
+ * @author : farr3ll024 (aka Blaise)
+ * @verson Last modified: November 20
+ *
+ * purpose - test the master class
  */
 public class MasterIT {
 

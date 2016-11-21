@@ -14,7 +14,11 @@ import org.junit.Test;
 
 /**
  *
- * @author farr3ll
+ * @author : Blaise Reints
+ * @author : farr3ll024 (aka Blaise)
+ * @version Last modified: November 20
+ *
+ * purpose - test visualizer file
  */
 public class VisualizerIT {
 
