@@ -17,7 +17,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 // RobotMaster will implement clock interface
-public class RobotMaster implements Clock{
+public class RobotMaster implements Clock, Document {
 
     private ArrayList<Robot> robots;
     private final int batteryRange = 50;
@@ -84,6 +84,11 @@ public class RobotMaster implements Clock{
         if (!robotAvailable()) {return;}
         //if there are available robots, we'll need to check for Orders
         //or stock missinos from Inventory
+    }
+
+    @Override
+    public void doc() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 //need to call Order.getNextShelf, which will return Point or Null - same for Inventory

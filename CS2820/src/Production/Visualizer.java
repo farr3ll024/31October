@@ -1,6 +1,6 @@
 package Production;
 
-public class Visualizer {
+public class Visualizer implements Clock, Document {
 
     /**
      *
@@ -12,5 +12,19 @@ public class Visualizer {
      */
     public Visualizer() {
 
+    }
+
+    /**
+     *
+     * @param iteration
+     */
+    @Override
+    public void tick(int iteration) {
+
+    }
+
+    @Override
+    public void doc() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -47,7 +47,7 @@ import java.util.Random;
  * 
  * 
  */
-public class Order{
+public class Order implements Clock, Document {
 
 	
 	//String buyerName;
