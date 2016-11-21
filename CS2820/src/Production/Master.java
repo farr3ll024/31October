@@ -82,7 +82,10 @@ public class Master {
         Belt belt_master = new Belt();
 
         while (sim.getStatus() == true) {
-            //inventory_master.tick(sim.current_iteration);
+            inventory_master.tick(sim.current_iteration);
+            //orders
+            bot_master.tick(sim.current_iteration);
+            belt_master.tick(sim.current_iteration);
 
             sim.current_iteration += 1;
         }
