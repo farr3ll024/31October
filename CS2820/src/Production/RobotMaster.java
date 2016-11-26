@@ -23,6 +23,7 @@ public class RobotMaster implements Clock{
     private final int batteryRange = 50;
     private final static Point VOIDLOCATION = new Point(-1, -1);
     private final static Robot VOIDROBOT = new Robot(VOIDLOCATION);
+    private boolean lastDeployedOrder;
 
     /**
      * 
@@ -31,6 +32,7 @@ public class RobotMaster implements Clock{
      */
     public RobotMaster(int numRobots){
         this.robots = new ArrayList<>(numRobots);
+        this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
         int i = 0;
         for (Robot r : this.robots){
@@ -40,21 +42,20 @@ public class RobotMaster implements Clock{
             i++;
         }
     }
-    //the instuctions for the Robot will be passed to deployIdle
-    /*
-    private void deployIdle(String temp){
-        Robot availableRobot;
-        for (Robot r : this.robots){
-            if (r.isIdle()){
-                robotAvailable = true;
-                availableRobot = r;
-                break;
-            }
+    /**
+     * The precondition for calling this method is that there is some available Robot
+     */
+    private void deployIdleOnOrderMission(){
+        if (!robotAvailable()){
+            return;
+        }
+        Robot availableRobot = getFirstAvailableRobot();
+        if (availableRobot.shelfCoupled()){
+            
+        }
         //here we'd like to give Robot "availableRobot" specific instructions
         //about how to complete its mission
-        }
     }
-    */
     public boolean robotAvailable(){
         for (Robot r : robots){
             if (r.isIdle()){return true;}

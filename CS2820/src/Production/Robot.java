@@ -26,6 +26,7 @@ public class Robot{
   private boolean shelfCoupled;
   private int coupledShelfID;
   private boolean onMission;
+  private String currentMission;
 
   /**
    * 
@@ -49,7 +50,7 @@ public class Robot{
   private void move(){
       Point destination = currentDestination;
       if (this.location.equals(this.currentDestination)){
-          
+          this.isIdle = true;
           return;
       }
       if (this.getX() != destination.getX()){	  
@@ -74,8 +75,9 @@ public class Robot{
    * may be sent
    */
   public void assignMission(String mission){
+      this.currentMission = mission;
       switch(mission){          
-          case "O": // bring a shlelf to the picker
+          case "O": // bring a shelf to the picker
               //get shelf location
               //get get picker location
               break;
@@ -86,7 +88,7 @@ public class Robot{
           case "C": //bring self to charge location
               //return to charger
               break;
-          case "R": //return shelf to shelving area
+          case "R": //return shelf
               break;
       }
   }
