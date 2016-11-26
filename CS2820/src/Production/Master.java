@@ -1,10 +1,14 @@
 package Production;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author : Blaise Reints
  * @author : farr3ll024 (aka Blaise)
- *  Last modified: November 17
+ * @version Last modified: November 20
  *
  * purpose - initialize and facilitate simulation (main)
  */
@@ -29,21 +33,6 @@ public class Master {
      */
     public void startSim() {
         this.isRunning = true;
-        RobotMaster bot_master = new RobotMaster(1); //initializes a single robot
-        //Orders order_master = new Orders();
-        //Floor floor_master = new Floor();
-        //Belt belt_master = new Belt();
-        //Inventory inventory_master = new Inventory();
-        //Visualizer visual_master = new Visualizer();
-
-
-        //Questions/tasks:
-        //public Orders(String address, ArrayList<String> items) --> should address and the list name be parameters? or should I just send in an instance of inventory? -- second; you could just git rid of the list parameter and generate that within the class based on inventory
-        //public static void setFloor() --> is this the floor constructor? why have a return type/why not just call it Floor()?
-        //public static void beltConstructor() --> is the return type necessary since it's a class constructor? couldn't it just be called Belt()
-        //inventory - need upload from ming(my bad)
-        //visualizer - no constructor yet(I'll start that after I finish master and everyone is happy with that)
-        //Will peoples params change?
     }
 
     /**
@@ -83,9 +72,21 @@ public class Master {
 
         Master sim = new Master();// create simulation object
         sim.startSim();// start the simulation - this will initialize all classes
-        while (sim.getStatus() == true) {
 
-            System.out.println(sim.current_iteration);
+        //create instance of each class
+        Floor floor_master = new Floor(160, 200);
+        RobotMaster bot_master = new RobotMaster(1);
+        //orders instance --> Note: I only create one instance of each class, should address and item be parameters?
+        List<Map<String, Object>> listA = new ArrayList<>();
+        Inventory inventory_master = new Inventory(listA);
+        Belt belt_master = new Belt();
+
+        while (sim.getStatus() == true) {
+            inventory_master.tick(sim.current_iteration);
+            //orders
+            bot_master.tick(sim.current_iteration);
+            belt_master.tick(sim.current_iteration);
+
             sim.current_iteration += 1;
         }
     }

@@ -13,7 +13,7 @@ package Production;
  * when the belt is moving vs when it isn't. This helps to prevent items from
  * being lost or deleted during the running of the code.
  */
-public class Belt {
+public class Belt implements Clock, Document {
 
     static String[] belt;
     static boolean movingBelt = false;
@@ -76,5 +76,15 @@ public class Belt {
         addItem("Ball");
         beltButton();
         printBelt();
+    }
+
+    @Override
+    public void tick(int iteration) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void doc() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
