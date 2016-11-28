@@ -1,5 +1,10 @@
 //position of shelves
 
+/**
+*
+* @author Ming Cheng
+*
+*/
 class Point {
 	
 	int x;
