@@ -19,11 +19,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+class Point {
+	
+	int x;
+	int y;
+	
+	public Point(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
+
+}
+
 public class Inventory implements Clock, Document {
 	boolean isExist; //variable to chech whether item exist or not
 	//boolean isInList;
 	int amount; // the amount of item
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
+	
 	
     // Constructor
     public Inventory(List inventory){
@@ -36,7 +49,7 @@ public class Inventory implements Clock, Document {
      * @param nothing
      */
     public void data(){
- 
+    	
     	BufferedReader br = null;
 		try
 		{
@@ -46,10 +59,9 @@ public class Inventory implements Clock, Document {
 			e.printStackTrace();
 			return;
 		}
-               
-	       
+
 		String[] columnName =
-		{ "Id", "Name", "Amount"}; 
+		{ "Id", "Name", "Amount", "Shelf#", "Position"};
 		int i, index;
 		String line;
 		try
@@ -59,7 +71,7 @@ public class Inventory implements Clock, Document {
 			{
 				index = 0;
 				String[] se = line.split(" ");
-				Map<String, Object> item = new HashMap<String, Object>(); // create item
+				Map<String, Object> item = new HashMap<String, Object>();
 				for (i = 0; i < se.length; i++)
 				{
 					if ("".equals(se[i]))
@@ -85,13 +97,12 @@ public class Inventory implements Clock, Document {
 				else{
 					item.put("Existence", "N");
 				}
-         
-				inventory.add(item); // add item to ArrayList
+
+				inventory.add(item);// add item to ArrayList
 			}
 			br.close();
             
 			outPutFile();
-			
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -99,15 +110,21 @@ public class Inventory implements Clock, Document {
     	
     }
     
+    
 	
     //remove item from list
     /**
      * @param itemName, the name of the item that we want to remove from the list
      */
-    public void removeItem(String itemName){
-
-	//check whether the item is exist or not
-    	if (checkExist(itemName) == true){
+    //remove items from list
+    /**
+     * @param itemName, the name of the item that we want to remove from the list
+     * @param Qty, the number of items that we wants to remove
+     */
+    public void removeItem(String itemName, int Qty){
+    	
+    	//check whether the Qty number of items exist
+    	if (checkExist(itemName, Qty) == true){
     		int i;
     		//System.out.println(checkExist(itemName));
         	for (i = 0; i < inventory.size(); i++)
@@ -115,62 +132,61 @@ public class Inventory implements Clock, Document {
         		Map<String, Object> removedItem = new HashMap<String, Object>();
         		removedItem = inventory.get(i);
         		
-			//find the item that we want to remove in the List
+        		//find the item that we want to remove in the List
     			if (itemName.equals(removedItem.get("Name").toString())){
     				int a = Integer.parseInt((String) removedItem.get("Amount"));
-    				removedItem.put("Amount",a-1);
+    				removedItem.put("Amount",a-Qty); 
     				
-				// if the number of item is 0, then Existence is N
-    				if (a-1 < 1){
+    				//after remove Qty number of items
+    				if (a-Qty < 1){
     					removedItem.put("Existence","N");
     				}
     			}
     		}
     	}
     	
-	//item not exist
     	else{
-    		System.out.println("Item not exist");
-    		checkExist(itemName);
+    		System.out.println("Item not exist or not enough");
+    		checkExist(itemName, Qty);
     	}
     	
-	
     	outPutFile();
     		
     }
     
 	
-    //add item to the list
+    //add items to the list
     //Variable InList is used to check whether the item is already in list or not
     //if already in list, when we add item, we just need to update the amount of the item
     //if not in list, we need to create a new line in the list
     /**
      * @param itemName, the name of the item that we want to add into the list
+     * @param Qty, the number of items that we wants to add
      */
-    public void addItem(String itemName){
-	
+    public void addItem(String itemName, int Qty){
     	boolean InList = false;
     	int i;
     	for (i = 0; i < inventory.size(); i++)
 		{
     		Map<String, Object> newItem = new HashMap<String, Object>();
     		newItem = inventory.get(i);
-		        //if item is already in the list
+    		
+    		//if item is already in the list
 			if (itemName.equals(newItem.get("Name").toString())){
 				int a = Integer.parseInt((String) newItem
 						.get("Amount"));
-				newItem.put("Amount",a+1);
+				newItem.put("Amount",a+Qty);
 				newItem.put("Existence","Y");
 				InList = true;
 			}
 		}
     	
-	//if item not in list yet
+    	//if item not in list yet
     	if (InList == false){
     		Map<String, Object> newItem = new HashMap<String, Object>();
     		newItem.put("Id", i+1);
     		newItem.put("Name",itemName);
-    		newItem.put("Amount",1);
+    		newItem.put("Amount",Qty);
     		newItem.put("Existence","Y");
     		inventory.add(newItem);
     	}
@@ -178,14 +194,13 @@ public class Inventory implements Clock, Document {
     	outPutFile();
          
     } 
+	
     
     //output the file
     /**
      * @param nothing
      */
     public void outPutFile(){
-	
-	    
     	try
 		{
     	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
@@ -210,15 +225,16 @@ public class Inventory implements Clock, Document {
     }
     
 	
-    //check whether the item exist or not
-    //if the amount of item is 0, then item is not exist
+    //check whether the number of item exist or not
+    //if the amount of item is lease than Qty, then item is not exist
     //if item is not in the list, then item is not exist
     /**
      * @param itemName, the name of the item that we want to check whether exist or not
+     * @param Qty, the number of items that we wants to check
      * @return
      */
-    public boolean checkExist(String itemName){
-    	 
+    public boolean checkExist(String itemName, int Qty){
+    	
     	for (int i = 0; i < inventory.size(); i++)
 		{
     		Map<String, Object> newItem = new HashMap<String, Object>();
@@ -226,7 +242,7 @@ public class Inventory implements Clock, Document {
 			if (itemName.equals( newItem.get("Name").toString())){
 				int a = Integer.parseInt((String) newItem.get("Amount"));
 				//isInList = true;
-				if (a != 0){
+				if (a >= Qty){
 					isExist = true;
 					break;
 				}
@@ -242,6 +258,42 @@ public class Inventory implements Clock, Document {
     	return isExist;
     	
     }
+	
+	
+    //read the position of item, and output it as a point
+    /**
+     * @param itemName, the name of the item that we want to know its postion
+     * @return
+     */
+    public Point readPosition(String itemName){
+    	int i;
+    	String pos = "";
+    	for (i = 0; i < inventory.size(); i++)
+		{
+    		Map<String, Object> newItem = new HashMap<String, Object>();
+    		newItem = inventory.get(i);
+			if (itemName.equals(newItem.get("Name").toString())){
+				pos = newItem.get("Position").toString();
+			}
+		}
+    	
+    	String sx = (pos.split(","))[0];
+    	String sy = (pos.split(","))[1];
+    	
+    	sx = sx.substring(1, sx.length());
+    	sy = sy.substring(0, sy.length()-1);
+    	
+    	//transfer string to int
+    	int x = Integer.parseInt(sx);
+    	int y = Integer.parseInt(sy);
+    	
+    	//System.out.println(x);
+    	//System.out.println(y);
+    	
+    	Point a = new Point(x,y);
+    	return a;
+    	
+    }
    
 	
     //used to test
@@ -252,14 +304,16 @@ public class Inventory implements Clock, Document {
 	    
 		Inventory a = new Inventory(listA);
 		a.data();
-		//a.checkExist("K");
+		//a.checkExist("K,2");
 		
 		
-	    a.addItem("Z");
-	    a.addItem("H");
-	    a.addItem("A");
-	    a.addItem("F");
-	    a.removeItem("K");
+	    a.addItem("Z",2);
+	    a.addItem("H",4);
+	    a.addItem("A",5);
+	    a.addItem("F",10);
+	    a.removeItem("J", 20);
+	    a.readPosition("J");
+	    
 	}
 
     @Override
