@@ -2,7 +2,7 @@
 *
 * @author: Sam Barth
 *
-* date last modified: 11/14/2016
+* date last modified: 11/26/2016
 * 
 * The Robot class defines the individual robot.  An new instance of Robot
 * will have a starting x coordinate "0" and some y coordinate less than
@@ -18,15 +18,16 @@ import java.awt.Point;
 
 public class Robot{
 
-  private Point chargeLocation;
+  private final Point chargeLocation;
   private Point location;
   private Point currentDestination;
   private int distanceTraversed = 0;
   private boolean isIdle;
   private boolean shelfCoupled;
-  private int coupledShelfID;
-  private boolean onMission;
-  private String currentMission;
+  private Point coupledShelfLocation;
+  private boolean onOrderMission;
+  private boolean onStockMission;
+  private String currentState;
 
   /**
    * 
@@ -44,73 +45,90 @@ public class Robot{
     this.distanceTraversed = 0;
     this.chargeLocation = new Point(0, Y);
     this.shelfCoupled = false;
-    this.onMission = false;
   }
   
-  private void move(){
+  public void move(){
       Point destination = currentDestination;
       if (this.location.equals(this.currentDestination)){
-          this.isIdle = true;
-          return;
+          this.setNextState();
       }
-      if (this.getX() != destination.getX()){	  
-    	  if (this.getX() < destination.getX()){
-    		  this.location.move(this.getX() + 1, this.getY());
+      else{
+          if (this.getX() != destination.getX()){	  
+            if (this.getX() < destination.getX()){
+                this.location.move(this.getX() + 1, this.getY());
+            }
+            else {this.location.move(this.getX() - 1, this.getY());}
     	  }
-    	  else {this.location.move(this.getX() - 1, this.getY());}
-      }
-      else {
-    	  if (this.getY() < destination.getY()){
-    		  this.location.move(this.getX(), this.getY() + 1);
-    	  }
-    	  else {this.location.move(this.getY() - 1, this.getX());}
-      }
+          else{
+            if (this.getY() < destination.getY()){
+                this.location.move(this.getX(), this.getY() + 1);
+            }
+            else {this.location.move(this.getY() - 1, this.getX());}
+          }
       this.distanceTraversed += 1;
+      }
   }  
   public void returnToCharger(){
       this.currentDestination = this.chargeLocation;
   }
   /**
-   * @param mission is a String of one of a few possible missions on which a Robot
-   * may be sent
+   * @param mission is a String of one of two possible missions on which a Robot
+   * may be sent -- "Order"(bring a shelf to the picker location) or "Stock" (bring
+   * a shelf to the receiving dock)
+   * @param shelfLocation is the Point location of the shelf on which the inventory
+   * is stored or will be stored
    */
-  public void assignMission(String mission){
-      this.currentMission = mission;
-      switch(mission){          
-          case "O": // bring a shelf to the picker
-              //get shelf location
-              //get get picker location
+  public void assignMission(String mission, Point shelfLocation){
+      switch(mission){         
+          case "Order":
+              this.currentState = "F";
+              this.onOrderMission = true;
+              this.currentDestination = shelfLocation;
               break;
-          case "I": //bring a shelf to the receiving
-              //get shelf location
-              //get receiving dock location
-              break;
-          case "C": //bring self to charge location
-              //return to charger
-              break;
-          case "R": //return shelf
+          case "Stock":
+              this.currentState = "F";
+              this.onStockMission = true;
+              this.currentDestination = shelfLocation;
               break;
       }
   }
   /**
    * 
-   * @param shelfLocation The unique id corresponding to a shelf on the floor
    */
-  public void fetchItem(int shelfLocation){
-	  /*
-	   * if shelfCoupled, this.move(x.picker, y.picker)
-	   * else this.move(x.shelfLocaiton, y.shelfLocation)
-	   */
-  }
-  /**
-   * 
-   * @param shelfLocation The unique id corresponding to the shelf on the floor
-   */
-  public void stockItem(int shelfLocation){
-	  /*
-	   * if not shelfCoupled, this.move(x.shelfLocation, y.shelfLocation)
-	   * else this.move(x.receivingDock, y.receivingDock)
-	   */
+  private void setNextState(){
+      switch(this.currentState){          
+          case "A": // bring a shelf to the picker
+              //Order.shelfReady();
+              this.currentDestination = this.coupledShelfLocation;
+              this.currentState = "D";
+              break;
+          case "B": //bring a shelf to the receiving
+              //Inventory.shelfReady();
+              this.currentState = "D";
+              break;
+          case "C": //go to charge location
+              this.currentState = "E";
+              break;
+          case "D": //return shelf
+              this.uncoupleShelf();
+              this.currentState = "C";
+              break;
+          case "E": //charge
+              this.isIdle = true;
+              this.currentState = "G";
+              break;
+          case "F": //move to shelf
+              this.coupleShelf();
+              if (this.onOrderMission()){
+                //this.currentDestination = Floor.getPickerLocation();
+              }
+              else {
+                //this.currentDestination = Floor.getReceivingLocation();
+              }
+              break;
+          case "G": //idle
+              break;
+      }
   }
   /**
    * 
@@ -171,15 +189,22 @@ public class Robot{
    * 
    */
   public void uncoupleShelf(){
-    shelfCoupled = false;
-    coupledShelfID = -1;
+    this.shelfCoupled = false;
+    this.coupledShelfLocation.move(-1, -1);
   }
   /**
    * 
-   * @return returns "true" if the robot is currently assigned to a mission.
+   * @return returns "true" if the robot is currently assigned to an order mission.
    */
-  public boolean robotEngaged() {
-	  return onMission;
+  public boolean onOrderMission() {
+	  return onOrderMission;
+  }
+  /**
+   * 
+   * @return returns "true" if the robot is currently assigned to a stock mission
+   */
+  public boolean onStockMission() {
+	  return onStockMission;
   }
   // control methods:
   // if idle, Robots will need to request new commands (from ?) (if applicable)
