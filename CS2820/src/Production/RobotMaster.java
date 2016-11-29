@@ -2,13 +2,13 @@
 *
 * @author: Sam Barth
 *
-* date last modified: 11/14/2016
+* date last modified: 11/26/2016
 * 
 * The RobotMaster class acts as the go-between for the Robots and
 * the other parts of the warehouse.  After each tick, the RobotMaster
 * will check whether there is an available idle Robot, and if so,
 * send that Robot on a mission by making calls to either Inventory
-* or Orders. 
+* or Orders.
 */
 
 package Production;
@@ -45,46 +45,33 @@ public class RobotMaster implements Clock, Document {
     /**
      * The precondition for calling this method is that there is some available Robot
      */
-    private void deployIdleOnOrderMission(){
-        if (!robotAvailable()){
-            return;
+    private void deploy(Robot r){
+        if (this.lastDeployedOrder){
+            r.assignMission("Stock", VOIDLOCATION); //fill in Inventory.getShelfLocation()
         }
-        Robot availableRobot = getFirstAvailableRobot();
-        if (availableRobot.shelfCoupled()){
-            
+        else{
+            r.assignMission("Order", VOIDLOCATION); //fill in Inventory.getShelfLocation()
         }
-        //here we'd like to give Robot "availableRobot" specific instructions
-        //about how to complete its mission
-    }
-    public boolean robotAvailable(){
-        for (Robot r : robots){
-            if (r.isIdle()){return true;}
-        }
-        return false;
-    }
-    //Precondition: robotAvailable() returns "true"
-    private Robot getFirstAvailableRobot(){
-    	for (Robot r : robots){
-    		if (r.isIdle()){return r;}
-    	}
-    	return VOIDROBOT;
     }
     /**
      * 
      * @param i The cumulative tick number of the simulation
      * 
      */
+    @Override
     public void tick(int i){
-    	//first, we'll need to tell robots currently on missions to continue those missions
+        /**
+         * robots currently on missions should continue those missions, and
+         * idle robots should be deployed
+        */ 
     	for (Robot r : robots) {
-    		if (!r.isIdle()){
-    			//tell robot to continue mission
-    		}
+            if (!r.isIdle()){
+                r.move();
+            }
+            else{
+                deploy(r);
+            }
     	}
-    	//we can end early if there are no available robots
-        if (!robotAvailable()) {return;}
-        //if there are available robots, we'll need to check for Orders
-        //or stock missinos from Inventory
     }
 
     @Override
