@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Sam Barth
+ * @author farr3ll
+ * 
+ * date last modified: 11/30/2016
+ * 
+ * RobotIT is a JUnit testing class for the Robot class.
  */
 package Production;
 
@@ -17,10 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Ignore;
 
-/**
- * @author Sam Barth
- * @author farr3ll
- */
 public class RobotIT {
     
     public RobotIT() {
@@ -112,7 +111,7 @@ public class RobotIT {
         boolean expResult = true;
         boolean result = instance.isIdle();
         assertEquals(expResult, result);
-        fail("isIdle returned false when ititialized.");
+        fail("isIdle returned false when initialized.");
     }
 
     /**
