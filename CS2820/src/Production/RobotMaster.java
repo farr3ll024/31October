@@ -2,7 +2,7 @@
 *
 * @author: Sam Barth
 *
-* date last modified: 11/26/2016
+* date last modified: 11/30/2016
 * 
 * The RobotMaster class acts as the go-between for the Robots and
 * the other parts of the warehouse.  After each tick, the RobotMaster
@@ -22,31 +22,40 @@ public class RobotMaster implements Clock, Document {
     private ArrayList<Robot> robots;
     private final int batteryRange = 50;
     private final static Point VOIDLOCATION = new Point(-1, -1);
-    private final static Robot VOIDROBOT = new Robot(VOIDLOCATION);
     private boolean lastDeployedOrder;
+    private Floor f;
 
     /**
      * 
      * @param numRobots the number of robots that will be used in the simulation
      * (RobotMaster currently only supports 1 robot)
+     * @param f is the instance of the Floor that Master will use in conjunction with
+     * this instance of RobotMaster
+     * @param o is the instance of the Orders that Master will use in conjunction with
+     * this instance of RobotMaster
+     * @param i is the instance of the Inventory that Master will use in conjunction
+     * with this instance of RobotMaster
      */
-    public RobotMaster(int numRobots){
+    public RobotMaster(int numRobots, Floor f, Inventory i){
         this.robots = new ArrayList<>(numRobots);
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
-        int i = 0;
+        int j = 0;
         for (Robot r : this.robots){
-            Point start = new Point(0, i);
-            r = new Robot(start);
+            Point start = new Point(0, j);
+            r = new Robot(start, f);
             this.robots.add(r);
-            i++;
+            j++;
         }
     }
     /**
-     * The precondition for calling this method is that there is some available Robot
+     * The precondition for calling this method is that Robot r is idle
+     * 
+     * @param r Robot r is an idle Robot in the simulation
      */
     private void deploy(Robot r){
         if (this.lastDeployedOrder){
+            this.lastDeployedOrder = false;
             r.assignMission("Stock", VOIDLOCATION); //fill in Inventory.getShelfLocation()
         }
         else{
@@ -54,6 +63,8 @@ public class RobotMaster implements Clock, Document {
         }
     }
     /**
+     * Increment time by one position.  Robots deployed on missions may move
+     * a maximum of one unit per tick.
      * 
      * @param i The cumulative tick number of the simulation
      * 
@@ -73,7 +84,9 @@ public class RobotMaster implements Clock, Document {
             }
     	}
     }
-
+    /**
+     * Document movement of Robots on the Floor
+     */
     @Override
     public void doc() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
