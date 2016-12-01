@@ -237,6 +237,16 @@ public class Order implements Clock, Document {
 	      ZipCode += "0123456789".charAt(x);
 	    return ZipCode;
 	  }
+
+    @Override
+    public void tick(int iteration) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void doc() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 	/*private static ArrayList<String> shippingAddressList = new ArrayList<String>();
 		string addressNumber = order.mailingAddress;*/
