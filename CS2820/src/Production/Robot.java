@@ -2,7 +2,7 @@
 *
 * @author: Sam Barth
 *
-* date last modified: 11/26/2016
+* date last modified: 11/30/2016
 * 
 * The Robot class defines the individual robot.  An new instance of Robot
 * will have a starting x coordinate "0" and some y coordinate less than
@@ -28,14 +28,17 @@ public class Robot{
   private boolean onOrderMission;
   private boolean onStockMission;
   private String currentState;
+  private Floor f;
 
   /**
+   * Create an instance of Robot
    * 
    * @param initial location of the starting position of the Robot.  It will be
    * a Point with an X component "0" and a nonzero Y component.
+   * @param f instance of the floor used by Master
    * 
    */
-  public Robot(Point initial){
+  public Robot(Point initial, Floor f){
     double x = initial.getX();
     double y = initial.getY();
     int X = (int) x;
@@ -46,7 +49,9 @@ public class Robot{
     this.chargeLocation = new Point(0, Y);
     this.shelfCoupled = false;
   }
-  
+  /**
+   * 
+   */
   public void move(){
       Point destination = currentDestination;
       if (this.location.equals(this.currentDestination)){
@@ -120,10 +125,10 @@ public class Robot{
           case "F": //move to shelf
               this.coupleShelf();
               if (this.onOrderMission()){
-                //this.currentDestination = Floor.getPickerLocation();
+                this.currentDestination = f.getPicker();
               }
               else {
-                //this.currentDestination = Floor.getReceivingLocation();
+                this.currentDestination = f.getShipping();
               }
               break;
           case "G": //idle
@@ -206,8 +211,4 @@ public class Robot{
   public boolean onStockMission() {
 	  return onStockMission;
   }
-  // control methods:
-  // if idle, Robots will need to request new commands (from ?) (if applicable)
-  // at each new tick (from Master?).
-  // if not idle, Robots will need to request a path to travel (from Floor?)
 }
