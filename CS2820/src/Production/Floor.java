@@ -4,10 +4,10 @@ import java.awt.Point;
 
 /**
  *
- * @author TrevorFinley
- * @version 1.0
+ * @author TrevorFinley (tfinley521)
+ * @version 1.1 - last date modified 12/2/2016
  *
- * The Floor class is designed to construct relative x/y coordinates of type
+ * Purpose: to construct relative x/y coordinates of type
  * Point for all static locations such as charger, shelves, docks, etc.
  * and give all other parts of the warehouse access to them.
  * 
@@ -22,35 +22,50 @@ import java.awt.Point;
  */
 public class Floor 
 {
-	static int debug = 0;
 	//instance variables
-	int floor_Y; //y value of overall length of floor
-	int floor_X; //x value of overall width of floor
-	int shelfmax;
-	int s;
-	int shelf_Xstart;
-	int shelf_Xend;
-	int shelf_Ystart;
-	int shelf_Yend;
-	Point charger;
-	Point recdock;
-	Point picker;
-	Point packer;
-	Point shipdock;
-	Point[] shelf;
-	Point[] belt;
+	int floor_Y; 		//y value of overall length of floor
+	int floor_X; 		//x value of overall width of floor
+	int shelfmax; 		//max shelf value (for dynamic allocating)
+	int s; 				//number of shelves
+	int shelf_Xstart;  	//current X value starting point of shelf spaces
+	int shelf_Xend;  	//current X value ending point
+	int shelf_Ystart;  	//current Y value starting point
+	int shelf_Yend;  	//current Y value ending point
+	Point charger; 		//charging station
+	Point recdock; 		//receiving dock
+	Point picker; 		//picker station
+	Point packer; 		//packer station
+	Point shipdock; 	//shipping dock
+	Point[] shelf; 		//shelf array of coordinates
+	Point[] belt; 		//belt array of coordinates
+	
+	
+	/**
+	 * passes the current default floor dimensions for ease of access.
+	 * @return Floor default floor
+	 */
+	public static Floor getFloor()
+	{
+		Floor DefFloor = new Floor(160, 200);
+		return DefFloor;
+	}
    
-    //constructs the floor using the given dimensions
+    /**
+     * constructs the floor using the given x and y dimensions
+     * 
+     * @param x the width of the floor
+     * @param y the height of the floor
+     */
     public Floor(int x, int y)
     {
     	floor_X = x - 1;
     	floor_Y = y - 1;
-    	shelfmax = floor_X * floor_Y; //set for the maximum possible number of shelves (unrealistic but used for allocating purposes)
-    	s = 0; //number of shelves
-    	shelf_Xstart = 3; //current X value starting point of shelf spaces
-    	shelf_Xend = (floor_X-2);  //current X value ending point
-    	shelf_Ystart = 2; //current Y value starting point
-    	shelf_Yend = (floor_Y-3); //current Y value ending point
+    	shelfmax = floor_X * floor_Y; 
+    	s = 0; 
+    	shelf_Xstart = 3; 
+    	shelf_Xend = (floor_X-2);  
+    	shelf_Ystart = 2; 
+    	shelf_Yend = (floor_Y-3); 
     	
         charger = new Point(0, 0);
         recdock = new Point(floor_X, 0);
@@ -62,49 +77,85 @@ public class Floor
     	constructBelt();
     	constructShelf();
     }
-    //returns the y value length of the floor
+    
+    /**
+     * returns the y value length of the floor
+     * @return int floor height
+     */
     public int getFloorHeight()
     {
     	return this.floor_Y + 1;
     }
-    //returns the x value width of the floor
+    
+    /**
+     * returns the x value width of the floor
+     * @return int floor width
+     */
     public int getFloorWidth()
     {
     	return this.floor_X + 1;
     }
-    //returns the number of shelves
+    
+    /**
+     * returns the number of shelves
+     * @return int number of shelves
+     */
     public int numberOfShelves()
     {
     	return this.s;
     }
-    //returns the coordinates of charger in (x, y) format
+    
+    /**
+     * returns the coordinates of charger in (x, y) format
+     * @return Point charger coordinates
+     */
     public Point getCharger()
     {
     	return this.charger;
     }
-    //returns coordinates of receiving dock
+    
+    /**
+     * returns coordinates of receiving dock
+     * @return Point receiving dock coordinates
+     */
     public Point getReceiving()
     {
     	return this.recdock;
     }
-    //returns coordinates of shipping dock
+    
+    /**
+     * returns coordinates of shipping dock
+     * @return Point shipping dock coordinates
+     */
     public Point getShipping()
     {
     	return this.shipdock;
     }
-    //returns coordinates of picker station
+    
+    /**
+     * returns coordinates of picker station
+     * @return Point picker station coordinates
+     */
     public Point getPicker()
     {
     	return this.picker;
     }
-    //returns coordinates of packer station
+    
+    /**
+     * returns coordinates of packer station
+     * @return Point packer station coordinates
+     */
     public Point getPacker()
     {
     	return this.packer;
     }
     
-    //constructs the belt array of points
-    public void constructBelt() 
+    /**
+     * constructs the belt array of points (for Floor constructor's use only)
+     * @see Floor.Floor
+     */
+    
+    private void constructBelt() 
     {
         for (int i = 0, b = 1; i < this.belt.length; i++, b++) 
         {
@@ -115,20 +166,31 @@ public class Floor
 
 
     }
-    //returns belt (array of coordinates)
+    
+    /**
+     * returns belt (array of coordinates)
+     * @return Point[] belt array
+     */
     public Point[] getBelt()
     {
     	return this.belt;
     }
     
-    //returns specified coordinates from belt array
+    /**
+     * returns specified coordinates from belt array
+     * @param beltNum
+     * @return Point beltNum coordinates
+     */
     public Point getBelt(int beltNum)
     {
     	return this.belt[beltNum];
     }
     
-    //constructs the shelf array of points
-    public void constructShelf() 
+    /**
+     * constructs the shelf array of points (for Floor constructor's use only)
+     * @see Floor.Floor
+     */
+    private void constructShelf() 
     {
         //initializes shelf array
         for (int i = 0; i < this.shelfmax; i++) 
@@ -157,26 +219,36 @@ public class Floor
         }
     }
     
-    //returns entire array of shelf coordinates
+    /**
+     * returns entire array of shelf coordinates
+     * @return Point[] shelf array
+     */
     public Point[] getShelf()
     {
     	return this.shelf;
     }
-    //returns coordinates for given shelf space
-    public Point getShelf(int n) 
+    
+    /**
+     * returns coordinates for given shelf space
+     * @param n
+     * @return Point shelfNum coordinates
+     */
+    public Point getShelf(int shelfNum) 
     {
-        if (n > this.shelf.length || n < 0) 
+        if (shelfNum > this.shelf.length || shelfNum < 0) 
         {
             System.out.println("ERROR: must specify a valid shelf number between 0 and " + this.shelf.length);
             System.out.println("Please change the code to match.");
             return null;
         }
 
-        return this.shelf[n];
+        return this.shelf[shelfNum - 1];
     }
     
 
-    //creates an ASCII mock-up of the floor (for testing purposes, explicitly in small-scale testing)
+    /**
+     * creates an ASCII mock-up of the floor (for testing purposes, explicitly in small-scale testing)
+     */
     public void printMap() 
     {
         for(int n = 0; n<(this.floor_X * 2);n++)
@@ -242,7 +314,10 @@ public class Floor
             }
         }
     }
-    //prints out general statistics of floor (for testing purposes)
+    
+    /**
+     * prints out general statistics of floor (for testing purposes)
+     */
     public void printStats()
     {
         System.out.println("Current Floor Dimensions: " + (this.floor_X + 1) + "x" + (this.floor_Y + 1));
@@ -254,19 +329,20 @@ public class Floor
         System.out.println("Packer Station: (" + ((int)this.getPacker().getX()) + ", " + ((int)this.getPacker().getY()) + ")");
         System.out.println("Belt: (" + ((int)this.getBelt()[0].getX())+", "+((int)this.getBelt()[0].getY())+")"+" to "
         +"(" + ((int)this.getBelt()[this.belt.length-1].getX())+", "+((int)this.getBelt()[this.belt.length-1].getY())+")");
-        System.out.println("Shelf area: (" + ((int)this.getShelf()[0].getX())+", "+((int)this.getShelf()[0].getY())+")"+" to "
-        +"(" + ((int)this.getShelf()[s - 1].getX())+", "+((int)this.getShelf()[s - 1].getY())+")");        
-       
+        System.out.println("Shelf area: (" + ((int)this.getShelf(1).getX())+", "+((int)this.getShelf(1).getY())+")"+" to "
+        +"(" + ((int)this.getShelf(s).getX())+", "+((int)this.getShelf(s).getY())+")");        
     }
 
-    //main method for debugging purposes only, must toggle debug to 1 at beginning of code to run
-    public static void main (String[] args)
-    {
-    	if(debug == 1)
-    	{
-    		Floor test = new Floor(16, 16);
-    		test.printMap();
-    		test.printStats();
-    	}
-    }
+    //main method for debugging purposes only
+//    public static void main (String[] args)
+//    {
+//    	Floor test = new Floor(16, 16);
+//    	Floor test2 = getDefault();
+//    	test.printMap();
+//    	test2.printMap();
+//    	test.printStats();
+//    	test2.printStats();
+//    	
+//    }
+    
 }
