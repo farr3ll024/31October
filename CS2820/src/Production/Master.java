@@ -8,7 +8,7 @@ import java.util.Map;
  *
  * @author : Blaise Reints
  * @author : farr3ll024 (aka Blaise)
- * @version Last modified: November 20
+ * @version Last modified: 12/2/2016
  *
  * purpose - initialize and facilitate simulation (main)
  */
@@ -75,7 +75,7 @@ public class Master {
 
         //create instance of each class
         Floor floor_master = new Floor(160, 200);
-        RobotMaster bot_master = new RobotMaster(1);
+        //RobotMaster bot_master = new RobotMaster(1);
         //orders instance --> Note: I only create one instance of each class, should address and item be parameters?
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
@@ -84,7 +84,7 @@ public class Master {
         while (sim.getStatus() == true) {
             inventory_master.tick(sim.current_iteration);
             //orders
-            bot_master.tick(sim.current_iteration);
+            //bot_master.tick(sim.current_iteration);
             belt_master.tick(sim.current_iteration);
 
             sim.current_iteration += 1;
