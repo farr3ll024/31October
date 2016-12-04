@@ -15,71 +15,37 @@ package Production;
  */
 public class Belt implements Clock, Document {
 
-    static String[] belt;
-    static boolean movingBelt = false;
-    /*This will prevent an error where an item is placed on the belt, and is nullified by beltButton()*/
-    static boolean fullBelt = false;
-    /*Alerts if belt is full, preventing from items getting lost by the code*/
-    static String item;
-    static int x = 14;
-    /*Used for moving*/
-    static int y = 0;
+	/*Initializing the HashMap belt*/
+	static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
+	/*Counter variables for constructing and moving respectively*/
+    static int i, j;
+    /*This is the x variable given by the masterclass decremented by two since there are two open*/
+    /*floor squares in the belt's row*/
+    static int beltLength;
+ 
 
     /*used for constructing*/
-    public static void beltConstructor() {
-        /*This will build the belt by using a one dimensional array*/
-        belt = new String[14];
-        for (y = 0; y < 14; y++) {
-            belt[y] = null;
+    public static void beltConstructor(int x) {
+    	beltLength = x-2;
+        /*This will build the belt with a Hashmap. Each key corresponds*/
+    	/*to a position on the belt, with an arraylist value representing the bin in that location*/
+        for (i=0; i<beltLength; i++) {
+        	belt.put(i, null); 
         }
     }
-
-    public static void beltButton() {
-        /*Represents the packer pressing the belt button to move it one unit*/
-        movingBelt = true;/*Alerts that the belt is moving*/
-        for (x = 13; x >= 0; x--) {
-            belt[x] = belt[x - 1];
-            belt[x - 1] = null;
-        }
-        movingBelt = false;/*Alerts that belt has stopped*/
-    }
-
-    public static void addItem(String item) {/*This method will take a String item, and place that string at the start of
-											the belt array.*/
-        if (belt[0] != null) {
-            System.out.println("The belt is full, wait to place item.");
-            fullBelt = true;/*Alerts the picker that the belt is full, preventing item from being placed*/
-        } else if (movingBelt = true) {
-            System.out.println("The belt is moving, wait to place item.");
-        } else {
-            belt[0] = item;
-        }
-    }
-
-    public static void printBelt() {/*This prints out the contents of the belt array space by space, effectively showing
-									where items currently are on the belt.*/
-        for (y = 0; y < 14; y++) {
-            System.out.println("At spot" + y + "on the belt is the item" + belt[y]);
-        }
-    }
-
-    public static void main() {
-        beltConstructor();
-        printBelt();
-    }
-
-    public static void test() {/*Test code*/
-        beltConstructor();
-        addItem("Doll");
-        addItem("Ball");
-        beltButton();
-        addItem("Ball");
-        beltButton();
-        printBelt();
-    }
-
+    
     @Override
     public void tick(int iteration) {
+    	/* This variable j is decreasing from the last belt Key to 1 in order to move the ArrayLists by one*/
+    	j = beltLength-1;
+    	/* Loop to move each ArrayList, starting at the end of the belt*/
+    	for(j; j>0; j--) {
+    		belt.put(j, belt.get(j-1));
+    	}
+    	/*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
+    	if(Order.BinFilled() == true){
+    		belt.put(0, Order.orderBin());
+    	}
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
