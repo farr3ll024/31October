@@ -6,7 +6,7 @@ package Production;
  *
  */
 
-// Need to use the List.txt
+// Need to use the List.txt, don't forget to change the path!!!
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -153,12 +153,48 @@ public class Inventory implements Clock, Document {
     	outPutFile();
     		
     }
+	
+	
+    //read the list and get the remaining capacity of each shelves
+    /**
+     * @param none
+     */
+    public Map<Integer, Integer> readCapacity(){
+    	int shelfId;
+    	int i;
+    	int amount;
+    	int countshelf = 0;
+    	
+    	for (shelfId = 1; shelfId<inventory.size(); shelfId++){
+    		amount = 0;
+    	for (i = 0; i < inventory.size(); i++){
+    		Map<String, Object> Item = new HashMap<String, Object>();
+    		Item = inventory.get(i);
+    		String x = Item.get("Shelf#").toString();
+    		int y = Integer.parseInt(x);
+    		if (shelfId == y){
+				amount += Integer.parseInt(Item.get("Amount").toString());
+			}
+    	}
+    	if (amount != 0){
+    		countshelf += 1;
+    		shelf.put(countshelf, ShelfCapacity-amount);
+    	}
+    	}
+    	
+    	System.out.println(shelf);
+    	return shelf;
+    }
     
 	
     //add items to the list
     //Variable InList is used to check whether the item is already in list or not
     //if already in list, when we add item, we just need to update the amount of the item
-    //if not in list, we need to create a new line in the list
+    //if not in list, we need to check the capacity of shelves, add the item to the shelves
+    //add the item to the shelves which is the biggest remaining capacity
+    //if the item amount is even greater than the biggest remaining capacity
+    //we add the items to a new shelf
+    //and create a new line in the list
     /**
      * @param itemName, the name of the item that we want to add into the list
      * @param Qty, the number of items that we wants to add
@@ -166,6 +202,38 @@ public class Inventory implements Clock, Document {
     public void addItem(String itemName, int Qty){
     	boolean InList = false;
     	int i;
+    	int max = 0;
+    	
+    	List<Map<String, Object>> listb = new ArrayList<Map<String, Object>>();
+	    
+	inventoryTest test = new inventoryTest(listb);
+	test.data();
+    	
+    	for (Map.Entry<Integer, Integer> m : test.readCapacity().entrySet()){
+    		if (max < m.getValue()){
+    			max = m.getValue();
+                }
+    	}
+    	//System.out.println(max);
+        
+        //get the ID of the last shelf
+        int lastshelfID = 0;
+        for (Map.Entry<Integer, Integer> m :test.readCapacity().entrySet())  {  
+           if ( m.getKey()> lastshelfID){
+                lastshelfID = m.getKey();
+           }  
+        }
+        
+        //get the ID of the shelf which has the max remaining capacity
+        int keys = 0;
+        for (Map.Entry<Integer, Integer> m : test.readCapacity().entrySet()){
+    		if (max == m.getValue()){
+    			keys = m.getKey();
+                }
+    	}
+        //System.out.println(keys);
+    	
+        
     	for (i = 0; i < inventory.size(); i++)
 		{
     		Map<String, Object> newItem = new HashMap<String, Object>();
@@ -188,12 +256,17 @@ public class Inventory implements Clock, Document {
     		newItem.put("Name",itemName);
     		newItem.put("Amount",Qty);
     		newItem.put("Existence","Y");
+                if (Qty <= max){
+                    newItem.put("Shelf#",keys);
+                }
+                else{
+                    newItem.put("Shelf#",lastshelfID+1);
+                }
     		inventory.add(newItem);
     	}
-    	
     	outPutFile();
          
-    } 
+    }
 	
     
     //output the file
