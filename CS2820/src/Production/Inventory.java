@@ -217,12 +217,9 @@ public class Inventory implements Clock, Document {
     	//System.out.println(max);
         
         //get the ID of the last shelf
-        int lastshelfID = 0;
-        for (Map.Entry<Integer, Integer> m :test.readCapacity().entrySet())  {  
-           if ( m.getKey()> lastshelfID){
-                lastshelfID = m.getKey();
-           }  
-        }
+        int lastshelfID = test.readCapacity().entrySet().size();
+        //System.out.println(lastshelfID);
+	    
         
         //get the ID of the shelf which has the max remaining capacity
         int keys = 0;
