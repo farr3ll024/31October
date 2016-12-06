@@ -1,5 +1,9 @@
 package Production;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author: Michael Gibler
  *
@@ -15,37 +19,37 @@ package Production;
  */
 public class Belt implements Clock, Document {
 
-	/*Initializing the HashMap belt*/
-	static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
-	/*Counter variables for constructing and moving respectively*/
+    /*Initializing the HashMap belt*/
+    static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
+    /*Counter variables for constructing and moving respectively*/
     static int i, j;
     /*This is the x variable given by the masterclass decremented by two since there are two open*/
-    /*floor squares in the belt's row*/
+ /*floor squares in the belt's row*/
     static int beltLength;
- 
+
 
     /*used for constructing*/
     public static void beltConstructor(int x) {
-    	beltLength = x-2;
+        beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
-    	/*to a position on the belt, with an arraylist value representing the bin in that location*/
-        for (i=0; i<beltLength; i++) {
-        	belt.put(i, null); 
+ /*to a position on the belt, with an arraylist value representing the bin in that location*/
+        for (i = 0; i < beltLength; i++) {
+            belt.put(i, null);
         }
     }
-    
+
     @Override
     public void tick(int iteration) {
-    	/* This variable j is decreasing from the last belt Key to 1 in order to move the ArrayLists by one*/
-    	j = beltLength-1;
-    	/* Loop to move each ArrayList, starting at the end of the belt*/
-    	for(j; j>0; j--) {
-    		belt.put(j, belt.get(j-1));
-    	}
-    	/*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
-    	if(Order.BinFilled() == true){
-    		belt.put(0, Order.orderBin());
-    	}
+        /* This variable j is decreasing from the last belt Key to 1 in order to move the ArrayLists by one*/
+        j = beltLength - 1;
+        /* Loop to move each ArrayList, starting at the end of the belt*/
+        for (j = beltLength - 1; j > 0; j--) {
+            belt.put(j, belt.get(j - 1));
+        }
+        /*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
+        if (Orders.binFilled == true) {
+            belt.put(0, Orders.orderBin);
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -54,3 +58,4 @@ public class Belt implements Clock, Document {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
