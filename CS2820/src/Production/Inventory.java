@@ -23,7 +23,7 @@ import java.util.Map;
 
 
 
-public class Inventory {
+public class Inventory implements Clock, Document {
 	
 	
 	boolean isExist; //variable to check whether item exist or not
@@ -375,5 +375,15 @@ public class Inventory {
 	    //a.readShelf();
 	    
 	}
+	
+	@Override
+	    public void tick(int iteration) {
+	            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	    }
+	    
+	    @Override
+	    public void doc() {
+	            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	    }
     
 }
