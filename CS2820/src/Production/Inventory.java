@@ -31,12 +31,14 @@ class Point {
 
 }
 
-public class Inventory implements Clock, Document {
+public class Inventory /*implements Clock, Document*/ {
 	boolean isExist; //variable to chech whether item exist or not
 	//boolean isInList;
 	int amount; // the amount of item
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
 	Map<Integer, Integer> shelf = new HashMap<Integer, Integer>();
+	
+	int ShelfCapacity = 50;
 	
     // Constructor
     public Inventory(List inventory){
@@ -385,15 +387,5 @@ public class Inventory implements Clock, Document {
 	    a.readPosition("J");
 	    
 	}
-
-    @Override
-    public void tick(int iteration) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void doc() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
