@@ -1,12 +1,12 @@
 package Production;
 
 /**
- *
- * @author Ming Cheng
- *
- */
+*
+* @author Ming Cheng
+*
+*/
 
-// Need to use the List.txt, don't forget to change the path!!!
+//Need to use the List.txt
 
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -16,27 +16,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//import java.awt.Point;
 
 
-public class Inventory /*implements Clock, Document*/ {
-	boolean isExist; //variable to chech whether item exist or not
+
+public class Inventory {
+	
+	
+	boolean isExist; //variable to check whether item exist or not
 	//boolean isInList;
 	int amount; // the amount of item
-	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
+	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>();
 	Map<Integer, Integer> shelf = new HashMap<Integer, Integer>();
 	
 	int ShelfCapacity = 50;
 	
-    // Constructor
+	// Constructor
     public Inventory(List inventory){
-        this.inventory = inventory; 
+        this.inventory = inventory;
     }
-   
-	
+    
     // Read file and add data of the file to ArrayList
     /**
      * @param nothing
@@ -104,19 +106,13 @@ public class Inventory /*implements Clock, Document*/ {
     }
     
     
-	
-    //remove item from list
-    /**
-     * @param itemName, the name of the item that we want to remove from the list
-     */
-    //remove items from list
+    //remove items from list, if item is not on the list yet, print not available 
+    //If item on the list, but the amount is not enough, print not enough
     /**
      * @param itemName, the name of the item that we want to remove from the list
      * @param Qty, the number of items that we wants to remove
      */
     public void removeItem(String itemName, int Qty){
-    	
-    	//check whether the Qty number of items exist
     	if (checkExist(itemName, Qty) == true){
     		int i;
     		//System.out.println(checkExist(itemName));
@@ -125,33 +121,32 @@ public class Inventory /*implements Clock, Document*/ {
         		Map<String, Object> removedItem = new HashMap<String, Object>();
         		removedItem = inventory.get(i);
         		
-        		//find the item that we want to remove in the List
     			if (itemName.equals(removedItem.get("Name").toString())){
     				int a = Integer.parseInt((String) removedItem.get("Amount"));
-    				removedItem.put("Amount",a-Qty); 
+    				removedItem.put("Amount",a- Qty);
     				
-    				//after remove Qty number of items
     				if (a-Qty < 1){
     					removedItem.put("Existence","N");
     				}
     			}
     		}
     	}
-    	
     	else{
-    		System.out.println("Item not exist or not enough");
-    		checkExist(itemName, Qty);
+            System.out.println("Item "+ itemName + " is not available.");
+            for (int i = 0; i < inventory.size(); i++)
+    		{
+        		Map<String, Object> removedItem = new HashMap<String, Object>();
+        		removedItem = inventory.get(i);
+        		
+    			if (itemName.equals(removedItem.get("Name").toString())){
+    			    System.out.println("Since item "+ itemName + "'s amout is not enough, try less amount.");  
+                        }                  
+                }
     	}
-    	
-    	outPutFile();
-    		
+    	outPutFile();	
     }
-	
-	
-    //read the list and get the remaining capacity of each shelves
-    /**
-     * @param none
-     */
+    
+    //read the remaining capacity of shelves
     public Map<Integer, Integer> readCapacity(){
     	int shelfId;
     	int i;
@@ -179,15 +174,10 @@ public class Inventory /*implements Clock, Document*/ {
     	return shelf;
     }
     
-	
     //add items to the list
     //Variable InList is used to check whether the item is already in list or not
     //if already in list, when we add item, we just need to update the amount of the item
-    //if not in list, we need to check the capacity of shelves, add the item to the shelves
-    //add the item to the shelves which is the biggest remaining capacity
-    //if the item amount is even greater than the biggest remaining capacity
-    //we add the items to a new shelf
-    //and create a new line in the list
+    //if not in list, we need to create a new line in the list
     /**
      * @param itemName, the name of the item that we want to add into the list
      * @param Qty, the number of items that we wants to add
@@ -199,7 +189,7 @@ public class Inventory /*implements Clock, Document*/ {
     	
     	List<Map<String, Object>> listb = new ArrayList<Map<String, Object>>();
 	    
-	Inventory test = new Inventory(listb);
+    	Inventory test = new Inventory(listb);
 	test.data();
     	
     	for (Map.Entry<Integer, Integer> m : test.readCapacity().entrySet()){
@@ -212,7 +202,6 @@ public class Inventory /*implements Clock, Document*/ {
         //get the ID of the last shelf
         int lastshelfID = test.readCapacity().entrySet().size();
         //System.out.println(lastshelfID);
-	    
         
         //get the ID of the shelf which has the max remaining capacity
         int keys = 0;
@@ -256,8 +245,8 @@ public class Inventory /*implements Clock, Document*/ {
     	}
     	outPutFile();
          
-    }
-	
+    } 
+    
     
     //output the file
     /**
@@ -266,17 +255,20 @@ public class Inventory /*implements Clock, Document*/ {
     public void outPutFile(){
     	try
 		{
-    	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List2.txt"));
-    	   pw.println("Id\tName\tAmount\tExistence");
-    	   String[] columnName = { "Id", "Name", "Amount"}; 
+    	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List1.txt"));
+    	   pw.println("Id\tName\tAmount\tShelf#\tPosition\tExistence");
+    	   String[] columnName = { "Id", "Name", "Amount", "Shelf#", "Position", "Existence"};
 			int cIndex;
 			for (int i = 0; i < inventory.size(); i++)
 			{
 				Map<String, Object> st = inventory.get(i);
 				cIndex = 0;
 				pw.println(st.get(columnName[cIndex++]) + "\t"
-						+ st.get(columnName[cIndex++]) + "\t"
-						+ st.get(columnName[cIndex++]) + "\t"+st.get("Existence"))  ;
+				+ st.get(columnName[cIndex++]) + "\t"
+				+ st.get(columnName[cIndex++]) + "\t"
+                                + st.get(columnName[cIndex++]) + "\t"
+                                + st.get(columnName[cIndex++]) + "\t"+"\t"
+                                + st.get(columnName[cIndex++]));
 			}
 			pw.flush();
 			pw.close();
@@ -287,7 +279,7 @@ public class Inventory /*implements Clock, Document*/ {
 		}
     }
     
-	
+    
     //check whether the number of item exist or not
     //if the amount of item is lease than Qty, then item is not exist
     //if item is not in the list, then item is not exist
@@ -321,8 +313,7 @@ public class Inventory /*implements Clock, Document*/ {
     	return isExist;
     	
     }
-	
-	
+    
     //read the position of item, and output it as a point
     /**
      * @param itemName, the name of the item that we want to know its postion
@@ -356,26 +347,33 @@ public class Inventory /*implements Clock, Document*/ {
     	Point a = new Point();
     	a.x = row;
     	a.y = col;
-    	System.out.println(a);
+    	//System.out.println(a);
     	return a;
     	
     }
-   
-	
-    //used to test
+    
     public static void main(String[] args) {
-
+		
 		List<Map<String, Object>> listA = new ArrayList<Map<String, Object>>();
 		/*add code here to read file and insert the item in to listA*/
 	    
 		Inventory a = new Inventory(listA);
 		a.data();
-		//a.checkExist("K,2");
-		 	
-            a.addItem("Z",2);
+		//a.checkExist("K");
+		
+	    a.addItem("Z",2);
+	    a.addItem("L", 40);
+		/*
 	    a.addItem("H",4);
 	    a.addItem("A",5);
 	    a.addItem("F",10);
-	    a.removeItem("J", 20);
-    }
+	    a.addItem("r",10);
+	    a.removeItem("K", 20);
+	    a.readPosition("J");
+	    a.removeItem("V", 3);*/
+	    
+	    //a.readShelf();
+	    
+	}
+    
 }
