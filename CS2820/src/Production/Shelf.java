@@ -4,7 +4,7 @@
  * date last modified: 12/6/2016
  * 
  * The shelf class will aggregate up to some maximum capacity of items (represented
- * as String objects). 
+ * as String objects).
  */
 
 package Production;
@@ -45,7 +45,7 @@ public class Shelf {
      * @return returns true if the quantity of item "s" has been added to the
      * shelf and false if adding the quantity of items "s" would cause the shelf
      * to exceed the maximum shelf capacity (note that in this case, the items
-     * are NOT added)
+     * are NOT added).
      */
     public boolean addItem(String s, int quantity){
         if (quantity + items.size() <= SHELFCAPACITY){
