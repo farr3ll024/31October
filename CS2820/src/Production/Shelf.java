@@ -4,7 +4,7 @@
  * date last modified: 12/6/2016
  * 
  * The shelf class will aggregate up to some maximum capacity of items (represented
- * as String objects).
+ * as String objects). 
  */
 
 package Production;
