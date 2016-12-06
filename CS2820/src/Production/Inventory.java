@@ -36,7 +36,7 @@ public class Inventory implements Clock, Document {
 	//boolean isInList;
 	int amount; // the amount of item
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>(); // ArrayList to save the data of the list
-	
+	Map<Integer, Integer> shelf = new HashMap<Integer, Integer>();
 	
     // Constructor
     public Inventory(List inventory){
@@ -206,7 +206,7 @@ public class Inventory implements Clock, Document {
     	
     	List<Map<String, Object>> listb = new ArrayList<Map<String, Object>>();
 	    
-	inventoryTest test = new inventoryTest(listb);
+	Inventory test = new Inventory(listb);
 	test.data();
     	
     	for (Map.Entry<Integer, Integer> m : test.readCapacity().entrySet()){
