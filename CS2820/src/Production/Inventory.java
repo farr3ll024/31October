@@ -360,9 +360,7 @@ public class Inventory implements Clock, Document {
 		Inventory a = new Inventory(listA);
 		a.data();
 		//a.checkExist("K");
-		
-	    a.addItem("Z",2);
-	    a.addItem("L", 40);
+	    a.addItem("L", 41);
 		/*
 	    a.addItem("H",4);
 	    a.addItem("A",5);
