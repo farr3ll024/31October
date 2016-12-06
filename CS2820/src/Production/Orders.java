@@ -3,11 +3,11 @@ package Production;
 import java.util.ArrayList;
 
 /*public class Order {
-	 
+
 	 public static ArrayList<String> OrderItem = new ArrayList();
-	 
- 
-	  
+
+
+
 	  String address;
 	  OrderItem[] orderitems;
 	  boolean isFilled;
@@ -26,20 +26,20 @@ import java.util.ArrayList;
  */
 
  /* @author Ruben Chavez
- * 
+ *
  * last modified 11-14-16
  * @param String shipping address, ArrayList<String> of items ordered;
- * 
+ *
  * This will get item and shelf numbers for the items in the list of items from inventory;
  * It will give the Robot a shelf number to bring the picker,fetchItem();
  * pick and add it to the bin,
- * and tell the Robot that the shelf is ready to be taken away.  
- * Tell the belt that the bin is ready. 
- * 
- *  
- * 
- * 
- * 
+ * and tell the Robot that the shelf is ready to be taken away.
+ * Tell the belt that the bin is ready.
+ *
+ *
+ *
+ *
+ *
  */
 public class Orders implements Clock, Document {
 
@@ -50,9 +50,9 @@ public class Orders implements Clock, Document {
     int shelfNumber;
     public ArrayList<String> orderItems = new ArrayList<String>();
     public ArrayList<Integer> orderNumbers = new ArrayList<Integer>();
-    public ArrayList<String> orderBin = new ArrayList<String>();
+    public static ArrayList<String> orderBin = new ArrayList<String>();
     public ArrayList<Integer> shelfNumbers = new ArrayList<Integer>();
-    public Boolean binFilled = false;
+    public static Boolean binFilled = false;
     public Boolean shelfReady = false;
 
     public Orders(String address, ArrayList<String> items) {
@@ -111,7 +111,7 @@ public class Orders implements Clock, Document {
  /*int getItemNumber(){
 		//return InventoryList.itemNumber;
 		return itemNumber;
-	
+
 	}*/
     int getShelfNumber() {
         //return itemNumber.shelfNumber;
