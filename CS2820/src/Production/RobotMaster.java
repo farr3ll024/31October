@@ -16,6 +16,10 @@ package Production;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import ProductionTestPackage.MockFloor;
+import ProductionTestPackage.MockOrders;
+import ProductionTestPackage.MockInventory;
+
 // RobotMaster will implement clock interface
 public class RobotMaster implements Clock, Document {
 
@@ -23,7 +27,7 @@ public class RobotMaster implements Clock, Document {
     private final int batteryRange = 50;
     private final static Point VOIDLOCATION = new Point(-1, -1);
     private boolean lastDeployedOrder;
-    private Floor f;
+    private MockFloor f;
 
     /**
      * 
@@ -36,7 +40,7 @@ public class RobotMaster implements Clock, Document {
      * @param i is the instance of the Inventory that Master will use in conjunction
      * with this instance of RobotMaster
      */
-    public RobotMaster(int numRobots, Floor f, Inventory i){
+    public RobotMaster(int numRobots, MockFloor f, MockInventory i){
         this.robots = new ArrayList<>(numRobots);
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
@@ -61,6 +65,14 @@ public class RobotMaster implements Clock, Document {
         else{
             r.assignMission("Order", VOIDLOCATION); //fill in Inventory.getShelfLocation()
         }
+    }
+    public ArrayList getRobotLocations(){
+        ArrayList<Point> robotLocations = new ArrayList<>();
+        for (Robot r : robots){
+            Point location = new Point(r.getLocation());
+            robotLocations.add(location);
+        }
+        return robotLocations;
     }
     /**
      * Increment time by one position.  Robots deployed on missions may move
