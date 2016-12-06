@@ -30,7 +30,8 @@ public class Inventory implements Clock, Document {
 	//boolean isInList;
 	int amount; // the amount of item
 	List<Map<String, Object>> inventory = new ArrayList<Map<String, Object>>();
-	Map<Integer, Integer> shelf = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> shelf = new HashMap<Integer, Integer>(); // shelf and its remaining capacity
+	Map<String, Integer> ItemShelf = new HashMap<String, Integer>(); //item and its shelf
 	
 	int ShelfCapacity = 50;
 	
@@ -170,9 +171,25 @@ public class Inventory implements Clock, Document {
     	}
     	}
     	
-    	System.out.println(shelf);
+    	//System.out.println(shelf);
     	return shelf;
     }
+	
+    //read the list and get which item is in which shelf, return a HashMap which the key is item name, and the value is shelf#
+    public Map<String, Integer> itemShelf(){
+    	int i;
+    	for (i = 0; i < inventory.size(); i++){
+    		Map<String, Object> Item = new HashMap<String, Object>();
+    		Item = inventory.get(i);
+    		String itemname = Item.get("Name").toString();
+    		String x = Item.get("Shelf#").toString();
+    		int y = Integer.parseInt(x);
+    		ItemShelf.put(itemname, y);
+    	}
+    	//System.out.println(ItemShelf);
+    	return ItemShelf;
+    }
+	
     
     //add items to the list
     //Variable InList is used to check whether the item is already in list or not
@@ -361,7 +378,8 @@ public class Inventory implements Clock, Document {
 		a.data();
 		//a.checkExist("K");
 	    a.addItem("L", 41);
-		/*
+	    /*
+	    a.itemShelf();
 	    a.addItem("H",4);
 	    a.addItem("A",5);
 	    a.addItem("F",10);
