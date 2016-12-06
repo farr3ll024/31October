@@ -8,6 +8,7 @@ package Production;
 
 // Need to use the List.txt, don't forget to change the path!!!
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,18 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+//import java.awt.Point;
 
-class Point {
-	
-	int x;
-	int y;
-	
-	public Point(int x, int y){
-		this.x = x;
-		this.y = y;
-	}
-
-}
 
 public class Inventory /*implements Clock, Document*/ {
 	boolean isExist; //variable to chech whether item exist or not
@@ -356,13 +347,16 @@ public class Inventory /*implements Clock, Document*/ {
     	sy = sy.substring(0, sy.length()-1);
     	
     	//transfer string to int
-    	int x = Integer.parseInt(sx);
-    	int y = Integer.parseInt(sy);
+    	int row = Integer.parseInt(sx);
+    	int col = Integer.parseInt(sy);
     	
     	//System.out.println(x);
     	//System.out.println(y);
     	
-    	Point a = new Point(x,y);
+    	Point a = new Point();
+    	a.x = row;
+    	a.y = col;
+    	System.out.println(a);
     	return a;
     	
     }
@@ -377,15 +371,11 @@ public class Inventory /*implements Clock, Document*/ {
 		Inventory a = new Inventory(listA);
 		a.data();
 		//a.checkExist("K,2");
-		
-		
-	    a.addItem("Z",2);
+		 	
+            a.addItem("Z",2);
 	    a.addItem("H",4);
 	    a.addItem("A",5);
 	    a.addItem("F",10);
 	    a.removeItem("J", 20);
-	    a.readPosition("J");
-	    
-	}
-
+    }
 }
