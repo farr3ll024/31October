@@ -1,1 +1,4 @@
-/CS2820/nbproject/
+*/
+!/CS2820/src/production/*.java
+!/CS2820/test/testpackage/*.java
+!/CS2820/other/
