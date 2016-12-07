@@ -1,46 +1,20 @@
+/**
+ * @author Ruben Chavez
+ * @author Sam Barth
+ *
+ * last modified 12/7/2016
+ *
+ * This will get item and shelf numbers for the items in the list of items from
+ * inventory; It will give the Robot a shelf number to bring the
+ * picker,fetchItem(); pick and add it to the bin, and tell the Robot that the
+ * shelf is ready to be taken away. Tell the belt that the bin is ready.
+ *
+ */
 package Production;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
-/*public class Order {
-
-	 public static ArrayList<String> OrderItem = new ArrayList();
-
-
-
-	  String address;
-	  OrderItem[] orderitems;
-	  boolean isFilled;
-	  /**
-	   * @author Ted Herman
-	   * @param addr is a shipping address for the order
-	   * @param items is an array of OrderItem objects
- */
- /*public Order(String addr,OrderItem[] items) {
-		address = addr;
-		orderitems = items;
-		isFilled = false;
-	    }
-	  }
-
- */
-
- /* @author Ruben Chavez
- *
- * last modified 11-14-16
- * @param String shipping address, ArrayList<String> of items ordered;
- *
- * This will get item and shelf numbers for the items in the list of items from inventory;
- * It will give the Robot a shelf number to bring the picker,fetchItem();
- * pick and add it to the bin,
- * and tell the Robot that the shelf is ready to be taken away.
- * Tell the belt that the bin is ready.
- *
- *
- *
- *
- *
- */
 public class Orders implements Clock, Document {
 
     //String buyerName;
@@ -55,14 +29,18 @@ public class Orders implements Clock, Document {
     public static Boolean binFilled = false;
     public Boolean shelfReady = false;
 
-    public Orders(String address, ArrayList<String> items) {
+    private Floor f;
+    private Inventory i;
+    private Stack<Orders> ordersStack;
+
+    public Orders(Inventory i, Floor f) {
 
         //this.buyerName = name;
-        this.shippingAddress = address;
+        //this.shippingAddress = address;
         //this.itemNumber = item;
         //this.priorityValue = priority;
         //this.shelfNumber = shelf;
-
+        /*
         //create list of items
         for (String item : items) {
             this.orderItems.add(item);
@@ -70,6 +48,9 @@ public class Orders implements Clock, Document {
 
         //this.orderItems = items;
         int orderLength = items.size();
+        */
+        this.f = f;
+        this.i = i;
     }
 
     public ArrayList<Integer> getItemInfo() {
@@ -124,7 +105,7 @@ public class Orders implements Clock, Document {
 
     @Override
     public void tick(int iteration) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
