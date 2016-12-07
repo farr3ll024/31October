@@ -32,6 +32,7 @@ public class Orders implements Clock, Document {
     private Floor f;
     private Inventory i;
     private Stack<Order> ordersStack;
+    private Bin currentBin;
 
     public Orders(Inventory i, Floor f) {
 
