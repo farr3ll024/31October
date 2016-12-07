@@ -12,6 +12,7 @@
  */
 package production;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -28,7 +29,7 @@ public class Orders implements Clock, Document {
     public ArrayList<Integer> shelfNumbers = new ArrayList<Integer>();
     public static Boolean binFilled = false;
     public Boolean shelfReady = false;
-	public Boolean shelfPicked = false;
+    public Boolean shelfPicked = false;
 
     private Floor f;
     private Inventory i;
@@ -84,16 +85,16 @@ public class Orders implements Clock, Document {
     }
 
     //shelfReady = True means the robot has retrieved the shelf and it is ready to be picked
-	//shelfReady = False means the robot has yet to retrieve the shelf. 
+    //shelfReady = False means the robot has yet to retrieve the shelf.
     public Boolean shelfReady() {
         return shelfReady;
     }
-	
-	//shelfPicked = True means it has been picked
-	public Boolean shelfPicked(){
-		return shelfPicked;
-	}
-	
+
+    //shelfPicked = True means it has been picked
+    public Boolean shelfPicked() {
+        return shelfPicked;
+    }
+
     public Boolean binFilled() {
         if (orderBin.size() == orderItems.size()) {
             binFilled = true;
@@ -124,11 +125,13 @@ public class Orders implements Clock, Document {
 
     @Override
     public void tick(int iteration) {
-		if 
-		
-		if (binFilled == false){
-			for(string item in Order.getItems)
-		}
+//        if  {
+//            if (binFilled == false) {
+//                for (string item   in Order.getItems) {
+//
+//                }
+//            }
+//        }
     }
 
     @Override
