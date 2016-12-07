@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author farr3ll
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VisualizerIT.class, FloorIT.class, MasterIT.class, DocumentIT.class, RobotMasterIT.class, RobotIT.class, BeltIT.class, ClockIT.class, OrdersIT.class, ProductionIT.class})
+@Suite.SuiteClasses({VisualizerIT.class, FloorIT.class, MasterIT.class, DocumentIT.class, BeltIT.class, ClockIT.class, OrdersIT.class, ProductionIT.class})
 public class ProductionITSuite {
 
     @BeforeClass

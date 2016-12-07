@@ -114,9 +114,9 @@ public class InventoryIT {
         System.out.println("readPosition");
         String itemName = "";
         Inventory instance = null;
-        Point expResult = null;
-        Point result = instance.readPosition(itemName);
-        assertEquals(expResult, result);
+        //Point expResult = null;
+        //Point result = instance.readPosition(itemName);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

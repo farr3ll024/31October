@@ -43,7 +43,7 @@ public class BeltIT {
     @Test
     public void testBeltConstructor() {
         System.out.println("beltConstructor");
-        Belt.beltConstructor();
+        //Belt.beltConstructor();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -54,7 +54,7 @@ public class BeltIT {
     @Test
     public void testBeltButton() {
         System.out.println("beltButton");
-        Belt.beltButton();
+        //Belt.beltButton();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -66,7 +66,7 @@ public class BeltIT {
     public void testAddItem() {
         System.out.println("addItem");
         String item = "";
-        Belt.addItem(item);
+        //Belt.addItem(item);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -77,7 +77,7 @@ public class BeltIT {
     @Test
     public void testPrintBelt() {
         System.out.println("printBelt");
-        Belt.printBelt();
+        //Belt.printBelt();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -88,7 +88,7 @@ public class BeltIT {
     @Test
     public void testMain() {
         System.out.println("main");
-        Belt.main();
+        //Belt.main();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -99,7 +99,7 @@ public class BeltIT {
     @Test
     public void testTest() {
         System.out.println("test");
-        Belt.test();
+        //Belt.test();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
