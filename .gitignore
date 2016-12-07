@@ -1,4 +1,6 @@
-*/
-!/CS2820/src/production/*.java
-!/CS2820/test/testpackage/*.java
-!/CS2820/other/
+*.class
+*.xml
+*.mf
+*.jar
+*.war
+*.ear
