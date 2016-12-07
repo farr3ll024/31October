@@ -40,5 +40,12 @@ public class Bin {
         if(items.size() == BINCAPACITY){return true;}
         else{return false;}
     }
+    /**
+     * 
+     * @return returns an ArrayList of the current contents of the Bin
+     */
+    public ArrayList<String> getContents(){
+        return items;
+    }
     
 }
