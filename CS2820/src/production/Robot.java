@@ -14,7 +14,7 @@
 package production;
 
 import java.awt.Point;
-import testpackage.*;
+import testpackage.MockFloor;
 
 public class Robot {
 
@@ -66,15 +66,15 @@ public class Robot {
                 } else {
                     this.location.move(this.getX() - 1, this.getY());
                 }
+            } else if (this.getY() < currentDestination.getY()) {
+                this.location.move(this.getX(), this.getY() + 1);
             } else {
-                if (this.getY() < currentDestination.getY()) {
-                    this.location.move(this.getX(), this.getY() + 1);
-                } else {
-                    this.location.move(this.getX(), this.getY() - 1);
-                }
+                this.location.move(this.getX(), this.getY() - 1);
             }
             this.distanceTraversed += 1;
-            if (printTestLines){System.out.println("Robot moved to " + this.getLocation().toString());}
+            if (printTestLines) {
+                System.out.println("Robot moved to " + this.getLocation().toString());
+            }
         }
     }
 
@@ -205,7 +205,7 @@ public class Robot {
      */
     public void coupleShelf() {
         shelfCoupled = true;
-        //coupledShelfID = getShelfNumber();	  
+        //coupledShelfID = getShelfNumber();
     }
 
     /**
