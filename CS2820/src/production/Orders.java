@@ -34,7 +34,6 @@ public class Orders implements Clock, Document {
     private Floor f;
     private Inventory i;
     private Stack<Order> ordersStack;
-    private Bin currentBin;
 
     public Orders(Inventory i, Floor f) {
 
@@ -73,7 +72,8 @@ public class Orders implements Clock, Document {
         shelfReady = true;
     }
 
-    public Point shelfToFetch() {
+    public Shelf shelfToFetch() {
+        
         Order currentOrder = ordersStack.peek();
         if (currentOrder.orderStackEmpty()) {
             ordersStack.pop();
@@ -81,7 +81,8 @@ public class Orders implements Clock, Document {
             return shelfToFetch();
         }
         Point dummyPoint = new Point(0, 0);
-        return dummyPoint;
+        Shelf dummyShelf = new Shelf(dummyPoint);
+        return dummyShelf;
     }
 
     //shelfReady = True means the robot has retrieved the shelf and it is ready to be picked
