@@ -5,7 +5,7 @@
  */
 package testpackage;
 
-import production.Clock;
+import Production.Clock;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.fail;

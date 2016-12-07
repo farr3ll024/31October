@@ -5,7 +5,7 @@
  */
 package testpackage;
 
-import production.Master;
+import Production.Master;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;

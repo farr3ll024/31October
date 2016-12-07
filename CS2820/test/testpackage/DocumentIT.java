@@ -5,7 +5,7 @@
  */
 package testpackage;
 
-import production.Document;
+import Production.Document;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.fail;

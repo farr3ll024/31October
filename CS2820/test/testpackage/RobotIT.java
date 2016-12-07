@@ -10,7 +10,7 @@ package testpackage;
  */
 
 
-import production.Robot;
+import Production.Robot;
 import java.awt.Point;
 
 import org.junit.After;

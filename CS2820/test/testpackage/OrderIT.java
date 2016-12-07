@@ -5,7 +5,7 @@
  */
 package testpackage;
 
-import production.Order;
+import Production.Order;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;

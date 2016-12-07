@@ -5,7 +5,7 @@
  */
 package testpackage;
 
-import production.Floor;
+import Production.Floor;
 import java.awt.Point;
 import org.junit.After;
 import org.junit.AfterClass;
