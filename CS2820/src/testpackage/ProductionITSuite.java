@@ -5,11 +5,6 @@
  */
 package testpackage;
 
-import testpackage.FloorIT;
-import testpackage.DocumentIT;
-import testpackage.ClockIT;
-import testpackage.BeltIT;
-import testpackage.VisualizerIT;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,7 +17,7 @@ import org.junit.runners.Suite;
  * @author farr3ll
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VisualizerIT.class, FloorIT.class, MasterIT.class, DocumentIT.class, BeltIT.class, ClockIT.class, OrdersIT.class, ProductionIT.class})
+@Suite.SuiteClasses({VisualizerIT.class, FloorIT.class, MasterIT.class, DocumentIT.class, BeltIT.class, ClockIT.class, OrdersIT.class})
 public class ProductionITSuite {
 
     @BeforeClass

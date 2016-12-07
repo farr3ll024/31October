@@ -3,6 +3,7 @@ package production;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import testpackage.*;
 
 /**
  *
@@ -75,18 +76,23 @@ public class Master {
 
         //create instance of each class
         Floor floor_master = new Floor(160, 200);
-        //RobotMaster bot_master = new RobotMaster(1);
-        //orders instance --> Note: I only create one instance of each class, should address and item be parameters?
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
         Belt belt_master = new Belt();
+        Orders orders_master = new Orders(inventory_master, floor_master);
+        MockFloor mockFloor_master = new MockFloor();
+        MockInventory mockInventory_master = new MockInventory();
+        RobotMaster robotMaster_master = new RobotMaster(1, mockFloor_master, mockInventory_master);
+//        RobotMaster robotMaster_master = new RobotMaster(1, floor_master, inventory_master);
+        Visualizer visualizer_master = new Visualizer();
 
         while (sim.getStatus() == true) {
             inventory_master.tick(sim.current_iteration);
-            //orders
-            //bot_master.tick(sim.current_iteration);
             belt_master.tick(sim.current_iteration);
-            System.out.println("hello world");
+            orders_master.tick(sim.current_iteration);
+            robotMaster_master.tick(sim.current_iteration);
+//            robotMaster_master.tick(sim.current_iteration);
+            visualizer_master.tick(sim.current_iteration);
             sim.current_iteration += 1;
         }
     }
