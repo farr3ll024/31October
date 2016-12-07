@@ -86,7 +86,7 @@ public class Master {
             //orders
             //bot_master.tick(sim.current_iteration);
             belt_master.tick(sim.current_iteration);
-
+            System.out.println("hello world");
             sim.current_iteration += 1;
         }
     }
