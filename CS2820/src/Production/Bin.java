@@ -47,7 +47,11 @@ public class Bin {
      * @return returns an ArrayList of the current contents of the Bin
      */
     public ArrayList<String> getContents(){
-        return items;
+        ArrayList<String> temp = new ArrayList<>();
+        for (String s : this.items){
+            temp.add(s);
+        }
+        return temp;
     }
     /**
      * 
