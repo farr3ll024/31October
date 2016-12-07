@@ -22,6 +22,7 @@ public class Shelf {
      */
     public Shelf(Point p){
         this.base = p;
+        this.items = new HashMap<>();
     }
     /**
      * 
@@ -83,8 +84,10 @@ public class Shelf {
      * @return returns true if the item is found on the shelf, and false otherwise.
      */
     public boolean containsItem(String s){
-        if (items.containsKey(s)) {return true;}
-        else{return false;}
+        return this.items.containsKey(s);
+    }
+    public boolean isEmpty(){
+        return this.items.isEmpty();
     }
     
 }

@@ -86,8 +86,8 @@ public class FloorIT {
         int n = 0;
         Floor instance = new Floor(160, 200);
         Point expResult = null;
-        Point result = instance.getShelf(n);
-        assertEquals(expResult, result);
+        //Point result = instance.getShelf(n);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -252,8 +252,8 @@ public class FloorIT {
         System.out.println("getShelf");
         Floor instance = null;
         Point[] expResult = null;
-        Point[] result = instance.getShelf();
-        assertArrayEquals(expResult, result);
+        //Point[] result = instance.getShelf();
+        //assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -267,8 +267,8 @@ public class FloorIT {
         int n = 0;
         Floor instance = null;
         Point expResult = null;
-        Point result = instance.getShelf(n);
-        assertEquals(expResult, result);
+        //Point result = instance.getShelf(n);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
