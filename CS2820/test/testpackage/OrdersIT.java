@@ -5,7 +5,6 @@
  */
 package testpackage;
 
-import production.Orders;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +13,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import production.Orders;
 
 /**
  *
@@ -102,9 +102,9 @@ public class OrdersIT {
     public void testGetShelfNumber() {
         System.out.println("getShelfNumber");
         Orders instance = null;
-        int expResult = 0;
-        int result = instance.getShelfNumber();
-        assertEquals(expResult, result);
+        //int expResult = 0;
+        //int result = instance.getShelfNumber();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -116,9 +116,9 @@ public class OrdersIT {
     public void testGetShippingAddress() {
         System.out.println("getShippingAddress");
         Orders instance = null;
-        String expResult = "";
-        String result = instance.getShippingAddress();
-        assertEquals(expResult, result);
+        //String expResult = "";
+        //String result = instance.getShippingAddress();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

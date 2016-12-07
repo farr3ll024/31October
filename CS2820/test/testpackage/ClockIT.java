@@ -5,13 +5,13 @@
  */
 package testpackage;
 
-import production.Clock;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import production.Clock;
 
 /**
  *

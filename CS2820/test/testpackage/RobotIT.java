@@ -8,20 +8,16 @@ package testpackage;
  *
  * RobotIT is a JUnit testing class for the Robot class.
  */
-
-
-import production.Robot;
 import java.awt.Point;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
+import production.Robot;
 
 public class RobotIT {
 
@@ -115,7 +111,7 @@ public class RobotIT {
         boolean expResult = true;
         boolean result = instance.isIdle();
         assertEquals(expResult, result);
-        fail("isIdle returned" +result+ "when initialized.");
+        fail("isIdle returned" + result + "when initialized.");
     }
 
     /**
@@ -166,17 +162,17 @@ public class RobotIT {
     }
 
     /**
-     * 
+     *
      */
     @Test
-    public void testMove(){
+    public void testMove() {
         System.out.println("move");
         MockFloor f = new MockFloor();
-        Point p = new Point(0,0);
-        Point destination = new Point(5,5);
+        Point p = new Point(0, 0);
+        Point destination = new Point(5, 5);
         Robot instance = new Robot(p, f);
         instance.assignMission("Order", destination);
-        for (int i = 0; i < 20 ;i++){
+        for (int i = 0; i < 20; i++) {
             instance.move(true);
         }
     }
