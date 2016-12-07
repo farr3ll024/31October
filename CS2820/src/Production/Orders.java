@@ -31,7 +31,7 @@ public class Orders implements Clock, Document {
 
     private Floor f;
     private Inventory i;
-    private Stack<Orders> ordersStack;
+    private Stack<Order> ordersStack;
 
     public Orders(Inventory i, Floor f) {
 
@@ -69,7 +69,16 @@ public class Orders implements Clock, Document {
         }
         shelfReady = true;
     }
-
+    public Point shelfToFetch(){
+        Order currentOrder = ordersStack.peek();
+        if (currentOrder.orderStackEmpty()){
+            ordersStack.pop();
+            //tell the picker to do something
+            return shelfToFetch();
+        }
+        Point dummyPoint = new Point(0,0);
+        return dummyPoint;
+    }
     //shelfReady = True means it has been picked
     public Boolean shelfReady() {
         return shelfReady;
