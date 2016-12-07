@@ -47,8 +47,8 @@ public class OrderIT {
         System.out.println("getItemInfo");
         Order instance = null;
         ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getItemInfo();
-        assertEquals(expResult, result);
+        //ArrayList<Integer> result = instance.getItemInfo();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -61,7 +61,7 @@ public class OrderIT {
         System.out.println("addToBin");
         String item = "";
         Order instance = null;
-        instance.addToBin(item);
+        //instance.addToBin(item);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -74,8 +74,8 @@ public class OrderIT {
         System.out.println("shelfReady");
         Order instance = null;
         Boolean expResult = null;
-        Boolean result = instance.shelfReady();
-        assertEquals(expResult, result);
+        //Boolean result = instance.shelfReady();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -88,8 +88,8 @@ public class OrderIT {
         System.out.println("binFilled");
         Order instance = null;
         Boolean expResult = null;
-        Boolean result = instance.binFilled();
-        assertEquals(expResult, result);
+        //Boolean result = instance.binFilled();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -102,8 +102,8 @@ public class OrderIT {
         System.out.println("getShelfNumber");
         Order instance = null;
         int expResult = 0;
-        int result = instance.getShelfNumber();
-        assertEquals(expResult, result);
+        //int result = instance.getShelfNumber();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -130,8 +130,8 @@ public class OrderIT {
         System.out.println("randomAddress");
         Order instance = null;
         String expResult = "";
-        String result = instance.randomAddress();
-        assertEquals(expResult, result);
+        //String result = instance.randomAddress();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -144,7 +144,7 @@ public class OrderIT {
         System.out.println("tick");
         int iteration = 0;
         Order instance = null;
-        instance.tick(iteration);
+        //instance.tick(iteration);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -156,7 +156,7 @@ public class OrderIT {
     public void testDoc() {
         System.out.println("doc");
         Order instance = null;
-        instance.doc();
+        //instance.doc();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
