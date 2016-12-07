@@ -79,6 +79,9 @@ public class Order {
     public int getOrderSize(){
         return this.items.size();
     }
+	
+	
+	
     /**
      * 
      * @return returns the shipping address of the order
