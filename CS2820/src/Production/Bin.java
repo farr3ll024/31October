@@ -14,8 +14,10 @@ public class Bin {
     private static final int BINCAPACITY = 100;
     private ArrayList<String> items;
     private Point binLocation;
+    private Order binOrder;
     
-    public Bin(){
+    public Bin(Order o){
+        this.binOrder = o;
     }
     /**
      * 
@@ -47,5 +49,28 @@ public class Bin {
     public ArrayList<String> getContents(){
         return items;
     }
-    
+    /**
+     * 
+     * @return returns the Order object corresponding to this bin
+     */
+    public Order getBinOrder(){
+        return this.binOrder;
+    }
+    /**
+     * 
+     * @return returns the position on the floor of the bin in the form of a Point
+     * object.
+     */
+    public Point getBinLocation(){
+        Point p = new Point(this.binLocation);
+        return p;
+    }
+    /**
+     * 
+     * @param x the new x location of the bin
+     * @param y the new y location of the bin
+     */
+    public void moveBin(int x, int y){
+        this.binLocation.move(x, y);
+    }
 }
