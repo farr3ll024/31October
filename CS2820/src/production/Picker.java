@@ -3,17 +3,19 @@
 // * @author Sam Barth
 // * @author Ruben Chavez date last modified: 12/7/2016
 // */
-//package production;
+package production;
 //
-//public class Picker {
+
+public class Picker {
 //
-//    private String item;
+//   private String item;
 //
-//    public Picker() {
+
+    public Picker() {
 //
 //        for (string item : Order.getItems()) {
 //
-//        }
+    }
 //    }
 //    //@param i The String representation of the item to be picked and added to the bin
 //
@@ -30,4 +32,4 @@
 //        orders.shelfPicked = True;
 //
 //    }
-//}
+}
