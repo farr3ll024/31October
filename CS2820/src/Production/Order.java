@@ -59,6 +59,14 @@ public class Order {
     }
     /**
      * 
+     * @return returns true if the orderStack is empty and false otherwise
+     */
+    public boolean orderStackEmpty(){
+        if(orderStack.empty()){return true;}
+        else{return false;}
+    }
+    /**
+     * 
      * @return returns an ArrayList<String> containing the items in the Order.
      */
     public ArrayList<String> getItems(){
