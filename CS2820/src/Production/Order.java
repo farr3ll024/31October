@@ -9,12 +9,14 @@
 package Production;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Order {
 
     String shippingAddress;
     String name;
     ArrayList<String> items;
+    Stack<String> orderStack;
     /**
      * 
      * @param address String object address of the person who placed the order
@@ -26,7 +28,34 @@ public class Order {
         this.name = name;
         this.shippingAddress = address;
         this.items = items;
+        for (String s : this.items){
+            this.orderStack.push(s);
+        }
 
+    }
+    /**
+     * 
+     * @return if orderStack is not empty, returns String representation of the
+     * next item in the order.  If orderStack is empty, returns an empty String.
+     */
+    public String getNextItemInOrder(){
+        if(!orderStack.empty()){return orderStack.pop();}
+        else{return "";}
+    }
+    /**
+     * 
+     * @return if orderStack is empty, reloadOrderStack will fill the stack with
+     * the items in the order and return true.  Otherwise, reloadOrderStack will
+     * do nothing to the stack and return false.
+     */
+    public boolean reloadOrderStack(){
+        if(this.orderStack.empty()){
+            for (String s : this.items){
+                this.orderStack.push(s);
+            }
+            return true;
+        }
+        else{return false;}
     }
     /**
      * 
