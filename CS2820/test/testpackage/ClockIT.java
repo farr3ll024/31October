@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Production;
+package testpackage;
 
+import production.Clock;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.fail;
@@ -16,9 +17,9 @@ import org.junit.Test;
  *
  * @author farr3ll
  */
-public class DocumentIT {
+public class ClockIT {
 
-    public DocumentIT() {
+    public ClockIT() {
     }
 
     @BeforeClass
@@ -38,20 +39,21 @@ public class DocumentIT {
     }
 
     /**
-     * Test of doc method, of class Document.
+     * Test of tick method, of class Clock.
      */
     @Test
-    public void testDoc() {
-        System.out.println("doc");
-        Document instance = new DocumentImpl();
-        instance.doc();
+    public void testTick() {
+        System.out.println("tick");
+        int iteration = 0;
+        Clock instance = new ClockImpl();
+        instance.tick(iteration);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
-    public class DocumentImpl implements Document {
+    public class ClockImpl implements Clock {
 
-        public void doc() {
+        public void tick(int iteration) {
         }
     }
 

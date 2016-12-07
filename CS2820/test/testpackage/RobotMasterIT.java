@@ -8,8 +8,8 @@ package testpackage;
  */
 
 
-import Production.Floor;
-import Production.RobotMaster;
+import production.Floor;
+import production.RobotMaster;
 import java.awt.Point;
 import java.util.ArrayList;
 

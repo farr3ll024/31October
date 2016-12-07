@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
  * @author farr3ll
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({Production.ProductionITSuite.class})
+@Suite.SuiteClasses({testpackage.ProductionITSuite.class})
 public class RootSuite {
 
     @BeforeClass
