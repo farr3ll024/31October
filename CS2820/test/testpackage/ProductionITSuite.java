@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Production;
+package testpackage;
 
+import testpackage.FloorIT;
+import testpackage.DocumentIT;
+import testpackage.ClockIT;
+import testpackage.BeltIT;
+import testpackage.VisualizerIT;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Production;
+package testpackage;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,9 +16,9 @@ import org.junit.Test;
  *
  * @author farr3ll
  */
-public class ClockIT {
+public class ProductionIT {
 
-    public ClockIT() {
+    public ProductionIT() {
     }
 
     @BeforeClass
@@ -38,22 +38,15 @@ public class ClockIT {
     }
 
     /**
-     * Test of tick method, of class Clock.
+     * Test of main method, of class Production.
      */
     @Test
-    public void testTick() {
-        System.out.println("tick");
-        int iteration = 0;
-        Clock instance = new ClockImpl();
-        instance.tick(iteration);
+    public void testMain() {
+        System.out.println("main");
+        //String[] args = null;
+        //Production.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-
-    public class ClockImpl implements Clock {
-
-        public void tick(int iteration) {
-        }
     }
 
 }

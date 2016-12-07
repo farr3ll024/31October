@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Production;
+package testpackage;
 
-import java.util.ArrayList;
+import production.Inventory;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -18,9 +18,9 @@ import org.junit.Test;
  *
  * @author farr3ll
  */
-public class OrderIT {
+public class InventoryIT {
 
-    public OrderIT() {
+    public InventoryIT() {
     }
 
     @BeforeClass
@@ -40,123 +40,121 @@ public class OrderIT {
     }
 
     /**
-     * Test of getItemInfo method, of class Order.
+     * Test of data method, of class Inventory.
      */
     @Test
-    public void testGetItemInfo() {
-        System.out.println("getItemInfo");
-        Order instance = null;
-        ArrayList<Integer> expResult = null;
-        //ArrayList<Integer> result = instance.getItemInfo();
-        //assertEquals(expResult, result);
+    public void testData() {
+        System.out.println("data");
+        Inventory instance = null;
+        instance.data();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addToBin method, of class Order.
+     * Test of removeItem method, of class Inventory.
      */
     @Test
-    public void testAddToBin() {
-        System.out.println("addToBin");
-        String item = "";
-        Order instance = null;
-        //instance.addToBin(item);
+    public void testRemoveItem() {
+        System.out.println("removeItem");
+        String itemName = "";
+        int Qty = 0;
+        Inventory instance = null;
+        instance.removeItem(itemName, Qty);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of shelfReady method, of class Order.
+     * Test of addItem method, of class Inventory.
      */
     @Test
-    public void testShelfReady() {
-        System.out.println("shelfReady");
-        Order instance = null;
-        Boolean expResult = null;
-        //Boolean result = instance.shelfReady();
-        //assertEquals(expResult, result);
+    public void testAddItem() {
+        System.out.println("addItem");
+        String itemName = "";
+        int Qty = 0;
+        Inventory instance = null;
+        instance.addItem(itemName, Qty);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of binFilled method, of class Order.
+     * Test of outPutFile method, of class Inventory.
      */
     @Test
-    public void testBinFilled() {
-        System.out.println("binFilled");
-        Order instance = null;
-        Boolean expResult = null;
-        //Boolean result = instance.binFilled();
-        //assertEquals(expResult, result);
+    public void testOutPutFile() {
+        System.out.println("outPutFile");
+        Inventory instance = null;
+        instance.outPutFile();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getShelfNumber method, of class Order.
+     * Test of checkExist method, of class Inventory.
      */
     @Test
-    public void testGetShelfNumber() {
-        System.out.println("getShelfNumber");
-        Order instance = null;
-        int expResult = 0;
-        //int result = instance.getShelfNumber();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getShippingAddress method, of class Order.
-     */
-    @Test
-    public void testGetShippingAddress() {
-        System.out.println("getShippingAddress");
-        Order instance = null;
-        String expResult = "";
-        String result = instance.getShippingAddress();
+    public void testCheckExist() {
+        System.out.println("checkExist");
+        String itemName = "";
+        int Qty = 0;
+        Inventory instance = null;
+        boolean expResult = false;
+        boolean result = instance.checkExist(itemName, Qty);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of randomAddress method, of class Order.
+     * Test of readPosition method, of class Inventory.
      */
     @Test
-    public void testRandomAddress() {
-        System.out.println("randomAddress");
-        Order instance = null;
-        String expResult = "";
-        //String result = instance.randomAddress();
+    public void testReadPosition() {
+        System.out.println("readPosition");
+        String itemName = "";
+        Inventory instance = null;
+        //Point expResult = null;
+        //Point result = instance.readPosition(itemName);
         //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of tick method, of class Order.
+     * Test of main method, of class Inventory.
      */
     @Test
-    public void testTick() {
-        System.out.println("tick");
-        int iteration = 0;
-        Order instance = null;
-        //instance.tick(iteration);
+    public void testMain() {
+        System.out.println("main");
+        String[] args = null;
+        Inventory.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of doc method, of class Order.
+     * Test of tick method, of class Inventory.
+     */
+    @Test
+    public void testTick() {
+        System.out.println("tick");
+        int iteration = 0;
+        Inventory instance = null;
+        instance.tick(iteration);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of doc method, of class Inventory.
      */
     @Test
     public void testDoc() {
         System.out.println("doc");
-        Order instance = null;
-        //instance.doc();
+        Inventory instance = null;
+        instance.doc();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

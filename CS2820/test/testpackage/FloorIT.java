@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Production;
+package testpackage;
 
+import production.Floor;
 import java.awt.Point;
 import org.junit.After;
 import org.junit.AfterClass;
