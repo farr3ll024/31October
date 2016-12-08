@@ -120,7 +120,7 @@ public class Robot {
         //the follwoing can be read as "uf the last thing we did was currentState", then the next thing we'll do is:
         switch (this.currentState) {
             case "A": // State "A" is bring a shelf to the picker
-                this.specialAction = "Robot arrived at picker.";
+                this.specialAction = "Robot arrived at picker. Returning to shelf location";
                 picker.deliverShelf(this.coupledShelf);
                 this.currentDestination = this.coupledShelf.getshelfBase();
                 this.currentState = "D";
@@ -131,9 +131,11 @@ public class Robot {
                 this.currentState = "D";
                 break;
             case "C": // State "C" is go to charge location
+                this.specialAction = "Robot arrived at charge station. Charging...";
                 this.currentState = "E";
                 break;
             case "D": // State "D" is return shelf
+                this.specialAction = "Robot arrived at shelf location. Uncoupling";
                 this.uncoupleShelf();
                 this.currentState = "C";
                 break;
