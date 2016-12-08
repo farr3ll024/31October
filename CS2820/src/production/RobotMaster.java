@@ -44,7 +44,7 @@ public class RobotMaster implements Clock, Document {
         int j = 0;
         for (; j < numRobots ; j++) {
             Point start = new Point(0, j);
-            Robot r = new Robot(start, f);
+            Robot r = new Robot(start, f, i, o, p);
             this.robots.add(r);
         }
     }
