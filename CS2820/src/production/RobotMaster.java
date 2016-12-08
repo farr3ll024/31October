@@ -14,6 +14,8 @@ package production;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 import testpackage.*;
 
@@ -42,7 +44,7 @@ public class RobotMaster implements Clock, Document {
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
         int j = 0;
-        for (; j < numRobots ; j++) {
+        for (; j < numRobots; j++) {
             Point start = new Point(0, j);
             Robot r = new Robot(start, f, i, o, p);
             this.robots.add(r);
@@ -99,7 +101,16 @@ public class RobotMaster implements Clock, Document {
      */
     @Override
     public void doc() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PrintWriter writer = new PrintWriter("RobotLog", "UTF-8");
+            for(Robot r : this.robots){
+            writer.println("Robot at" + r.getLocation().toString());
+            writer.println(r.getSpecialActionLog());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     }
 }
 //need to call Order.getNextShelf, which will return Point or Null - same for Inventory

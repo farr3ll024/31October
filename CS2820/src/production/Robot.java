@@ -32,6 +32,7 @@ public class Robot {
     private Shelf coupledShelf;
     private Picker picker;
     private MockOrders orders;
+    private String specialAction;
 
     /**
      * Create an instance of Robot
@@ -61,6 +62,7 @@ public class Robot {
      * during the last tick.
      */
     public void move(boolean printTestLines) {
+        this.specialAction = "Robot in transit";
         if (this.location.equals(this.currentDestination)) {
             this.setNextState();
         } else {
@@ -114,6 +116,7 @@ public class Robot {
     private void setNextState() {
         switch (this.currentState) {
             case "A": // bring a shelf to the picker
+                this.specialAction = "Robot arrived at picker.";
                 picker.deliverShelf(this.coupledShelf);
                 this.currentDestination = this.coupledShelfLocation;
                 this.currentState = "D";
@@ -236,5 +239,8 @@ public class Robot {
      */
     public boolean onStockMission() {
         return onStockMission;
+    }
+    public String getSpecialActionLog(){
+        return this.specialAction;
     }
 }
