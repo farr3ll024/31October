@@ -20,6 +20,9 @@ import java.util.Map;
  * bin is ready to be added to the belt.
  */
 public class Belt implements Clock, Document {
+    
+    private Bin newestBin;
+    private boolean binDelivered;
 
     /*Initializing the HashMap belt*/
     static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
@@ -38,8 +41,16 @@ public class Belt implements Clock, Document {
         for (i = 0; i < beltLength; i++) {
             belt.put(i, null);
         }
+        this.binDelivered = false;
     }
-
+    /**
+     * 
+     * @param b The bin item handed off to the Belt by the picker.
+     */
+    public void deliverBin(Bin b){
+        this.newestBin = b;
+        this.binDelivered = true;
+    }
     /* Ticker method that moves the bins on the belt along each tick, and then checks for new bins*/
     @Override
     public void tick(int iteration) {
@@ -50,9 +61,9 @@ public class Belt implements Clock, Document {
             belt.put(j, belt.get(j - 1));
         }
         /*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
-        if (Orders.binFilled == true) {
+        if (this.binDelivered) {
             belt.put(0, Orders.orderBin);
-            Orders.binFilled = false;
+            this.binDelivered = false;
         }
     }
 
