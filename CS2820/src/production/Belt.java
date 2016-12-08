@@ -68,10 +68,21 @@ public class Belt implements Clock, Document {
             this.binDelivered = false;
         }
     }
-
+    
     /* Method to document what the belt is doing and to make sure it is working correctly*/
     @Override
     public void doc() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	for (int z = 0; z <= beltLength - 1; z++){
+    		try (FileWriter fw = new FileWriter ("BeltLog", true);
+    				BufferedWriter bw = new BufferedWriter(fw);
+    				PrintWriter out = new PrintWriter(bw)) {
+    			if (belt.get(z) = null){
+    				out.println("At belt position" + (z+1) + "there is no bin \n");
+    			}
+    			else {
+    				out.println("At belt position" + (z+1) + "there is a bin containing" + belt.get(z) + "\n");
+    			}
+    		}
+    	}
     }
 }
