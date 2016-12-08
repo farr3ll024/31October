@@ -24,7 +24,6 @@ public class Belt implements Clock, Document {
     
     private Bin newestBin;
     private boolean binDelivered;
-    private Picker picker;
 
     /*Initializing the HashMap belt*/
     static Map<Integer, Bin> belt = new HashMap<Integer, Bin>();
@@ -36,7 +35,7 @@ public class Belt implements Clock, Document {
 
 
     /*used for constructing*/
-    public Belt(int x, Picker p) {
+    public Belt(int x) {
         beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
  /*to a position on the belt, with an arraylist value representing the bin in that location*/
@@ -44,7 +43,6 @@ public class Belt implements Clock, Document {
             belt.put(i, null);
         }
         this.binDelivered = false;
-        this.picker = p;
     }
     /**
      * 
