@@ -27,7 +27,7 @@ public class Belt implements Clock, Document {
     private Picker picker;
 
     /*Initializing the HashMap belt*/
-    static Map<Integer, Belt> belt = new HashMap<Integer, Belt>();
+    static Map<Integer, Bin> belt = new HashMap<Integer, Bin>();
     /*Counter variables for constructing and moving respectively*/
     static int i, j;
     /*This is the x variable given by the masterclass decremented by two since there are two open*/
