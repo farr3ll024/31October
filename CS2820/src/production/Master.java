@@ -26,7 +26,7 @@ public class Master implements Document {
     public Master() {
         this.sim_status = "starting simulation";
         this.isRunning = true;
-        this.iterations = 100;
+        this.iterations = 15;
         this.current_iteration = 0;
     }
 
@@ -44,7 +44,7 @@ public class Master implements Document {
      * @return Boolean
      */
     public Boolean getStatus() {
-        if (this.current_iteration == 100) {
+        if (this.current_iteration == 16) {
             this.isRunning = false;
             this.sim_status = "Simulation successfully completed all iterations";
         }
