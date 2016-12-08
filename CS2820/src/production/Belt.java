@@ -1,6 +1,5 @@
 package production;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ import java.util.Map;
  * bin is ready to be added to the belt.
  */
 public class Belt implements Clock, Document {
-    
+
     private Bin newestBin;
     private boolean binDelivered;
     private Picker picker;
@@ -36,7 +35,7 @@ public class Belt implements Clock, Document {
 
 
     /*used for constructing*/
-    public Belt(int x, Picker p) {
+    public Belt(int x) {
         beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
  /*to a position on the belt, with an arraylist value representing the bin in that location*/
@@ -46,14 +45,16 @@ public class Belt implements Clock, Document {
         this.binDelivered = false;
         this.picker = p;
     }
+
     /**
-     * 
+     *
      * @param b The bin item handed off to the Belt by the picker.
      */
-    public void deliverBin(Bin b){
+    public void deliverBin(Bin b) {
         this.newestBin = b;
         this.binDelivered = true;
     }
+
     /* Ticker method that moves the bins on the belt along each tick, and then checks for new bins*/
     @Override
     public void tick(int iteration) {
