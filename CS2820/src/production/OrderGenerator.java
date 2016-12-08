@@ -9,15 +9,18 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class OrderGenerator {
-	String shippingAddress;
-    
+
     ArrayList<String> items;
+
     public OrderGenerator() {
-		return Order(randomAddress,orderItems)
     }
 
-	
-    public String randomAddress() {
+    public Order getOrder() {
+        Order o = new Order(randomAddress(), randomName(), items);
+        return o;
+    }
+
+    private String randomAddress() {
         //this.R = R;
         String FirstName = randomFirstName();
         String LastName = randomLastName();
@@ -57,6 +60,14 @@ public class OrderGenerator {
         Random ran = new Random();
         int x = ran.nextInt(998);
         return x;
+    }
+
+    /**
+     *
+     * @return returns a random full name (first and last)
+     */
+    private String randomName() {
+        return randomFirstName() + randomLastName();
     }
 
     /**
@@ -124,19 +135,20 @@ public class OrderGenerator {
         }
         return ZipCode;
     }
-	
-	private ArrayList<String> orderItems(){
-		ArrayList orderItems = new ArrayList<String>();
-		Random ran = new Random();
-		int numItems =ran.nextInt(10);
+
+    private ArrayList<String> orderItems() {
+        ArrayList orderItems = new ArrayList<String>();
+        Random ran = new Random();
+        int numItems = ran.nextInt(10) + 1;
         final String[] items = {"A", "B",
             "C", "D", "K", "F",
-            "G", "H", "I", "J"};
-        while (int i < numItems + 1){
-			int x = ran.nextInt(item.length);
-			orderItems.add(items[x])
-			i++;
+            "G", "H", "I", "J", "K"};
+        int i = 0;
+        while (i < numItems) {
+            int x = ran.nextInt(10);
+            orderItems.add(items[x]);
+            i++;
+        }
         return orderItems;
-		}
-	}
+    }
 }
