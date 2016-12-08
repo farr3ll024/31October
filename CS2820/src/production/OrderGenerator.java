@@ -16,7 +16,7 @@ public class OrderGenerator {
     }
 
     public Order getOrder() {
-        Order o = new Order(randomAddress(), randomName(), items);
+        Order o = new Order(randomAddress(), items);
         return o;
     }
 
@@ -61,15 +61,6 @@ public class OrderGenerator {
         int x = ran.nextInt(998);
         return x;
     }
-
-    /**
-     *
-     * @return returns a random full name (first and last)
-     */
-    private String randomName() {
-        return randomFirstName() + randomLastName();
-    }
-
     /**
      * @author Ruben Chavez modified from Ted Herman.MockOrders
      * @return a random first name for an address
