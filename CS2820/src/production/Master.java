@@ -88,10 +88,12 @@ public class Master implements Document {
         Belt belt_master = new Belt(floor_master.floor_X, picker_master);
 
         Orders orders_master = new Orders(inventory_master, floor_master);
+
+        MockOrders mockOrders_master = new MockOrders();
         MockFloor mockFloor_master = new MockFloor();
         MockInventory mockInventory_master = new MockInventory();
 
-        RobotMaster robotMaster_master = new RobotMaster(1, mockFloor_master, mockInventory_master);
+        RobotMaster robotMaster_master = new RobotMaster(1, mockFloor_master, mockInventory_master, mockOrders_master, picker_master);
 //        RobotMaster robotMaster_master = new RobotMaster(1, floor_master, inventory_master);
 
         sim.sim_status = "Instantiation successful: continuing into simulation";
@@ -122,4 +124,5 @@ public class Master implements Document {
     public void doc() {
         System.out.println(sim_status);
     }
+
 }
