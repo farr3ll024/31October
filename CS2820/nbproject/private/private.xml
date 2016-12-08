@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Orders.java</file>
+            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/testpackage/RobotMasterIT.java</file>
+            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Visualizer.java</file>
+            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Bin.java</file>
+            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Inventory.java</file>
+            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Master.java</file>
             <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Belt.java</file>
-            <file>file:/home/farr3ll/Desktop/CS2820/CS2820/src/production/Picker.java</file>
         </group>
     </open-files>
 </project-private>
