@@ -9,6 +9,8 @@ package production;
 public class Picker {
     
     Bin currentBin;
+    Shelf currentShelf;
+	boolean binFilled = false;
     
     /**
      * 
@@ -24,13 +26,26 @@ public class Picker {
      * 
      * Postcondition: the item "item" has been added to bin and removed from
      * the shelf
+	 *
+	 *removes the item from the inventory
      */
-    public void pick(String item, Shelf s) {
-        if (s.containsItem(item)) {
-            s.removeItem(item);
+    public void pick(String item) {
+        if (currentShelf.containsItem(item)) {
+            currentShelf.removeItem(item);
             this.currentBin.addItem(item);
+			Inventory.removeItem(item,1);
         }
     }
+	public Boolean binFilled() {
+        if (currentBin.size() == OrderGenerator.orderItems.size()) {
+            binFilled = true;
+        } else {
+            binFilled = false;
+        }
+
+        return binFilled;
+    }
+	
     /**
      * 
      * @param o Order corresponding to the order desired to bin
@@ -42,5 +57,8 @@ public class Picker {
      */
     public void completeOrder(){
         //give the Belt the currentBin
+    }
+    public void deliverShelf(Shelf s){
+        this.currentShelf = s;
     }
 }
