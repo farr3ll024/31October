@@ -15,6 +15,8 @@ package production;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
 
 import testpackage.*;
@@ -55,7 +57,7 @@ public class RobotMaster implements Clock, Document {
         this.floor = f;
         this.inventory = i;
         this.orders = o;
-        this.picker = p;        
+        this.picker = p;
     }
 
     /**
@@ -72,7 +74,7 @@ public class RobotMaster implements Clock, Document {
         }
     }
 
-    public ArrayList getRobotLocations() {
+    public ArrayList<Point> getRobotLocations() {
         ArrayList<Point> robotLocations = new ArrayList<>();
         for (Robot r : robots) {
             Point location = new Point(r.getLocation());
@@ -96,7 +98,7 @@ public class RobotMaster implements Clock, Document {
          */
         for (Robot r : robots) {
             if (!r.isIdle()) {
-                r.move(false);
+                r.move(true);
             } else {
                 deploy(r);
             }
@@ -105,23 +107,34 @@ public class RobotMaster implements Clock, Document {
 
     /**
      * Document movement of Robots on the Floor
-     * 
+     *
      * Solution to the problem of writing to a txt file was found here:
      * http://stackoverflow.com/questions/2885173/how-to-create-a-file-and-write-to-a-file-in-java
      */
     @Override
     public void doc() {
+        for (Robot r : robots){
+        try (FileWriter fw = new FileWriter("RobotLog", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println("Robot at" + r.getLocation().toString() + "\n");
+            out.println(r.getSpecialActionLog() + "\n");
+            //more code
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
+        }
+        /*
         try {
             PrintWriter writer = new PrintWriter("RobotLog", "UTF-8");
-            for(Robot r : this.robots){
-            writer.println("Robot at" + r.getLocation().toString());
-            writer.println(r.getSpecialActionLog());
+            for (Robot r : this.robots) {
+                writer.append("Robot at" + r.getLocation().toString() + "\n");
+                writer.append(r.getSpecialActionLog() + "\n");
+                writer.close();
             }
-            writer.close();
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+        */
     }
 }
-//need to call Order.getNextShelf, which will return Point or Null - same for Inventory
-//need to call Order.shelfReady()

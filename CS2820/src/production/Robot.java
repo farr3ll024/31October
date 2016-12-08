@@ -24,7 +24,7 @@ public class Robot {
     private int distanceTraversed = 0;
     private boolean isIdle;
     private boolean shelfCoupled;
-    private Point coupledShelfLocation;
+    //private Point coupledShelfLocation;
     private boolean onOrderMission;
     private boolean onStockMission;
     private String currentState;
@@ -99,11 +99,13 @@ public class Robot {
     public void assignMission(String mission, Shelf s) {
         switch (mission) {
             case "Order":
+                this.isIdle = false;
                 this.currentState = "F";
                 this.onOrderMission = true;
                 this.currentDestination = s.getshelfBase();
                 break;
             case "Stock":
+                this.isIdle = false;
                 this.currentState = "F";
                 this.onStockMission = true;
                 this.currentDestination = s.getshelfBase();
@@ -115,29 +117,31 @@ public class Robot {
      *
      */
     private void setNextState() {
+        //the follwoing can be read as "uf the last thing we did was currentState", then the next thing we'll do is:
         switch (this.currentState) {
-            case "A": // bring a shelf to the picker
+            case "A": // State "A" is bring a shelf to the picker
                 this.specialAction = "Robot arrived at picker.";
                 picker.deliverShelf(this.coupledShelf);
-                this.currentDestination = this.coupledShelfLocation;
+                this.currentDestination = this.coupledShelf.getshelfBase();
                 this.currentState = "D";
                 break;
-            case "B": //bring a shelf to the receiving
-                //Inventory.shelfReady();
+            case "B": // State "B" is bring a shelf to the receiving
+                //Inventory.deliverShelf(this.coupledShelf);
+                this.currentDestination = this.coupledShelf.getshelfBase();
                 this.currentState = "D";
                 break;
-            case "C": //go to charge location
+            case "C": // State "C" is go to charge location
                 this.currentState = "E";
                 break;
-            case "D": //return shelf
+            case "D": // State "D" is return shelf
                 this.uncoupleShelf();
                 this.currentState = "C";
                 break;
-            case "E": //charge
+            case "E": // State "E" is charge
                 this.isIdle = true;
                 this.currentState = "G";
                 break;
-            case "F": //move to shelf
+            case "F": // State "F" is move to shelf
                 this.coupleShelf();
                 if (this.onOrderMission()) {
                     System.out.println("New destination: " + f.getPicker().toString());
@@ -148,7 +152,7 @@ public class Robot {
                     this.currentState = "B";
                 }
                 break;
-            case "G": //idle
+            case "G": // State "G" is idle
                 break;
         }
     }
@@ -221,7 +225,6 @@ public class Robot {
      */
     public void uncoupleShelf() {
         this.shelfCoupled = false;
-        this.coupledShelfLocation.move(-1, -1);
     }
 
     /**
