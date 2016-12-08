@@ -12,6 +12,7 @@ package testpackage;
 
 
 import java.awt.Point;
+import production.Shelf;
 
 
 public class MockInventory {
@@ -20,15 +21,16 @@ public class MockInventory {
         
     }
     /**
-     * Get the Point object location on the Floor of the shelf that will store 
-     * the next item received at the receiving dock.
+     * Get the shelf to be brought to the receiving dock
      *  
-     * @return returns a Point object simulating the location of a shelf on the
-     * Floor
+     * @return returns a Shelf object that has room for an inventory item to be
+     * stocked
      */
-    public Point getShelfLocation(){
+   
+    public Shelf shelfToFetch() {
         Point p = new Point(5,5);
-        return p;
+        Shelf s = new Shelf(p);
+        return s;
     }
     
 }

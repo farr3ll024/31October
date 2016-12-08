@@ -34,6 +34,7 @@ public class Inventory implements Clock, Document {
      *
      * @param inventory
      */
+    @SuppressWarnings("unchecked")
     public Inventory(List inventory) {
         this.ItemShelf = new HashMap<>();
         this.inventory = inventory;

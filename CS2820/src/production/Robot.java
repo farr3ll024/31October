@@ -14,7 +14,7 @@
 package production;
 
 import java.awt.Point;
-import testpackage.MockFloor;
+import testpackage.*;
 
 public class Robot {
 
@@ -24,12 +24,15 @@ public class Robot {
     private int distanceTraversed = 0;
     private boolean isIdle;
     private boolean shelfCoupled;
-    private Point coupledShelfLocation;
+    //private Point coupledShelfLocation;
     private boolean onOrderMission;
     private boolean onStockMission;
     private String currentState;
     private MockFloor f;
     private Shelf coupledShelf;
+    private Picker picker;
+    private MockOrders orders;
+    private String specialAction;
 
     /**
      * Create an instance of Robot
@@ -39,7 +42,7 @@ public class Robot {
      * @param f instance of the floor used by Master
      *
      */
-    public Robot(Point initial, MockFloor f) {
+    public Robot(Point initial, MockFloor f, MockInventory i , MockOrders o, Picker p) {
         double x = initial.getX();
         double y = initial.getY();
         int X = (int) x;
@@ -50,6 +53,9 @@ public class Robot {
         this.chargeLocation = new Point(0, Y);
         this.shelfCoupled = false;
         this.f = f;
+        this.picker = p;
+        this.orders = o;
+        this.specialAction = "Robot initialized.";
     }
 
     /**
@@ -57,6 +63,7 @@ public class Robot {
      * during the last tick.
      */
     public void move(boolean printTestLines) {
+        this.specialAction = "Robot in transit";
         if (this.location.equals(this.currentDestination)) {
             this.setNextState();
         } else {
@@ -89,17 +96,19 @@ public class Robot {
      * @param shelfLocation is the Point location of the shelf on which the
      * inventory is stored or will be stored
      */
-    public void assignMission(String mission, Point shelfLocation) {
+    public void assignMission(String mission, Shelf s) {
         switch (mission) {
             case "Order":
+                this.isIdle = false;
                 this.currentState = "F";
                 this.onOrderMission = true;
-                this.currentDestination = shelfLocation;
+                this.currentDestination = s.getshelfBase();
                 break;
             case "Stock":
+                this.isIdle = false;
                 this.currentState = "F";
                 this.onStockMission = true;
-                this.currentDestination = shelfLocation;
+                this.currentDestination = s.getshelfBase();
                 break;
         }
     }
@@ -108,28 +117,31 @@ public class Robot {
      *
      */
     private void setNextState() {
+        //the follwoing can be read as "uf the last thing we did was currentState", then the next thing we'll do is:
         switch (this.currentState) {
-            case "A": // bring a shelf to the picker
-                //Order.shelfReady();
-                this.currentDestination = this.coupledShelfLocation;
+            case "A": // State "A" is bring a shelf to the picker
+                this.specialAction = "Robot arrived at picker.";
+                picker.deliverShelf(this.coupledShelf);
+                this.currentDestination = this.coupledShelf.getshelfBase();
                 this.currentState = "D";
                 break;
-            case "B": //bring a shelf to the receiving
-                //Inventory.shelfReady();
+            case "B": // State "B" is bring a shelf to the receiving
+                //Inventory.deliverShelf(this.coupledShelf);
+                this.currentDestination = this.coupledShelf.getshelfBase();
                 this.currentState = "D";
                 break;
-            case "C": //go to charge location
+            case "C": // State "C" is go to charge location
                 this.currentState = "E";
                 break;
-            case "D": //return shelf
+            case "D": // State "D" is return shelf
                 this.uncoupleShelf();
                 this.currentState = "C";
                 break;
-            case "E": //charge
+            case "E": // State "E" is charge
                 this.isIdle = true;
                 this.currentState = "G";
                 break;
-            case "F": //move to shelf
+            case "F": // State "F" is move to shelf
                 this.coupleShelf();
                 if (this.onOrderMission()) {
                     System.out.println("New destination: " + f.getPicker().toString());
@@ -140,7 +152,7 @@ public class Robot {
                     this.currentState = "B";
                 }
                 break;
-            case "G": //idle
+            case "G": // State "G" is idle
                 break;
         }
     }
@@ -213,7 +225,6 @@ public class Robot {
      */
     public void uncoupleShelf() {
         this.shelfCoupled = false;
-        this.coupledShelfLocation.move(-1, -1);
     }
 
     /**
@@ -232,5 +243,8 @@ public class Robot {
      */
     public boolean onStockMission() {
         return onStockMission;
+    }
+    public String getSpecialActionLog(){
+        return this.specialAction;
     }
 }

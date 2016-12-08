@@ -11,6 +11,7 @@ package testpackage;
 
 
 import java.awt.Point;
+import production.Shelf;
 
 public class MockOrders {
     
@@ -18,15 +19,16 @@ public class MockOrders {
         
     }
     /**
-     * Get the location of the shelf containing the next item in the order to
-     * place on the belt.
+     * Get the shelf to be brought to the picker
      *  
-     * @return returns a Point object corresponding to a simulated shelf location
-     * somewhere on the Floor.
+     * @return returns a Shelf object containing the next item to be added to the
+     * order bin
      */
-    public Point getShelfLocation(){
+   
+    public Shelf shelfToFetch() {
         Point p = new Point(5,5);
-        return p;
+        Shelf s = new Shelf(p);
+        return s;
     }
     
 }
