@@ -83,7 +83,9 @@ public class Master implements Document {
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
 
-        Belt belt_master = new Belt(floor_master.floor_X);
+        Picker picker_master = new Picker();
+
+        Belt belt_master = new Belt(floor_master.floor_X, picker_master);
 
         Orders orders_master = new Orders(inventory_master, floor_master);
         MockFloor mockFloor_master = new MockFloor();
@@ -91,8 +93,6 @@ public class Master implements Document {
 
         RobotMaster robotMaster_master = new RobotMaster(1, mockFloor_master, mockInventory_master);
 //        RobotMaster robotMaster_master = new RobotMaster(1, floor_master, inventory_master);
-
-        Picker picker_master = new Picker();
 
         sim.sim_status = "Instantiation successful: continuing into simulation";
         sim.doc();
@@ -103,7 +103,6 @@ public class Master implements Document {
                 sim.doc();
             }
             try {
-                picker_master.tick(sim.current_iteration);
                 inventory_master.tick(sim.current_iteration);
                 belt_master.tick(sim.current_iteration);
                 orders_master.tick(sim.current_iteration);
@@ -123,5 +122,4 @@ public class Master implements Document {
     public void doc() {
         System.out.println(sim_status);
     }
-
 }
