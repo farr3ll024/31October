@@ -8,8 +8,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-!dist/javadoc/ 
-
 
 ### Eclipse ###
 
@@ -85,7 +83,7 @@ temp/
 # default output directories
 classes/
 deploy/
-javadoc/
+#javadoc/
 
 # lock file, a part of Oracle Credential Store Framework
 cwallet.sso.lck
