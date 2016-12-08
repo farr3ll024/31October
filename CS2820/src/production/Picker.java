@@ -10,42 +10,29 @@ public class Picker {
     
     Bin currentBin;
     Shelf currentShelf;
-	boolean binFilled = false;
+    Orders orders;
     
     /**
      * 
      */
-    public Picker() {
+    public Picker(Orders o) {
+        this.orders = o;
     }
 
     /**
      *
-     * @param i The String representation of the item to be picked and added to
-     * the bin
-     * @param s The Shelf object in which the item is contained
+     *@param i The String representation of the item to be picked and added to
+     *the bin
      * 
      * Postcondition: the item "item" has been added to bin and removed from
-     * the shelf
-	 *
-	 *removes the item from the inventory
+     * the shelf removes the item from the inventory
      */
     public void pick(String item) {
         if (currentShelf.containsItem(item)) {
             currentShelf.removeItem(item);
             this.currentBin.addItem(item);
-			Inventory.removeItem(item,1);
         }
     }
-	public Boolean binFilled() {
-        if (currentBin.size() == OrderGenerator.orderItems.size()) {
-            binFilled = true;
-        } else {
-            binFilled = false;
-        }
-
-        return binFilled;
-    }
-	
     /**
      * 
      * @param o Order corresponding to the order desired to bin
