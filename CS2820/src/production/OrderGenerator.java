@@ -10,13 +10,11 @@ import java.util.ArrayList;
 
 public class OrderGenerator {
 
-    ArrayList<String> items;
-
     public OrderGenerator() {
     }
 
     public Order getOrder() {
-        Order o = new Order(randomAddress(), items);
+        Order o = new Order(randomAddress(), this.orderItems());
         return o;
     }
 
@@ -128,7 +126,7 @@ public class OrderGenerator {
     }
 
     private ArrayList<String> orderItems() {
-        ArrayList orderItems = new ArrayList<String>();
+        ArrayList<String> orderItems = new ArrayList<>();
         Random ran = new Random();
         int numItems = ran.nextInt(10) + 1;
         final String[] items = {"A", "B",
