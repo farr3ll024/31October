@@ -83,11 +83,11 @@ public class Master implements Document {
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
 
-        Picker picker_master = new Picker();
+        Orders orders_master = new Orders(inventory_master, floor_master);
+
+        Picker picker_master = new Picker(orders_master);
 
         Belt belt_master = new Belt(floor_master.floor_X, picker_master);
-
-        Orders orders_master = new Orders(inventory_master, floor_master);
 
         MockOrders mockOrders_master = new MockOrders();
         MockFloor mockFloor_master = new MockFloor();
