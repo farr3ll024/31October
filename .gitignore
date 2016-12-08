@@ -25,6 +25,11 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+private
+/keystore
+/build/
+/release
 
 #blacklist: security keys
 secring.*
+
