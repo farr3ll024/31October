@@ -37,16 +37,15 @@ public class RobotMaster implements Clock, Document {
      * @param i is the instance of the Inventory that Master will use in
      * conjunction with this instance of RobotMaster
      */
-    public RobotMaster(int numRobots, MockFloor f, MockInventory i) {
+    public RobotMaster(int numRobots, MockFloor f, MockInventory i, MockOrders o, Picker p) {
         this.robots = new ArrayList<>(numRobots);
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
         int j = 0;
-        for (Robot r : this.robots) {
+        for (; j < numRobots ; j++) {
             Point start = new Point(0, j);
-            r = new Robot(start, f);
+            Robot r = new Robot(start, f);
             this.robots.add(r);
-            j++;
         }
     }
 
