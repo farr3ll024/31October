@@ -14,7 +14,7 @@
 package production;
 
 import java.awt.Point;
-import testpackage.MockFloor;
+import testpackage.*;
 
 public class Robot {
 
@@ -30,6 +30,8 @@ public class Robot {
     private String currentState;
     private MockFloor f;
     private Shelf coupledShelf;
+    private Picker picker;
+    private MockOrders orders;
 
     /**
      * Create an instance of Robot
@@ -39,7 +41,7 @@ public class Robot {
      * @param f instance of the floor used by Master
      *
      */
-    public Robot(Point initial, MockFloor f) {
+    public Robot(Point initial, MockFloor f, MockInventory i , MockOrders o, Picker p) {
         double x = initial.getX();
         double y = initial.getY();
         int X = (int) x;
@@ -50,6 +52,8 @@ public class Robot {
         this.chargeLocation = new Point(0, Y);
         this.shelfCoupled = false;
         this.f = f;
+        this.picker = p;
+        this.orders = o;
     }
 
     /**
@@ -110,7 +114,7 @@ public class Robot {
     private void setNextState() {
         switch (this.currentState) {
             case "A": // bring a shelf to the picker
-                //Order.shelfReady();
+                picker.deliverShelf(this.coupledShelf);
                 this.currentDestination = this.coupledShelfLocation;
                 this.currentState = "D";
                 break;
