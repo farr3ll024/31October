@@ -6,5 +6,6 @@
 	- We've developed means of communication and cooperation not only through github but also email and google hangouts(hangouts drastically improves speed of communicaiton)
 
 
--After cloning the project to your own local directory you can execute the file using: 
+-After cloning the project to your own local directory you can build the project and execute the file using: 
+	-->   cd /path/to/CS2820.jar
 	-->   java -jar CS2820.jar 
