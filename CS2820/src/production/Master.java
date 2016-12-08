@@ -78,7 +78,7 @@ public class Master {
         Floor floor_master = new Floor(160, 200);
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
-        Belt belt_master = new Belt();
+        Belt belt_master = new Belt(floor_master.floor_X);
         Orders orders_master = new Orders(inventory_master, floor_master);
         MockFloor mockFloor_master = new MockFloor();
         MockInventory mockInventory_master = new MockInventory();

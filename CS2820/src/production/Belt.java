@@ -31,7 +31,7 @@ public class Belt implements Clock, Document {
 
 
     /*used for constructing*/
-    public static void beltConstructor(int x) {
+    public Belt(int x) {
         beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
  /*to a position on the belt, with an arraylist value representing the bin in that location*/
