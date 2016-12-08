@@ -14,7 +14,6 @@ import java.util.Stack;
 public class Order {
 
     String shippingAddress;
-    String name;
     ArrayList<String> items;
     Stack<String> orderStack;
     /**
@@ -23,9 +22,8 @@ public class Order {
      * @param name String object name of the person who placed the order
      * @param items ArrayList<String> of the items in the order
      */
-    public Order(String address, String name, ArrayList<String> items) {
+    public Order(String address, ArrayList<String> items) {
 
-        this.name = name;
         this.shippingAddress = address;
         this.items = items;
         for (String s : this.items){
@@ -88,12 +86,5 @@ public class Order {
      */
     public String getShippingAddress() {
         return this.shippingAddress;
-    }
-    /**
-     * 
-     * @return returns the name associated with the order
-     */
-    public String getName(){
-        return this.name;
     }
 }
