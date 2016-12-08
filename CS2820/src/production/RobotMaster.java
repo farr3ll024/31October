@@ -26,7 +26,10 @@ public class RobotMaster implements Clock, Document {
     private final int batteryRange = 50;
     private final static Point VOIDLOCATION = new Point(-1, -1);
     private boolean lastDeployedOrder;
-    private MockFloor f;
+    private MockFloor floor;
+    private MockInventory inventory;
+    private MockOrders orders;
+    private Picker picker;
 
     /**
      *
@@ -49,6 +52,10 @@ public class RobotMaster implements Clock, Document {
             Robot r = new Robot(start, f, i, o, p);
             this.robots.add(r);
         }
+        this.floor = f;
+        this.inventory = i;
+        this.orders = o;
+        this.picker = p;        
     }
 
     /**
@@ -59,9 +66,9 @@ public class RobotMaster implements Clock, Document {
     private void deploy(Robot r) {
         if (this.lastDeployedOrder) {
             this.lastDeployedOrder = false;
-            r.assignMission("Stock", VOIDLOCATION); //fill in Inventory.getShelfLocation()
+            r.assignMission("Stock", inventory.shelfToFetch());
         } else {
-            r.assignMission("Order", VOIDLOCATION); //fill in Inventory.getShelfLocation()
+            r.assignMission("Order", orders.shelfToFetch());
         }
     }
 
@@ -98,6 +105,9 @@ public class RobotMaster implements Clock, Document {
 
     /**
      * Document movement of Robots on the Floor
+     * 
+     * Solution to the problem of writing to a txt file was found here:
+     * http://stackoverflow.com/questions/2885173/how-to-create-a-file-and-write-to-a-file-in-java
      */
     @Override
     public void doc() {

@@ -55,6 +55,7 @@ public class Robot {
         this.f = f;
         this.picker = p;
         this.orders = o;
+        this.specialAction = "Robot initialized.";
     }
 
     /**
@@ -95,17 +96,17 @@ public class Robot {
      * @param shelfLocation is the Point location of the shelf on which the
      * inventory is stored or will be stored
      */
-    public void assignMission(String mission, Point shelfLocation) {
+    public void assignMission(String mission, Shelf s) {
         switch (mission) {
             case "Order":
                 this.currentState = "F";
                 this.onOrderMission = true;
-                this.currentDestination = shelfLocation;
+                this.currentDestination = s.getshelfBase();
                 break;
             case "Stock":
                 this.currentState = "F";
                 this.onStockMission = true;
-                this.currentDestination = shelfLocation;
+                this.currentDestination = s.getshelfBase();
                 break;
         }
     }
