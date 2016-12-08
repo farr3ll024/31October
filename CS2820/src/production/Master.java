@@ -25,7 +25,7 @@ public class Master implements Document {
      */
     public Master() {
         this.sim_status = "starting simulation";
-        this.isRunning = null;
+        this.isRunning = true;
         this.iterations = 100;
         this.current_iteration = 0;
     }
@@ -83,12 +83,14 @@ public class Master implements Document {
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
 
-        Orders orders_master = new Orders(inventory_master, floor_master);
+        Orders orders_master = new Orders(inventory_master);
 
-        Picker picker_master = new Picker(orders_master);
+        Belt belt_master = new Belt(floor_master.floor_X);
 
-        Belt belt_master = new Belt(floor_master.floor_X, picker_master);
+        Picker picker_master = new Picker(orders_master, belt_master);
 
+        //Orders orders_master = new Orders(inventory_master, floor_master);
+        //Picker picker_master = new Picker(orders_master);
         MockOrders mockOrders_master = new MockOrders();
         MockFloor mockFloor_master = new MockFloor();
         MockInventory mockInventory_master = new MockInventory();
@@ -98,6 +100,7 @@ public class Master implements Document {
 
         sim.sim_status = "Instantiation successful: continuing into simulation";
         sim.doc();
+        sim.startSim();
         Visualizer visualizer_master = new Visualizer();
         while (sim.getStatus() == true) {
             if (sim.current_iteration == 1) {
@@ -105,17 +108,17 @@ public class Master implements Document {
                 sim.doc();
             }
             try {
-                inventory_master.tick(sim.current_iteration);
                 belt_master.tick(sim.current_iteration);
-                orders_master.tick(sim.current_iteration);
                 robotMaster_master.tick(sim.current_iteration);
 //            robotMaster_master.tick(sim.current_iteration);
                 visualizer_master.tick(sim.current_iteration);
                 sim.current_iteration += 1;
             } catch (Exception e) {
+                System.out.println(sim.current_iteration);
                 sim.sim_status = "Error: simulation ended";
                 break;
             }
+            sim.sim_status = "running...";
         }
         sim.doc();
     }
