@@ -6,12 +6,17 @@
 package production;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class OrderGenerator {
-
+	String shippingAddress;
+    
+    ArrayList<String> items;
     public OrderGenerator() {
+		return Order(randomAddress,orderItems)
     }
 
+	
     public String randomAddress() {
         //this.R = R;
         String FirstName = randomFirstName();
@@ -119,4 +124,19 @@ public class OrderGenerator {
         }
         return ZipCode;
     }
+	
+	private ArrayList<String> orderItems(){
+		ArrayList orderItems = new ArrayList<String>();
+		Random ran = new Random();
+		int numItems =ran.nextInt(10);
+        final String[] items = {"A", "B",
+            "C", "D", "K", "F",
+            "G", "H", "I", "J"};
+        while (int i < numItems + 1){
+			int x = ran.nextInt(item.length);
+			orderItems.add(items[x])
+			i++;
+        return orderItems;
+		}
+	}
 }

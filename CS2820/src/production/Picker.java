@@ -9,7 +9,6 @@ package production;
 public class Picker {
     
     Bin currentBin;
-    Shelf currentShelf;
     
     /**
      * 
@@ -26,9 +25,9 @@ public class Picker {
      * Postcondition: the item "item" has been added to bin and removed from
      * the shelf
      */
-    public void pick(String item) {
-        if (currentShelf.containsItem(item)) {
-            currentShelf.removeItem(item);
+    public void pick(String item, Shelf s) {
+        if (s.containsItem(item)) {
+            s.removeItem(item);
             this.currentBin.addItem(item);
         }
     }
@@ -43,8 +42,5 @@ public class Picker {
      */
     public void completeOrder(){
         //give the Belt the currentBin
-    }
-    public void deliverShelf(Shelf s){
-        this.currentShelf = s;
     }
 }

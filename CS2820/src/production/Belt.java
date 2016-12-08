@@ -6,8 +6,9 @@ import java.util.Map;
 
 /**
  * @author: Michael Gibler
+ * @author: Sam Barth
  *
- * Date last modified: 12/6/2016
+ * Date last modified: 12/7/2016
  *
  * The belt class creates a hashmap of variable size, which is the java
  * representation of a conveyor belt. The size is given to the belt class
@@ -20,9 +21,13 @@ import java.util.Map;
  * bin is ready to be added to the belt.
  */
 public class Belt implements Clock, Document {
+    
+    private Bin newestBin;
+    private boolean binDelivered;
+    private Picker picker;
 
     /*Initializing the HashMap belt*/
-    static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
+    static Map<Integer, Bin> belt = new HashMap<Integer, Bin>();
     /*Counter variables for constructing and moving respectively*/
     static int i, j;
     /*This is the x variable given by the masterclass decremented by two since there are two open*/
@@ -31,15 +36,24 @@ public class Belt implements Clock, Document {
 
 
     /*used for constructing*/
-    public Belt(int x) {
+    public Belt(int x, Picker p) {
         beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
  /*to a position on the belt, with an arraylist value representing the bin in that location*/
         for (i = 0; i < beltLength; i++) {
             belt.put(i, null);
         }
+        this.binDelivered = false;
+        this.picker = p;
     }
-
+    /**
+     * 
+     * @param b The bin item handed off to the Belt by the picker.
+     */
+    public void deliverBin(Bin b){
+        this.newestBin = b;
+        this.binDelivered = true;
+    }
     /* Ticker method that moves the bins on the belt along each tick, and then checks for new bins*/
     @Override
     public void tick(int iteration) {
@@ -50,9 +64,9 @@ public class Belt implements Clock, Document {
             belt.put(j, belt.get(j - 1));
         }
         /*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
-        if (Orders.binFilled == true) {
-            belt.put(0, Orders.orderBin);
-            Orders.binFilled = false;
+        if (this.binDelivered) {
+            belt.put(0, this.newestBin);
+            this.binDelivered = false;
         }
     }
 
