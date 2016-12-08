@@ -13,16 +13,18 @@ import testpackage.*;
  *
  * purpose - initialize and facilitate simulation (main)
  */
-public class Master {
+public class Master implements Document {
 
     Boolean isRunning;//aka status
     int iterations;// number of iterations("ticks") in this simulation
     int current_iteration;
+    String sim_status;
 
     /**
      * constructor for master class
      */
     public Master() {
+        this.sim_status = "starting simulation";
         this.isRunning = null;
         this.iterations = 100;
         this.current_iteration = 0;
@@ -44,6 +46,7 @@ public class Master {
     public Boolean getStatus() {
         if (this.current_iteration == 100) {
             this.isRunning = false;
+            this.sim_status = "Simulation successfully completed all iterations";
         }
         return this.isRunning;
     }
@@ -76,24 +79,47 @@ public class Master {
 
         //create instance of each class
         Floor floor_master = new Floor(160, 200);
+
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory inventory_master = new Inventory(listA);
-        Belt belt_master = new Belt(floor_master.floor_X);
+
+        Picker picker_master = new Picker();
+
+        Belt belt_master = new Belt(floor_master.floor_X, picker_master);
+
         Orders orders_master = new Orders(inventory_master, floor_master);
         MockFloor mockFloor_master = new MockFloor();
         MockInventory mockInventory_master = new MockInventory();
+
         RobotMaster robotMaster_master = new RobotMaster(1, mockFloor_master, mockInventory_master);
 //        RobotMaster robotMaster_master = new RobotMaster(1, floor_master, inventory_master);
-        Visualizer visualizer_master = new Visualizer();
 
+        sim.sim_status = "Instantiation successful: continuing into simulation";
+        sim.doc();
+        Visualizer visualizer_master = new Visualizer();
         while (sim.getStatus() == true) {
-            inventory_master.tick(sim.current_iteration);
-            belt_master.tick(sim.current_iteration);
-            orders_master.tick(sim.current_iteration);
-            robotMaster_master.tick(sim.current_iteration);
+            if (sim.current_iteration == 1) {
+                sim.sim_status = "running...";
+                sim.doc();
+            }
+            try {
+                inventory_master.tick(sim.current_iteration);
+                belt_master.tick(sim.current_iteration);
+                orders_master.tick(sim.current_iteration);
+                robotMaster_master.tick(sim.current_iteration);
 //            robotMaster_master.tick(sim.current_iteration);
-            visualizer_master.tick(sim.current_iteration);
-            sim.current_iteration += 1;
+                visualizer_master.tick(sim.current_iteration);
+                sim.current_iteration += 1;
+            } catch (Exception e) {
+                sim.sim_status = "Error: simulation ended";
+                break;
+            }
         }
+        sim.doc();
+    }
+
+    @Override
+    public void doc() {
+        System.out.println(sim_status);
     }
 }
