@@ -39,62 +39,6 @@ public class OrdersIT {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getItemInfo method, of class Orders.
-     */
-    @Test
-    public void testGetItemInfo() {
-        System.out.println("getItemInfo");
-        Orders instance = null;
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getItemInfo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addToBin method, of class Orders.
-     */
-    @Test
-    public void testAddToBin() {
-        System.out.println("addToBin");
-        String item = "";
-        Orders instance = null;
-        instance.addToBin(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of shelfReady method, of class Orders.
-     */
-    @Test
-    public void testShelfReady() {
-        System.out.println("shelfReady");
-        Orders instance = null;
-        Boolean expResult = null;
-        Boolean result = instance.shelfReady();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of binFilled method, of class Orders.
-     */
-    @Test
-    public void testBinFilled() {
-        System.out.println("binFilled");
-        Orders instance = null;
-        Boolean expResult = null;
-        Boolean result = instance.binFilled();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of getShelfNumber method, of class Orders.
      */
@@ -122,5 +66,4 @@ public class OrdersIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
 }

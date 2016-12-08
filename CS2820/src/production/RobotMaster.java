@@ -14,6 +14,8 @@ package production;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 import testpackage.*;
 
@@ -24,7 +26,10 @@ public class RobotMaster implements Clock, Document {
     private final int batteryRange = 50;
     private final static Point VOIDLOCATION = new Point(-1, -1);
     private boolean lastDeployedOrder;
-    private MockFloor f;
+    private MockFloor floor;
+    private MockInventory inventory;
+    private MockOrders orders;
+    private Picker picker;
 
     /**
      *
@@ -37,17 +42,20 @@ public class RobotMaster implements Clock, Document {
      * @param i is the instance of the Inventory that Master will use in
      * conjunction with this instance of RobotMaster
      */
-    public RobotMaster(int numRobots, MockFloor f, MockInventory i) {
+    public RobotMaster(int numRobots, MockFloor f, MockInventory i, MockOrders o, Picker p) {
         this.robots = new ArrayList<>(numRobots);
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
         int j = 0;
-        for (Robot r : this.robots) {
+        for (; j < numRobots; j++) {
             Point start = new Point(0, j);
-            r = new Robot(start, f);
+            Robot r = new Robot(start, f, i, o, p);
             this.robots.add(r);
-            j++;
         }
+        this.floor = f;
+        this.inventory = i;
+        this.orders = o;
+        this.picker = p;        
     }
 
     /**
@@ -58,9 +66,9 @@ public class RobotMaster implements Clock, Document {
     private void deploy(Robot r) {
         if (this.lastDeployedOrder) {
             this.lastDeployedOrder = false;
-            r.assignMission("Stock", VOIDLOCATION); //fill in Inventory.getShelfLocation()
+            r.assignMission("Stock", inventory.shelfToFetch());
         } else {
-            r.assignMission("Order", VOIDLOCATION); //fill in Inventory.getShelfLocation()
+            r.assignMission("Order", orders.shelfToFetch());
         }
     }
 
@@ -97,10 +105,22 @@ public class RobotMaster implements Clock, Document {
 
     /**
      * Document movement of Robots on the Floor
+     * 
+     * Solution to the problem of writing to a txt file was found here:
+     * http://stackoverflow.com/questions/2885173/how-to-create-a-file-and-write-to-a-file-in-java
      */
     @Override
     public void doc() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PrintWriter writer = new PrintWriter("RobotLog", "UTF-8");
+            for(Robot r : this.robots){
+            writer.println("Robot at" + r.getLocation().toString());
+            writer.println(r.getSpecialActionLog());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     }
 }
 //need to call Order.getNextShelf, which will return Point or Null - same for Inventory

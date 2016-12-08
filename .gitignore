@@ -9,7 +9,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-
 ### Eclipse ###
 
 .metadata
@@ -139,3 +138,6 @@ private
 #blacklist: security keys
 secring.*
 
+/CS2820/dist/
+/CS2820/nbproject/
+/CS2820/lib/

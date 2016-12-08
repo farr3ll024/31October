@@ -6,13 +6,19 @@
 package production;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class OrderGenerator {
 
     public OrderGenerator() {
     }
 
-    public String randomAddress() {
+    public Order getOrder() {
+        Order o = new Order(randomAddress(), this.orderItems());
+        return o;
+    }
+
+    private String randomAddress() {
         //this.R = R;
         String FirstName = randomFirstName();
         String LastName = randomLastName();
@@ -53,7 +59,6 @@ public class OrderGenerator {
         int x = ran.nextInt(998);
         return x;
     }
-
     /**
      * @author Ruben Chavez modified from Ted Herman.MockOrders
      * @return a random first name for an address
@@ -118,5 +123,21 @@ public class OrderGenerator {
             ZipCode += "0123456789".charAt(x);
         }
         return ZipCode;
+    }
+
+    private ArrayList<String> orderItems() {
+        ArrayList<String> orderItems = new ArrayList<>();
+        Random ran = new Random();
+        int numItems = ran.nextInt(10) + 1;
+        final String[] items = {"A", "B",
+            "C", "D", "K", "F",
+            "G", "H", "I", "J", "K"};
+        int i = 0;
+        while (i < numItems) {
+            int x = ran.nextInt(10);
+            orderItems.add(items[x]);
+            i++;
+        }
+        return orderItems;
     }
 }
