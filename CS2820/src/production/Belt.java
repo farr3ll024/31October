@@ -6,8 +6,9 @@ import java.util.Map;
 
 /**
  * @author: Michael Gibler
+ * @author: Sam Barth
  *
- * Date last modified: 12/6/2016
+ * Date last modified: 12/7/2016
  *
  * The belt class creates a hashmap of variable size, which is the java
  * representation of a conveyor belt. The size is given to the belt class
@@ -23,9 +24,10 @@ public class Belt implements Clock, Document {
     
     private Bin newestBin;
     private boolean binDelivered;
+    private Picker picker;
 
     /*Initializing the HashMap belt*/
-    static Map<Integer, ArrayList> belt = new HashMap<Integer, ArrayList>();
+    static Map<Integer, Belt> belt = new HashMap<Integer, Belt>();
     /*Counter variables for constructing and moving respectively*/
     static int i, j;
     /*This is the x variable given by the masterclass decremented by two since there are two open*/
@@ -34,7 +36,7 @@ public class Belt implements Clock, Document {
 
 
     /*used for constructing*/
-    public Belt(int x) {
+    public Belt(int x, Picker p) {
         beltLength = x - 2;
         /*This will build the belt with a Hashmap. Each key corresponds*/
  /*to a position on the belt, with an arraylist value representing the bin in that location*/
@@ -42,6 +44,7 @@ public class Belt implements Clock, Document {
             belt.put(i, null);
         }
         this.binDelivered = false;
+        this.picker = p;
     }
     /**
      * 
@@ -62,7 +65,7 @@ public class Belt implements Clock, Document {
         }
         /*Checks the Order Class to see if a bin is ready to be loaded onto belt position 0*/
         if (this.binDelivered) {
-            belt.put(0, Orders.orderBin);
+            belt.put(0, this.newestBin);
             this.binDelivered = false;
         }
     }
