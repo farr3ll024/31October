@@ -1,13 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package testpackage;
 
-/**
- * @author Sam Barth
- * @author farr3ll
- *
- * date last modified: 11/30/2016
- *
- * RobotIT is a JUnit testing class for the Robot class.
- */
 import java.awt.Point;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,10 +12,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
-import production.*;
+import production.Robot;
+import production.Shelf;
 
+/**
+ *
+ * @author farr3ll
+ */
 public class RobotIT {
 
     public RobotIT() {
@@ -41,23 +42,56 @@ public class RobotIT {
     }
 
     /**
-     * Test of returnToCharger method, of class Robot.
+     * Test of move method, of class Robot.
      */
-    @Ignore
-    public void testReturnToCharger() {
-        /*
-        System.out.println("returnToCharger");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        MockOrders o = new MockOrders();
-        Picker pic = new Picker(o);
-        MockInventory i = new MockInventory();
-        Robot instance = new Robot(p, f, pic);
-        instance.returnToCharger();
-        Point expResult = new Point(0, 0);
+    @Test
+    public void testMove() {
+        System.out.println("move");
+        boolean printTestLines = false;
+        Robot instance = null;
+        instance.move(printTestLines);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-        */
+    }
+
+    /**
+     * Test of returnToCharger method, of class Robot.
+     */
+    @Test
+    public void testReturnToCharger() {
+        System.out.println("returnToCharger");
+        Robot instance = null;
+        instance.returnToCharger();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of assignMission method, of class Robot.
+     */
+    @Test
+    public void testAssignMission() {
+        System.out.println("assignMission");
+        String mission = "";
+        Shelf s = null;
+        Robot instance = null;
+        instance.assignMission(mission, s);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getLocation method, of class Robot.
+     */
+    @Test
+    public void testGetLocation() {
+        System.out.println("getLocation");
+        Robot instance = null;
+        Point expResult = null;
+        Point result = instance.getLocation();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,17 +99,13 @@ public class RobotIT {
      */
     @Test
     public void testGetX() {
-        /*
         System.out.println("getX");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
+        Robot instance = null;
         int expResult = 0;
         int result = instance.getX();
-        assertEquals(expResult, result, 0.01);
-        fail("getX() returned " + result);
-        */
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -83,23 +113,19 @@ public class RobotIT {
      */
     @Test
     public void testGetY() {
-        /*
         System.out.println("getY");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
+        Robot instance = null;
         int expResult = 0;
         int result = instance.getY();
-        assertEquals((int) expResult, (int) result);
-        fail("getY() returned " + result);
-        */
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getDistanceTraversed method, of class Robot.
      */
-    @Ignore
+    @Test
     public void testGetDistanceTraversed() {
         System.out.println("getDistanceTraversed");
         Robot instance = null;
@@ -115,36 +141,27 @@ public class RobotIT {
      */
     @Test
     public void testIsIdle() {
-        /*
         System.out.println("isIdle");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
-        boolean expResult = true;
+        Robot instance = null;
+        boolean expResult = false;
         boolean result = instance.isIdle();
         assertEquals(expResult, result);
-        fail("isIdle returned" + result + "when initialized.");
-        */
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of shelfCoupled method, of class Robot.
      */
-    @Ignore
+    @Test
     public void testShelfCoupled() {
-        /*
         System.out.println("shelfCoupled");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
+        Robot instance = null;
         boolean expResult = false;
         boolean result = instance.shelfCoupled();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("shelfCoupled returned true when intialized.");
-        */
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -152,18 +169,23 @@ public class RobotIT {
      */
     @Test
     public void testCoupleShelf() {
-        /*
         System.out.println("coupleShelf");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
+        Robot instance = null;
         instance.coupleShelf();
-        boolean expResult = true;
-        boolean result = instance.shelfCoupled();
-        assertEquals((boolean) expResult, (boolean) result);
-        fail("After calling coupleShelf, shelfCouple() resturns " + result);
-        */
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of uncoupleShelf method, of class Robot.
+     */
+    @Test
+    public void testUncoupleShelf() {
+        System.out.println("uncoupleShelf");
+        Robot instance = null;
+        instance.uncoupleShelf();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -171,35 +193,41 @@ public class RobotIT {
      */
     @Test
     public void testOnOrderMission() {
-        /*
         System.out.println("onOrderMission");
-        Point p = new Point(0, 0);
-        MockFloor f = new MockFloor();
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
+        Robot instance = null;
         boolean expResult = false;
         boolean result = instance.onOrderMission();
         assertEquals(expResult, result);
-        fail("onOrderMission returns " + result + " when new Robot is initialized.");
-        */
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
-     *
+     * Test of onStockMission method, of class Robot.
      */
     @Test
-    public void testMove() {
-        /*
-        System.out.println("move");
-        MockFloor f = new MockFloor();
-        Point p = new Point(0, 0);
-        Point destination = new Point(5, 5);
-        Picker pic = new Picker();
-        Robot instance = new Robot(p, f, pic);
-        instance.assignMission("Order", destination);
-        for (int i = 0; i < 20; i++) {
-            instance.move(true);
-        }
-        */ 
+    public void testOnStockMission() {
+        System.out.println("onStockMission");
+        Robot instance = null;
+        boolean expResult = false;
+        boolean result = instance.onStockMission();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of getSpecialActionLog method, of class Robot.
+     */
+    @Test
+    public void testGetSpecialActionLog() {
+        System.out.println("getSpecialActionLog");
+        Robot instance = null;
+        String expResult = "";
+        String result = instance.getSpecialActionLog();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

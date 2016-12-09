@@ -52,7 +52,6 @@ public class DocumentIT {
 
     public class DocumentImpl implements Document {
 
-        @Override
         public void doc() {
         }
     }

@@ -11,6 +11,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import production.Belt;
+import production.Bin;
 
 /**
  *
@@ -38,68 +40,39 @@ public class BeltIT {
     }
 
     /**
-     * Test of beltConstructor method, of class Belt.
+     * Test of deliverBin method, of class Belt.
      */
     @Test
-    public void testBeltConstructor() {
-        System.out.println("beltConstructor");
-        //Belt.beltConstructor();
+    public void testDeliverBin() {
+        System.out.println("deliverBin");
+        Bin b = null;
+        Belt instance = null;
+        instance.deliverBin(b);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of beltButton method, of class Belt.
+     * Test of tick method, of class Belt.
      */
     @Test
-    public void testBeltButton() {
-        System.out.println("beltButton");
-        //Belt.beltButton();
+    public void testTick() {
+        System.out.println("tick");
+        int iteration = 0;
+        Belt instance = null;
+        instance.tick(iteration);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addItem method, of class Belt.
+     * Test of doc method, of class Belt.
      */
     @Test
-    public void testAddItem() {
-        System.out.println("addItem");
-        String item = "";
-        //Belt.addItem(item);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printBelt method, of class Belt.
-     */
-    @Test
-    public void testPrintBelt() {
-        System.out.println("printBelt");
-        //Belt.printBelt();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class Belt.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        //Belt.main();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of test method, of class Belt.
-     */
-    @Test
-    public void testTest() {
-        System.out.println("test");
-        //Belt.test();
+    public void testDoc() {
+        System.out.println("doc");
+        Belt instance = null;
+        instance.doc();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

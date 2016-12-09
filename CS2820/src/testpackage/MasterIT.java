@@ -16,11 +16,7 @@ import production.Master;
 
 /**
  *
- * @author : Blaise Reints
- * @author : farr3ll024 (aka Blaise)
- * @verson Last modified: November 20
- *
- * purpose - test the master class
+ * @author farr3ll
  */
 public class MasterIT {
 
@@ -103,6 +99,18 @@ public class MasterIT {
         System.out.println("main");
         String[] args = null;
         Master.main(args);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of doc method, of class Master.
+     */
+    @Test
+    public void testDoc() {
+        System.out.println("doc");
+        Master instance = new Master();
+        instance.doc();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

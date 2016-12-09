@@ -1,26 +1,25 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package testpackage;
 
-/**
- * @author Sam Barth
- * @author farr3ll
- *
- * RobotMasterIT is a JUnit testing class for the RobotMaster class.
- */
 import java.awt.Point;
-import java.util.List;
-import java.util.LinkedList;
-
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import production.RobotMaster;
 
-import production.*;
-
+/**
+ *
+ * @author farr3ll
+ */
 public class RobotMasterIT {
 
     public RobotMasterIT() {
@@ -43,32 +42,42 @@ public class RobotMasterIT {
     }
 
     /**
+     * Test of getRobotLocations method, of class RobotMaster.
+     */
+    @Test
+    public void testGetRobotLocations() {
+        System.out.println("getRobotLocations");
+        RobotMaster instance = null;
+        ArrayList<Point> expResult = null;
+        ArrayList<Point> result = instance.getRobotLocations();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of tick method, of class RobotMaster.
      */
     @Test
     public void testTick() {
         System.out.println("tick");
-        List<String> s = new LinkedList<>(); 
-        MockFloor f = new MockFloor();
-        Belt b = new Belt(16);
-        MockInventory i = new MockInventory();
-        Inventory in = new Inventory(s);
-        MockOrders o = new MockOrders();
-        Orders or = new Orders(in);
-        Picker p = new Picker(or, b);
-        RobotMaster instance = new RobotMaster(1, f, i, o, p);
-        for (int j = 0; j < 10; j++) {
-            instance.tick(j);
-            ArrayList<Point> robotLocation = new ArrayList<>();
-            robotLocation = instance.getRobotLocations();
-            assertNotEquals(robotLocation.size(), 0);
-            System.out.println(robotLocation.size());
-            for (Point x : robotLocation) {
-                System.out.println(x.toString());
-            }
-        }
+        int i = 0;
+        RobotMaster instance = null;
+        instance.tick(i);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The number of robots returned from 'getRobotLocations' was 0");
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of doc method, of class RobotMaster.
+     */
+    @Test
+    public void testDoc() {
+        System.out.println("doc");
+        RobotMaster instance = null;
+        instance.doc();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }

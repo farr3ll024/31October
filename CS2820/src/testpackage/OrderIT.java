@@ -41,70 +41,71 @@ public class OrderIT {
     }
 
     /**
-     * Test of getItemInfo method, of class Order.
+     * Test of getNextItemInOrder method, of class Order.
      */
     @Test
-    public void testGetItemInfo() {
-        System.out.println("getItemInfo");
+    public void testGetNextItemInOrder() {
+        System.out.println("getNextItemInOrder");
         Order instance = null;
-        ArrayList<Integer> expResult = null;
-        //ArrayList<Integer> result = instance.getItemInfo();
-        //assertEquals(expResult, result);
+        String expResult = "";
+        String result = instance.getNextItemInOrder();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of addToBin method, of class Order.
+     * Test of reloadOrderStack method, of class Order.
      */
     @Test
-    public void testAddToBin() {
-        System.out.println("addToBin");
-        String item = "";
+    public void testReloadOrderStack() {
+        System.out.println("reloadOrderStack");
         Order instance = null;
-        //instance.addToBin(item);
+        boolean expResult = false;
+        boolean result = instance.reloadOrderStack();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of shelfReady method, of class Order.
+     * Test of orderStackEmpty method, of class Order.
      */
     @Test
-    public void testShelfReady() {
-        System.out.println("shelfReady");
+    public void testOrderStackEmpty() {
+        System.out.println("orderStackEmpty");
         Order instance = null;
-        Boolean expResult = null;
-        //Boolean result = instance.shelfReady();
-        //assertEquals(expResult, result);
+        boolean expResult = false;
+        boolean result = instance.orderStackEmpty();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of binFilled method, of class Order.
+     * Test of getItems method, of class Order.
      */
     @Test
-    public void testBinFilled() {
-        System.out.println("binFilled");
+    public void testGetItems() {
+        System.out.println("getItems");
         Order instance = null;
-        Boolean expResult = null;
-        //Boolean result = instance.binFilled();
-        //assertEquals(expResult, result);
+        ArrayList<String> expResult = null;
+        ArrayList<String> result = instance.getItems();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getShelfNumber method, of class Order.
+     * Test of getOrderSize method, of class Order.
      */
     @Test
-    public void testGetShelfNumber() {
-        System.out.println("getShelfNumber");
+    public void testGetOrderSize() {
+        System.out.println("getOrderSize");
         Order instance = null;
         int expResult = 0;
-        //int result = instance.getShelfNumber();
-        //assertEquals(expResult, result);
+        int result = instance.getOrderSize();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -119,45 +120,6 @@ public class OrderIT {
         String expResult = "";
         String result = instance.getShippingAddress();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of randomAddress method, of class Order.
-     */
-    @Test
-    public void testRandomAddress() {
-        System.out.println("randomAddress");
-        Order instance = null;
-        String expResult = "";
-        //String result = instance.randomAddress();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of tick method, of class Order.
-     */
-    @Test
-    public void testTick() {
-        System.out.println("tick");
-        int iteration = 0;
-        Order instance = null;
-        //instance.tick(iteration);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doc method, of class Order.
-     */
-    @Test
-    public void testDoc() {
-        System.out.println("doc");
-        Order instance = null;
-        //instance.doc();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

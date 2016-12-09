@@ -53,7 +53,6 @@ public class ClockIT {
 
     public class ClockImpl implements Clock {
 
-        @Override
         public void tick(int iteration) {
         }
     }

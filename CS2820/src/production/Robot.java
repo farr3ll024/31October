@@ -14,7 +14,12 @@
 package production;
 
 import java.awt.Point;
-import testpackage.*;
+import testpackage.MockFloor;
+import testpackage.MockFloor;
+import testpackage.MockInventory;
+import testpackage.MockInventory;
+import testpackage.MockOrders;
+import testpackage.MockOrders;
 
 public class Robot {
 
@@ -42,7 +47,7 @@ public class Robot {
      * @param f instance of the floor used by Master
      *
      */
-    public Robot(Point initial, MockFloor f, MockInventory i , MockOrders o, Picker p) {
+    public Robot(Point initial, MockFloor f, MockInventory i, MockOrders o, Picker p) {
         double x = initial.getX();
         double y = initial.getY();
         int X = (int) x;
@@ -246,7 +251,8 @@ public class Robot {
     public boolean onStockMission() {
         return onStockMission;
     }
-    public String getSpecialActionLog(){
+
+    public String getSpecialActionLog() {
         return this.specialAction;
     }
 }

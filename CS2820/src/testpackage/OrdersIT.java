@@ -5,7 +5,6 @@
  */
 package testpackage;
 
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -13,7 +12,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import production.Order;
 import production.Orders;
+import production.Shelf;
 
 /**
  *
@@ -39,31 +40,45 @@ public class OrdersIT {
     @After
     public void tearDown() {
     }
+
     /**
-     * Test of getShelfNumber method, of class Orders.
+     * Test of getNextOrder method, of class Orders.
      */
     @Test
-    public void testGetShelfNumber() {
-        System.out.println("getShelfNumber");
+    public void testGetNextOrder() {
+        System.out.println("getNextOrder");
         Orders instance = null;
-        //int expResult = 0;
-        //int result = instance.getShelfNumber();
-        //assertEquals(expResult, result);
+        Order expResult = null;
+        Order result = instance.getNextOrder();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getShippingAddress method, of class Orders.
+     * Test of shelfToFetch method, of class Orders.
      */
     @Test
-    public void testGetShippingAddress() {
-        System.out.println("getShippingAddress");
+    public void testShelfToFetch() {
+        System.out.println("shelfToFetch");
         Orders instance = null;
-        //String expResult = "";
-        //String result = instance.getShippingAddress();
-        //assertEquals(expResult, result);
+        Shelf expResult = null;
+        Shelf result = instance.shelfToFetch();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of doc method, of class Orders.
+     */
+    @Test
+    public void testDoc() {
+        System.out.println("doc");
+        Orders instance = null;
+        instance.doc();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }
