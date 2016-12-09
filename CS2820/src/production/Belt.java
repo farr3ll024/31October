@@ -1,7 +1,13 @@
 package production;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author: Michael Gibler
@@ -68,21 +74,22 @@ public class Belt implements Clock, Document {
             this.binDelivered = false;
         }
     }
-    
+
     /* Method to document what the belt is doing and to make sure it is working correctly*/
     @Override
     public void doc() {
-    	for (int z = 0; z <= beltLength - 1; z++){
-    		try (FileWriter fw = new FileWriter ("BeltLog", true);
-    				BufferedWriter bw = new BufferedWriter(fw);
-    				PrintWriter out = new PrintWriter(bw)) {
-    			if (belt.get(z) = null){
-    				out.println("At belt position" + (z+1) + "there is no bin \n");
-    			}
-    			else {
-    				out.println("At belt position" + (z+1) + "there is a bin containing" + belt.get(z) + "\n");
-    			}
-    		}
-    	}
+        for (int z = 0; z <= beltLength - 1; z++) {
+            try (FileWriter fw = new FileWriter("BeltLog", true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter out = new PrintWriter(bw)) {
+                if (!(belt.get(z) == null)) {
+                    out.println("At belt position" + (z + 1) + "there is a bin containing" + belt.get(z) + "\n");
+                } else {
+                    out.println("At belt position" + (z + 1) + "there is no bin \n");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Belt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
