@@ -13,17 +13,13 @@
 package production;
 
 import java.awt.Point;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import testpackage.MockFloor;
-import testpackage.MockFloor;
-import testpackage.MockInventory;
-import testpackage.MockInventory;
-import testpackage.MockOrders;
-import testpackage.MockOrders;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+import testpackage.*;
 
 // RobotMaster will implement clock interface
 public class RobotMaster implements Clock, Document {
@@ -117,16 +113,16 @@ public class RobotMaster implements Clock, Document {
      */
     @Override
     public void doc() {
-        for (Robot r : robots) {
-            try (FileWriter fw = new FileWriter("RobotLog", true);
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    PrintWriter out = new PrintWriter(bw)) {
-                out.println("Robot at" + r.getLocation().toString() + "\n");
-                out.println(r.getSpecialActionLog() + "\n");
-                //more code
-            } catch (IOException e) {
-                //exception handling left as an exercise for the reader
-            }
+        for (Robot r : robots){
+        try (FileWriter fw = new FileWriter("RobotLog", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println("Robot at" + r.getLocation().toString() + "\n");
+            out.println(r.getSpecialActionLog() + "\n");
+            //more code
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
         }
         /*
         try {
@@ -139,6 +135,6 @@ public class RobotMaster implements Clock, Document {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
-         */
+        */
     }
 }

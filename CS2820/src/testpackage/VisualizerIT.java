@@ -11,11 +11,14 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import production.Visualizer;
 
 /**
  *
- * @author farr3ll
+ * @author : Blaise Reints
+ * @author : farr3ll024 (aka Blaise)
+ * @version Last modified: November 20
+ *
+ * purpose - test visualizer file
  */
 public class VisualizerIT {
 
@@ -38,27 +41,8 @@ public class VisualizerIT {
     public void tearDown() {
     }
 
-    /**
-     * Test of tick method, of class Visualizer.
-     */
     @Test
-    public void testTick() {
-        System.out.println("tick");
-        int iteration = 0;
-        Visualizer instance = new Visualizer();
-        instance.tick(iteration);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doc method, of class Visualizer.
-     */
-    @Test
-    public void testDoc() {
-        System.out.println("doc");
-        Visualizer instance = new Visualizer();
-        instance.doc();
+    public void testSomeMethod() {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import production.Floor;
-import production.Shelf;
 
 /**
  *
@@ -43,14 +42,63 @@ public class FloorIT {
     }
 
     /**
-     * Test of getFloor method, of class Floor.
+     * Test of constructBelt method, of class Floor.
      */
     @Test
-    public void testGetFloor() {
-        System.out.println("getFloor");
-        Floor expResult = null;
-        Floor result = Floor.getFloor();
-        assertEquals(expResult, result);
+    public void testConstructBelt() {
+        System.out.println("constructBelt");
+        //Floor.constructBelt();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of constructShelf method, of class Floor.
+     */
+    @Test
+    public void testConstructShelf() {
+        System.out.println("constructShelf");
+        //Floor.constructShelf();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getShelfLimit method, of class Floor.
+     */
+    @Test
+    public void testGetShelfLimit() {
+        System.out.println("getShelfLimit");
+        //Floor instance = new Floor();
+        int expResult = 0;
+        //int result = instance.getShelfLimit();
+        //assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getShelf method, of class Floor.
+     */
+    @Test
+    public void testGetShelf() {
+        System.out.println("getShelf");
+        int n = 0;
+        Floor instance = new Floor(160, 200);
+        Point expResult = null;
+        //Point result = instance.getShelf(n);
+        //assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of printMap method, of class Floor.
+     */
+    @Test
+    public void testPrintMap() {
+        System.out.println("printMap");
+        //Floor.printMap();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -203,9 +251,9 @@ public class FloorIT {
     public void testGetShelf_0args() {
         System.out.println("getShelf");
         Floor instance = null;
-        Shelf[] expResult = null;
-        Shelf[] result = instance.getShelf();
-        assertArrayEquals(expResult, result);
+        Point[] expResult = null;
+        //Point[] result = instance.getShelf();
+        //assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -216,38 +264,11 @@ public class FloorIT {
     @Test
     public void testGetShelf_int() {
         System.out.println("getShelf");
-        int shelfNum = 0;
-        Floor instance = null;
-        Shelf expResult = null;
-        Shelf result = instance.getShelf(shelfNum);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getShelfPoint method, of class Floor.
-     */
-    @Test
-    public void testGetShelfPoint() {
-        System.out.println("getShelfPoint");
-        int shelfNum = 0;
+        int n = 0;
         Floor instance = null;
         Point expResult = null;
-        Point result = instance.getShelfPoint(shelfNum);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printMap method, of class Floor.
-     */
-    @Test
-    public void testPrintMap() {
-        System.out.println("printMap");
-        Floor instance = null;
-        instance.printMap();
+        //Point result = instance.getShelf(n);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -260,6 +281,18 @@ public class FloorIT {
         System.out.println("printStats");
         Floor instance = null;
         instance.printStats();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of main method, of class Floor.
+     */
+    @Test
+    public void testMain() {
+        System.out.println("main");
+        String[] args = null;
+        //Floor.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

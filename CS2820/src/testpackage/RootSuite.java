@@ -1,9 +1,10 @@
+package testpackage;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testpackage;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,8 +18,8 @@ import org.junit.runners.Suite;
  * @author farr3ll
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({VisualizerIT.class, FloorIT.class, MasterIT.class, DocumentIT.class, BeltIT.class, ClockIT.class, OrdersIT.class})
-public class ProductionITSuite {
+@Suite.SuiteClasses({testpackage.ProductionITSuite.class})
+public class RootSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

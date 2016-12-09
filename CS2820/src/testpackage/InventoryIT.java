@@ -5,8 +5,6 @@
  */
 package testpackage;
 
-import java.awt.Point;
-import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -68,34 +66,6 @@ public class InventoryIT {
     }
 
     /**
-     * Test of readCapacity method, of class Inventory.
-     */
-    @Test
-    public void testReadCapacity() {
-        System.out.println("readCapacity");
-        Inventory instance = null;
-        Map<Integer, Integer> expResult = null;
-        Map<Integer, Integer> result = instance.readCapacity();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of itemShelf method, of class Inventory.
-     */
-    @Test
-    public void testItemShelf() {
-        System.out.println("itemShelf");
-        Inventory instance = null;
-        Map<String, Integer> expResult = null;
-        Map<String, Integer> result = instance.itemShelf();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of addItem method, of class Inventory.
      */
     @Test
@@ -145,9 +115,9 @@ public class InventoryIT {
         System.out.println("readPosition");
         String itemName = "";
         Inventory instance = null;
-        Point expResult = null;
-        Point result = instance.readPosition(itemName);
-        assertEquals(expResult, result);
+        //Point expResult = null;
+        //Point result = instance.readPosition(itemName);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
