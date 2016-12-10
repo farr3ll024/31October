@@ -346,22 +346,18 @@ public class Inventory implements Clock, Document {
     public static void main(String[] args) {
 
         List<Map<String, Object>> listA = new ArrayList<>();
-        /*add code here to read file and insert the item in to listA*/
-
         Inventory a = new Inventory(listA);
+	    
         a.data();
         a.addItem("L", 41);
-        /*
-	    a.itemShelf();
-	    a.addItem("H",4);
-	    a.addItem("A",5);
-	    a.addItem("F",10);
-	    a.addItem("r",10);
-	    a.removeItem("K", 20);
-	    a.readPosition("J");
-	    a.removeItem("V", 3);*/
-
-        //a.readShelf();
+	a.itemShelf();
+	a.addItem("H",4);
+	a.addItem("A",5);
+	a.addItem("F",10);
+	a.addItem("r",10);
+	a.removeItem("K", 20);
+	a.readPosition("J");
+	a.removeItem("V", 3);
     }
 
     @Override
