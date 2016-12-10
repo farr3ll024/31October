@@ -1,11 +1,13 @@
 package production;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
  * @author TrevorFinley (tfinley521)
- * @version 1.3 - last date modified 12/7/2016
+ * @author Sam Barth
+ * @version 1.3 - last date modified 12/10/2016
  *
  * Purpose: to construct relative x/y coordinates of type
  * Point for all static locations such as charger, shelves, docks, etc.
@@ -40,6 +42,7 @@ public class Floor
 	Point shipdock; 	//shipping dock
 	Shelf [] shelf; 		//shelf array of coordinates
 	Point[] belt; 		//belt array of coordinates
+        ArrayList<Shelf> shelves;
 	
 	
 	/**
@@ -220,15 +223,18 @@ public class Floor
         		}
         	}
         }
+        for (Shelf z : this.shelf){
+            this.shelves.add(z);
+        }
     }
     
     /**
      * returns entire array of shelf coordinates
-     * @return Shelf[] shelf array from Floor
+     * @return ArrayList of Shelves
      */
-    public Shelf[] getShelf()
+    public ArrayList<Shelf> getShelf()
     {
-    	return this.shelf;
+    	return this.shelves;
     }
     
     /**

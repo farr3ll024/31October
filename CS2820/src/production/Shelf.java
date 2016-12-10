@@ -86,8 +86,21 @@ public class Shelf {
     public boolean containsItem(String s){
         return this.items.containsKey(s);
     }
+    /**
+     * 
+     * @return returns true if the shelf contains no items.  Otherwise, it returns
+     * false
+     */
     public boolean isEmpty(){
         return this.items.isEmpty();
     }
-    
+    /**
+     * 
+     * @return returns true if the number of items contained on the self is less
+     * than the capacity of the shelf.
+     */
+    public boolean hasFreeSpace(){
+        if (this.items.size() < this.SHELFCAPACITY){return true;}
+        return false;
+    }
 }

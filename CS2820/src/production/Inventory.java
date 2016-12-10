@@ -3,7 +3,10 @@ package production;
 /**
  *
  * @author Ming Cheng
+ * @author Sam Barth
  *
+ * date last modified: 12/10/2016
+ * 
  */
 //Need to use the List.txt
 import java.awt.Point;
@@ -18,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Iterator;
+import testpackage.MockFloor;
+
 public class Inventory implements Clock, Document {
 
     boolean isExist; //variable to check whether item exist or not
@@ -26,6 +32,10 @@ public class Inventory implements Clock, Document {
     List<Map<String, Object>> inventory = new ArrayList<>();
     Map<Integer, Integer> shelf = new HashMap<>(); // shelf and its remaining capacity
     Map<String, Integer> ItemShelf;
+    
+    ArrayList<String> items;    
+    MockFloor floor;
+    ArrayList<Shelf> shelfList;
 
     int ShelfCapacity = 50;
 
@@ -35,9 +45,9 @@ public class Inventory implements Clock, Document {
      * @param inventory
      */
     @SuppressWarnings("unchecked")
-    public Inventory(List inventory) {
-        this.ItemShelf = new HashMap<>();
-        this.inventory = inventory;
+    public Inventory(MockFloor floor) {
+        this.readFile();
+        
     }
 
     // Read file and add data of the file to ArrayList
@@ -94,6 +104,34 @@ public class Inventory implements Clock, Document {
         } catch (IOException e) {
         }
 
+    }
+    /**
+     * read file reads the StartingInventory .txt document and fills the shelves
+     * with the items found there.
+     * 
+     * Solution to reading files in another directory found here:
+     * http://stackoverflow.com/questions/14520822/how-to-open-file-in-another-directory-in-java
+     * 
+     */
+    private void readFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("../CS2820/src/production/StartingInventory.txt"))) {
+            String line = br.readLine();
+            while (line != null) {
+                line = br.readLine();
+                this.items.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadStartingInventory(){
+        this.shelfList = floor.getShelf();
+        Iterator<String> i = items.iterator();
+        for (Shelf s : shelfList){
+            while (s.hasFreeSpace()){
+                s.addItem(i.next(), 1);
+            }
+        }
     }
 
     //remove items from list, if item is not on the list yet, print not available
@@ -185,6 +223,7 @@ public class Inventory implements Clock, Document {
      * @param itemName, the name of the item that we want to add into the list
      * @param Qty, the number of items that we wants to add
      */
+    /*
     public void addItem(String itemName, int Qty) {
         boolean InList = false;
         int i;
@@ -213,6 +252,7 @@ public class Inventory implements Clock, Document {
                 keys = m.getKey();
             }
         }
+    
         //System.out.println(keys);
 
         for (i = 0; i < inventory.size(); i++) {
@@ -228,7 +268,7 @@ public class Inventory implements Clock, Document {
                 InList = true;
             }
         }
-
+        
         //if item not in list yet
         if (InList == false) {
             Map<String, Object> newItem = new HashMap<>();
@@ -246,35 +286,35 @@ public class Inventory implements Clock, Document {
         outPutFile();
 
     }
-
+    */
     //output the file
     /**
      * @param nothing
      */
-    public void outPutFile(){
-    	try{
-    	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List1.txt"));
-    	   pw.println("Id\tName\tAmount\tShelf#\tPosition\tExistence");
-    	   String[] columnName = { "Id", "Name", "Amount", "Shelf#", "Position", "Existence"};
-			int cIndex;
-			for (int i = 0; i < inventory.size(); i++){
-				Map<String, Object> st = inventory.get(i);
-				cIndex = 0;
-				pw.println(st.get(columnName[cIndex++]) + "\t"
-				+ st.get(columnName[cIndex++]) + "\t"
-				+ st.get(columnName[cIndex++]) + "\t"
-                                + st.get(columnName[cIndex++]) + "\t"
-                                + st.get(columnName[cIndex++]) + "\t"+"\t"
-                                + st.get(columnName[cIndex++]));
-			}
-			pw.flush();
-			pw.close();
-    	   
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+    public void outPutFile() {
+        try {
+            PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List1.txt"));
+            pw.println("Id\tName\tAmount\tShelf#\tPosition\tExistence");
+            String[] columnName = {"Id", "Name", "Amount", "Shelf#", "Position", "Existence"};
+            int cIndex;
+            for (int i = 0; i < inventory.size(); i++) {
+                Map<String, Object> st = inventory.get(i);
+                cIndex = 0;
+                pw.println(st.get(columnName[cIndex++]) + "\t"
+                        + st.get(columnName[cIndex++]) + "\t"
+                        + st.get(columnName[cIndex++]) + "\t"
+                        + st.get(columnName[cIndex++]) + "\t"
+                        + st.get(columnName[cIndex++]) + "\t" + "\t"
+                        + st.get(columnName[cIndex++]));
+            }
+            pw.flush();
+            pw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     //check whether the number of item exist or not
     //if the amount of item is lease than Qty, then item is not exist
     //if item is not in the list, then item is not exist
@@ -342,23 +382,23 @@ public class Inventory implements Clock, Document {
         return a;
 
     }
-
+    /*
     public static void main(String[] args) {
 
         List<Map<String, Object>> listA = new ArrayList<>();
         Inventory a = new Inventory(listA);
-	    
+
         a.data();
         a.addItem("L", 41);
-	a.itemShelf();
-	a.addItem("A",5);
-	a.addItem("F",10);
-	a.addItem("r",10);
-	a.removeItem("K", 20);
-	a.readPosition("J");
-	a.removeItem("V", 3);
+        a.itemShelf();
+        a.addItem("A", 5);
+        a.addItem("F", 10);
+        a.addItem("r", 10);
+        a.removeItem("K", 20);
+        a.readPosition("J");
+        a.removeItem("V", 3);
     }
-
+    */
     @Override
     public void tick(int iteration) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

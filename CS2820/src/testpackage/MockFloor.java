@@ -11,6 +11,8 @@ package testpackage;
 
 
 import java.awt.Point;
+import java.util.ArrayList;
+import production.Shelf;
 
 /**
  *
@@ -40,6 +42,11 @@ public class MockFloor {
     public Point getReceiving(){
         Point receiving = new Point(0,15);
         return receiving;
+    }
+    public ArrayList<Shelf> getShelf(){
+        ArrayList<Shelf> a = new ArrayList<>();
+        
+        return a;
     }
     
 }

@@ -68,6 +68,7 @@ public class InventoryIT {
     /**
      * Test of addItem method, of class Inventory.
      */
+    /*
     @Test
     public void testAddItem() {
         System.out.println("addItem");
@@ -78,7 +79,7 @@ public class InventoryIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+    */
     /**
      * Test of outPutFile method, of class Inventory.
      */
@@ -121,19 +122,6 @@ public class InventoryIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of main method, of class Inventory.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Inventory.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of tick method, of class Inventory.
      */

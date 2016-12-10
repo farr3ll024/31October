@@ -47,12 +47,11 @@ public class RobotMasterIT {
      */
     @Test
     public void testTick() {
-        System.out.println("tick");
-        List<String> s = new LinkedList<>(); 
+        System.out.println("tick"); 
         MockFloor f = new MockFloor();
         Belt b = new Belt(16);
         MockInventory i = new MockInventory();
-        Inventory in = new Inventory(s);
+        Inventory in = new Inventory(f);
         MockOrders o = new MockOrders();
         Orders or = new Orders(in);
         Picker p = new Picker(or, b);
