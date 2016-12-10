@@ -351,7 +351,6 @@ public class Inventory implements Clock, Document {
         a.data();
         a.addItem("L", 41);
 	a.itemShelf();
-	a.addItem("H",4);
 	a.addItem("A",5);
 	a.addItem("F",10);
 	a.addItem("r",10);
