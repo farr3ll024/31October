@@ -251,29 +251,30 @@ public class Inventory implements Clock, Document {
     /**
      * @param nothing
      */
-    public void outPutFile() {
-        try {
-            PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List1.txt"));
-            pw.println("Id\tName\tAmount\tShelf#\tPosition\tExistence");
-            String[] columnName = {"Id", "Name", "Amount", "Shelf#", "Position", "Existence"};
-            int cIndex;
-            for (int i = 0; i < inventory.size(); i++) {
-                Map<String, Object> st = inventory.get(i);
-                cIndex = 0;
-                pw.println(st.get(columnName[cIndex + 1]) + "\t"
-                        + st.get(columnName[cIndex + 1]) + "\t"
-                        + st.get(columnName[cIndex + 1]) + "\t"
-                        + st.get(columnName[cIndex + 1]) + "\t"
-                        + st.get(columnName[cIndex + 1]) + "\t" + "\t"
-                        + st.get(columnName[cIndex + 1]));
-            }
-            pw.flush();
-            pw.close();
-
-        } catch (IOException e) {
-        }
+    public void outPutFile(){
+    	try{
+    	   PrintWriter pw = new PrintWriter(new File("/Users/macbook_user/Desktop/OOP Project/List1.txt"));
+    	   pw.println("Id\tName\tAmount\tShelf#\tPosition\tExistence");
+    	   String[] columnName = { "Id", "Name", "Amount", "Shelf#", "Position", "Existence"};
+			int cIndex;
+			for (int i = 0; i < inventory.size(); i++){
+				Map<String, Object> st = inventory.get(i);
+				cIndex = 0;
+				pw.println(st.get(columnName[cIndex++]) + "\t"
+				+ st.get(columnName[cIndex++]) + "\t"
+				+ st.get(columnName[cIndex++]) + "\t"
+                                + st.get(columnName[cIndex++]) + "\t"
+                                + st.get(columnName[cIndex++]) + "\t"+"\t"
+                                + st.get(columnName[cIndex++]));
+			}
+			pw.flush();
+			pw.close();
+    	   
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
     }
-
     //check whether the number of item exist or not
     //if the amount of item is lease than Qty, then item is not exist
     //if item is not in the list, then item is not exist
