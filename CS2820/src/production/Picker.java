@@ -14,13 +14,15 @@ public class Picker {
     Shelf currentShelf;
     Orders orders;
     Belt belt;
+    Inventory inventory;
     
     /**
      * 
      */
-    public Picker(Orders o, Belt b) {
+    public Picker(Orders o, Belt b, Inventory i) {
         this.orders = o;
         this.belt = b;
+        this.inventory = i;
     }
 
     /**
@@ -32,8 +34,9 @@ public class Picker {
      * the shelf removes the item from the inventory
      */
     public void pick(String item) {
-        if (currentShelf.containsItem(item)) {
-            currentShelf.removeItem(item);
+        if (this.currentShelf.containsItem(item)) {
+            this.currentShelf.removeItem(item);
+            this.inventory.remove(item);
             this.currentBin.addItem(item);
         }
         if (this.currentOrder.orderStackEmpty()){

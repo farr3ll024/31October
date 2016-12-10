@@ -54,7 +54,7 @@ public class RobotMasterIT {
         Inventory in = new Inventory(f);
         MockOrders o = new MockOrders();
         Orders or = new Orders(in);
-        Picker p = new Picker(or, b);
+        Picker p = new Picker(or, b, in);
         RobotMaster instance = new RobotMaster(1, f, i, o, p);
         for (int j = 0; j < 10; j++) {
             instance.tick(j);

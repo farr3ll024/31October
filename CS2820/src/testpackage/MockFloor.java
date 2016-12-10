@@ -45,7 +45,11 @@ public class MockFloor {
     }
     public ArrayList<Shelf> getShelf(){
         ArrayList<Shelf> a = new ArrayList<>();
-        
+        for (int i = 1 ; i < 11 ; i++ ){
+            Point p = new Point(i, i);
+            Shelf s = new Shelf(p);
+            a.add(s);
+        }
         return a;
     }
     

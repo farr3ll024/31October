@@ -47,6 +47,7 @@ public class Inventory implements Clock, Document {
     @SuppressWarnings("unchecked")
     public Inventory(MockFloor floor) {
         this.readFile();
+        this.loadStartingInventory();
         
     }
 
@@ -124,6 +125,9 @@ public class Inventory implements Clock, Document {
             e.printStackTrace();
         }
     }
+    /**
+     * this method will be called by the constructor to shelve starting items
+     */
     private void loadStartingInventory(){
         this.shelfList = floor.getShelf();
         Iterator<String> i = items.iterator();
@@ -133,7 +137,14 @@ public class Inventory implements Clock, Document {
             }
         }
     }
-
+    /**
+     * 
+     * @param item the String representation of the item to be removed from the
+     * inventory
+     */
+    public void remove(String item){
+        items.remove(item);
+    }
     //remove items from list, if item is not on the list yet, print not available
     //If item on the list, but the amount is not enough, print not enough
     /**
