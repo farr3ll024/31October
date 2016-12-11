@@ -21,14 +21,12 @@ public class Orders implements Document {
     private Inventory i;
     private LinkedList<Order> ordersQueue;
     public Boolean shelfReady = false;
+    public String nextItem;
 
     public Orders(Inventory i) {
         
         this.i = i;
         
-    }
-    public Order getNextOrder(){
-        return this.ordersQueue.removeFirst();
     }
     public Shelf shelfToFetch(){
         
@@ -38,11 +36,16 @@ public class Orders implements Document {
             //tell the picker to do something
             return shelfToFetch();
         }
-        Point dummyPoint = new Point(0, 0);
-        Shelf dummyShelf = new Shelf(dummyPoint);
-        return dummyShelf;
+        this.nextItem = currentOrder.getNextItemInOrder();
+        Shelf s = i.findShelf(nextItem);
+        return s;
     }
-    
+    public Order getOrder(){
+        return this.ordersQueue.peek();
+    }
+    public String getItem(){
+        return this.nextItem; 
+    }
     @Override
     public void doc() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

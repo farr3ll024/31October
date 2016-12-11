@@ -30,7 +30,7 @@ public class RobotMaster implements Clock, Document {
     private boolean lastDeployedOrder;
     private MockFloor floor;
     private MockInventory inventory;
-    private MockOrders orders;
+    private Orders orders;
     private Picker picker;
 
     /**
@@ -44,7 +44,7 @@ public class RobotMaster implements Clock, Document {
      * @param i is the instance of the Inventory that Master will use in
      * conjunction with this instance of RobotMaster
      */
-    public RobotMaster(int numRobots, MockFloor f, MockInventory i, MockOrders o, Picker p) {
+    public RobotMaster(int numRobots, MockFloor f, MockInventory i, Orders o, Picker p) {
         this.robots = new ArrayList<>(numRobots);
         this.lastDeployedOrder = false;
         //the following for loop will individually initialize each robot at a charge location
@@ -68,9 +68,11 @@ public class RobotMaster implements Clock, Document {
     private void deploy(Robot r) {
         if (this.lastDeployedOrder) {
             this.lastDeployedOrder = false;
-            r.assignMission("Stock", inventory.shelfToFetch());
+            Order o = this.orders.getOrder();
+            String item = this.orders.getItem();
+            r.assignOrderMission(inventory.shelfToFetch(), o,item);
         } else {
-            r.assignMission("Order", orders.shelfToFetch());
+            r.assignInventoryMission(orders.shelfToFetch());
         }
     }
 

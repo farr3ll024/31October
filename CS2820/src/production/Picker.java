@@ -23,6 +23,7 @@ public class Picker {
         this.orders = o;
         this.belt = b;
         this.inventory = i;
+        this.currentBin = new Bin(orders.getOrder());
     }
 
     /**
@@ -48,10 +49,11 @@ public class Picker {
      */
     public void completeOrder(){
         belt.deliverBin(this.currentBin);
-        this.currentOrder = this.orders.getNextOrder();
-        this.currentBin = new Bin(this.currentOrder);
+        this.currentBin = new Bin(orders.getOrder());
     }
-    public void deliverShelf(Shelf s){
+    public void deliverShelf(Shelf s, Order order, String item){
         this.currentShelf = s;
+        this.currentOrder = order;
+        this.pick(item);
     }
 }

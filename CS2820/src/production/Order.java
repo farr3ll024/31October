@@ -77,9 +77,13 @@ public class Order {
     public int getOrderSize(){
         return this.items.size();
     }
-	
-	
-	
+    /**
+     * 
+     * @return returns a list of the items in the order. 
+     */
+    public ArrayList<String> orderItems(){
+        return this.items;
+    }	
     /**
      * 
      * @return returns the shipping address of the order

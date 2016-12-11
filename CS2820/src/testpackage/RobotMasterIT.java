@@ -52,13 +52,13 @@ public class RobotMasterIT {
         Belt b = new Belt(16);
         MockInventory i = new MockInventory();
         Inventory in = new Inventory(f);
-        MockOrders o = new MockOrders();
+        Orders o = new Orders(in);
         Orders or = new Orders(in);
         Picker p = new Picker(or, b, in);
         RobotMaster instance = new RobotMaster(1, f, i, o, p);
         for (int j = 0; j < 10; j++) {
             instance.tick(j);
-            ArrayList<Point> robotLocation = new ArrayList<>();
+            ArrayList<Point> robotLocation;
             robotLocation = instance.getRobotLocations();
             assertNotEquals(robotLocation.size(), 0);
             System.out.println(robotLocation.size());

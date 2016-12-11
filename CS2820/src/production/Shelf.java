@@ -17,6 +17,7 @@ public class Shelf {
     private final Point base;
     private HashMap<String,Integer> items;
     private static final int SHELFCAPACITY = 10;
+    private boolean atBase;
     /**
      * @param p Point object that will be the home-base of the initialized shelf
      */
@@ -80,6 +81,12 @@ public class Shelf {
     }
     /**
      * 
+     */
+    public void takeShelf(){
+        this.atBase = false;
+    }
+    /**
+     * 
      * @param s the String representing the item searched for
      * @return returns true if the item is found on the shelf, and false otherwise.
      */
@@ -102,5 +109,13 @@ public class Shelf {
     public boolean hasFreeSpace(){
         if (this.items.size() < this.SHELFCAPACITY){return true;}
         return false;
+    }
+    /**
+     * 
+     * @return returns false if the Shelf is not currently located at the shelf's
+     * base location and true if it is
+     */
+    public boolean atBase(){
+        return this.atBase;
     }
 }

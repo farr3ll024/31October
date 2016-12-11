@@ -145,6 +145,20 @@ public class Inventory implements Clock, Document {
     public void remove(String item){
         items.remove(item);
     }
+    /**
+     * 
+     * @param item String representation of the item we wish to locate in the inventory
+     * @return returns the shelf on which the item is located if the inventory contains
+     * the item.  Otherwise, contains an empty shelf with a base Point = ( -1, -1)
+     */
+    public Shelf findShelf(String item){
+        Point p = new Point(-1,-1);
+        Shelf result = new Shelf(p);
+        for (Shelf s : this.shelfList) {
+            if (s.containsItem(item)){return s;}
+        }
+        return result;
+    }
     //remove items from list, if item is not on the list yet, print not available
     //If item on the list, but the amount is not enough, print not enough
     /**
