@@ -5,12 +5,26 @@
  */
 package production;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.ArrayList;
 
 public class OrderGenerator {
 
+    private ArrayList<String> items;
+
     public OrderGenerator() {
+        try (BufferedReader br = new BufferedReader(new FileReader("../CS2820/src/production/StartingInventory.txt"))) {
+            String line = br.readLine();
+            while (line != null) {
+                line = br.readLine();
+                this.items.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Order getOrder() {
@@ -59,6 +73,7 @@ public class OrderGenerator {
         int x = ran.nextInt(998);
         return x;
     }
+
     /**
      * @author Ruben Chavez modified from Ted Herman.MockOrders
      * @return a random first name for an address
@@ -127,16 +142,11 @@ public class OrderGenerator {
 
     private ArrayList<String> orderItems() {
         ArrayList<String> orderItems = new ArrayList<>();
-        Random ran = new Random();
-        int numItems = ran.nextInt(10) + 1;
-        final String[] items = {"A", "B",
-            "C", "D", "K", "F",
-            "G", "H", "I", "J", "K"};
-        int i = 0;
-        while (i < numItems) {
-            int x = ran.nextInt(10);
-            orderItems.add(items[x]);
-            i++;
+        for (int i = 0; i < 5; i++) {
+            Random ran = new Random();
+            int x = ran.nextInt(this.items.size() - 1);
+            orderItems.add(this.items.get(x));
+            this.items.remove(x);
         }
         return orderItems;
     }

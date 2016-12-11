@@ -26,6 +26,10 @@ public class Orders implements Document {
     public Orders(Inventory i) {
         
         this.i = i;
+        OrderGenerator g = new OrderGenerator();
+        for (int j = 0 ; j < 10 ; j++){
+            this.ordersQueue.add(g.getOrder());
+        }
         
     }
     public Shelf shelfToFetch(){
